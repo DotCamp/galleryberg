@@ -1,0 +1,81 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "galleryberg/gallery",
+	"title": "Galleryberg Gallery",
+	"category": "widgets",
+	"icon": "smiley",
+	"description": "A customizable gallery block for displaying images in columns with optional cropping and spacing.",
+	"attributes": {
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"cropImages": {
+			"type": "boolean",
+			"default": true
+		},
+		"blockSpacing": {
+			"type": "array",
+			"default": {}
+		},
+		"images": {
+			"type": "array",
+			"default": []
+		},
+		"lightbox": {
+			"type": "boolean",
+			"default": false
+		},
+		"openEffect": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"closeEffect": {
+			"type": "string",
+			"default": "zoom"
+		},
+		"slideEffect": {
+			"type": "string",
+			"default": "slide"
+		},
+		"keyboardNavigation": {
+			"type": "boolean",
+			"default": true
+		},
+		"loop": {
+			"type": "boolean",
+			"default": true
+		},
+		"zoomable": {
+			"type": "boolean",
+			"default": true
+		},
+		"draggable": {
+			"type": "boolean",
+			"default": true
+		},
+		"layout": {
+			"type": "string",
+			"default": "tiles"
+		},
+		"justifiedRowHeight": {
+			"type": "number",
+			"default": 180
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": true
+	},
+	"providesContext": {
+		"layout": "layout",
+		"justifiedRowHeight": "justifiedRowHeight"
+	},
+	"textdomain": "galleryberg-gallery-block",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php",
+	"viewScript": "file:./view.js"
+}

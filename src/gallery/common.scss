@@ -1,0 +1,72 @@
+@use "sass:math";
+
+.galleryberg-gallery-container {
+	// Cropped Images.
+	figure.galleryberg-image {
+		align-self: inherit;
+		> div:not(.components-drop-zone),
+		> a {
+			display: flex;
+			width: 100%;
+			height: 100%;
+			flex-direction: column;
+		}
+
+		a,
+		img {
+			width: 100%;
+			flex: 1 0 0%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+}
+
+// Layout: Tiles
+.galleryberg-gallery-container.layout-tiles,
+.galleryberg-gallery-container.layout-square {
+	display: grid;
+	gap: 16px;
+}
+.galleryberg-gallery-container.layout-tiles > figure.galleryberg-image {
+	width: 100%;
+}
+
+// Layout: Masonry
+.galleryberg-gallery-container.layout-masonry {
+	column-gap: 16px;
+	display: block;
+}
+.galleryberg-gallery-container.layout-masonry > figure.galleryberg-image {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 16px;
+}
+
+// Layout: Justified
+.galleryberg-gallery-container.layout-justified {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+	gap: 8px;
+}
+.galleryberg-gallery-container.layout-justified > figure.galleryberg-image {
+	width: auto !important;
+	flex: 1 1 auto;
+	margin: 0;
+}
+.galleryberg-gallery-container.layout-justified > figure.galleryberg-image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+// Layout: Square
+.galleryberg-gallery-container.layout-square > figure.galleryberg-image,
+.galleryberg-gallery-container.layout-square > figure.galleryberg-image img {
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	width: 100%;
+	height: auto;
+}
