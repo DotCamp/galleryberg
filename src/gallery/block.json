@@ -4,7 +4,6 @@
 	"name": "galleryberg/gallery",
 	"title": "Galleryberg Gallery",
 	"category": "widgets",
-	"icon": "smiley",
 	"description": "A customizable gallery block for displaying images in columns with optional cropping and spacing.",
 	"attributes": {
 		"columns": {

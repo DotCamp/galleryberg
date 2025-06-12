@@ -1,0 +1,58 @@
+export const blockIcon = (
+	<svg
+		width="256"
+		height="256"
+		viewBox="0 0 256 256"
+		fill="none"
+		xmlns="http://www.w3.org/2000/svg"
+	>
+		<rect
+			y="25.6001"
+			width="78.505"
+			height="61.44"
+			rx="16.384"
+			fill="#A63A50"
+		/>
+		<rect
+			x="88.7475"
+			y="25.6001"
+			width="78.505"
+			height="61.44"
+			rx="16.384"
+			fill="#A63A50"
+		/>
+		<rect
+			x="177.495"
+			y="25.6001"
+			width="78.505"
+			height="61.44"
+			rx="16.384"
+			fill="#A63A50"
+		/>
+		<rect
+			y="97.2798"
+			width="78.505"
+			height="61.44"
+			rx="16.384"
+			fill="#A63A50"
+		/>
+		<rect
+			x="88.7475"
+			y="96.7681"
+			width="167.252"
+			height="61.44"
+			rx="16.384"
+			fill="#A63A50"
+		/>
+		<rect y="168.96" width="78.505" height="61.44" rx="16.384" fill="#A63A50" />
+		<rect y="168.96" width="78.505" height="61.44" rx="16.384" fill="#A63A50" />
+		<rect
+			x="88.7475"
+			y="168.96"
+			width="167.252"
+			height="61.44"
+			rx="16.384"
+			fill="#A63A50"
+		/>
+	</svg>
+);

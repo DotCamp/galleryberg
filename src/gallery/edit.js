@@ -15,6 +15,7 @@ import { useMemo } from "@wordpress/element";
 import classNames from "classnames";
 import Inspector from "./inspector";
 import { generateStyles } from "../utils/styling-helpers";
+import { blockIcon } from "./block-icon";
 
 const DEFAULT_BLOCK = { name: "galleryberg/image" };
 const ALLOWED_MEDIA_TYPES = ["image"];
@@ -199,7 +200,7 @@ export default function Edit(props) {
 				{innerBlockImages.length > 0 && innerBlocksProps.children}
 				{innerBlockImages.length <= 0 && (
 					<MediaPlaceholder
-						icon={<BlockIcon icon="format-gallery" />}
+						icon={blockIcon}
 						labels={{
 							title: __("Gallery", "galleryberg-gallery-block"),
 							instructions: PLACEHOLDER_TEXT,

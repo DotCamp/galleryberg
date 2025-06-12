@@ -1,8 +1,8 @@
 import { get } from "lodash";
 import { __ } from "@wordpress/i18n";
 import { Placeholder } from "@wordpress/components";
-import { image as imageIcon } from "@wordpress/icons";
 import { MediaPlaceholder } from "@wordpress/block-editor";
+import { blockIcon } from "./block-icon";
 
 function CustomMediaPlaceholder(props) {
 	const {
@@ -15,7 +15,7 @@ function CustomMediaPlaceholder(props) {
 			<Placeholder
 				className={"block-editor-media-placeholder"}
 				withIllustration={true}
-				icon={imageIcon}
+				icon={blockIcon}
 				label={__("Image", "galleryberg-gallery-block")}
 				instructions={__(
 					"Upload an image file, pick one from your media library, or add one with a URL.",
@@ -38,16 +38,12 @@ function CustomMediaPlaceholder(props) {
 	const id = get(media, "id", -1);
 	return (
 		<MediaPlaceholder
-			icon={imageIcon}
+			icon={blockIcon}
 			accept="image/*"
 			placeholder={placeholder}
-			//  onError={onUploadError}
 			onSelect={onSelectImage}
-			//  onSelectURL={onSelectURL}
 			allowedTypes={["image"]}
 			value={id}
-			//  mediaPreview={mediaPreview}
-			//  disableMediaButtons={temporaryURL || url}
 		/>
 	);
 }

@@ -7,7 +7,6 @@ import {
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { defaultColumnsNumber } from "../utils";
-import ToggleGroupControl from "../components/ToggleGroupControl";
 
 const MAX_COLUMNS = 8;
 
