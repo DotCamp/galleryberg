@@ -79,14 +79,40 @@ $wrapper_attributes = get_block_wrapper_attributes( array(
 	'id' 	=> $image_id
 ));
 
+$image_html = '';
+if ( $id ) {
+	$image_html = wp_get_attachment_image(
+		$id,
+		$size_slug ? $size_slug : 'full',
+		false,
+		array_merge(
+			[
+				'alt'   => $img_alt,
+				'style' => galleryberg_generate_css_string( $style ),
+				'class' => trim( $image_classes ),
+			],
+			[] // Add more attributes if needed
+		)
+	);
+} else {
+	$image_html = sprintf(
+		'<img src="%s" alt="%s" %s class="%s" />',
+		esc_url( $img_src ),
+		esc_attr( $img_alt ),
+		$style_attr,
+		esc_attr( $image_classes )
+	);
+}
 ?>
-<figure <?php echo $wrapper_attributes; ?>>
-	<?php if ($has_href) : ?>
-		<a href="<?php echo esc_url($href); ?>" <?php echo $link_class_attr; ?> <?php echo $link_target_attr; ?> <?php echo $new_rel_attr; ?>>
-			<img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" <?php echo $style_attr; ?> />
+<figure <?php echo esc_attr($wrapper_attributes); ?>>
+	<?php
+		if ( $has_href ) :
+	?>
+		<a href="<?php echo esc_url( $href ); ?>" <?php echo esc_attr($link_class_attr); ?> <?php echo esc_attr($link_target_attr); ?> <?php echo esc_attr($new_rel_attr); ?>>
+			<?php echo wp_kses_post($image_html); ?>
 		</a>
 	<?php else : ?>
-		<img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" <?php echo $style_attr; ?> />
+		<?php echo wp_kses_post($image_html); ?>
 	<?php endif; ?>
-	<?php echo $caption_html; ?>
+	<?php echo wp_kses_post( $caption_html ); ?>
 </figure>

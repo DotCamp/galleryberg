@@ -15,6 +15,11 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
+
+if ( ! defined( 'GALLERYBERG_BLOCKS_VERSION' ) ) {
+	define( 'GALLERYBERG_BLOCKS_VERSION', '1.0.0' );
+}
+
 if ( ! defined( 'GALLERYBERG_BLOCKS_DIR_PATH' ) ) {
 	define( 'GALLERYBERG_BLOCKS_DIR_PATH', \plugin_dir_path( __FILE__ ) );
 }
@@ -22,7 +27,6 @@ if ( ! defined( 'GALLERYBERG_BLOCKS_DIR_PATH' ) ) {
 if ( ! defined( 'GALLERYBERG_BLOCKS_PLUGIN_URL' ) ) {
 	define( 'GALLERYBERG_BLOCKS_PLUGIN_URL', \plugins_url( '/', __FILE__ ) );
 }
-
 require_once GALLERYBERG_BLOCKS_DIR_PATH . '/includes/styling-helpers.php';
 
 function galleryberg_gallery_block_init() {

@@ -57,7 +57,7 @@ $wrapper_attributes = get_block_wrapper_attributes($wrapper_args);
 ?>
 
 <div <?php echo $wrapper_attributes; ?>>
-	<?php echo $content; ?>
+	<?php echo wp_kses_post($content); ?>
 </div>
 <?php if ( $lightbox ) : ?>
 <!-- Glightbox CDN -->
@@ -68,13 +68,13 @@ add_action( 'wp_enqueue_scripts', function() {
 		'glightbox',
 		'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css',
 		array(),
-		null
+		defined('GALLERYBERG_BLOCKS_VERSION') ? GALLERYBERG_BLOCKS_VERSION : uniqid()
 	);
 	wp_enqueue_script(
 		'glightbox',
 		'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js',
 		array(),
-		null,
+		defined('GALLERYBERG_BLOCKS_VERSION') ? GALLERYBERG_BLOCKS_VERSION : uniqid(),
 		true
 	);
 });
