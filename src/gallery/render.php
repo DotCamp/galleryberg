@@ -56,23 +56,22 @@ $wrapper_attributes = get_block_wrapper_attributes($wrapper_args);
 
 ?>
 
-<div <?php echo $wrapper_attributes; ?>>
+<div <?php echo wp_kses_post($wrapper_attributes); ?>>
 	<?php echo wp_kses_post($content); ?>
 </div>
 <?php if ( $lightbox ) : ?>
-<!-- Glightbox CDN -->
+<!-- Local Assets -->
 <?php
-// Enqueue Glightbox assets only once
 add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style(
-		'glightbox',
-		'https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css',
+		'galleryberg-lightbox',
+		GALLERYBERG_BLOCKS_PLUGIN_URL . 'assets/lightbox.min.css',
 		array(),
 		defined('GALLERYBERG_BLOCKS_VERSION') ? GALLERYBERG_BLOCKS_VERSION : uniqid()
 	);
 	wp_enqueue_script(
-		'glightbox',
-		'https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js',
+		'galleryberg-lightbox',
+		GALLERYBERG_BLOCKS_PLUGIN_URL . 'assets/lightbox.min.js',
 		array(),
 		defined('GALLERYBERG_BLOCKS_VERSION') ? GALLERYBERG_BLOCKS_VERSION : uniqid(),
 		true

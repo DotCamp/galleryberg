@@ -94,17 +94,9 @@ if ( $id ) {
 			[] // Add more attributes if needed
 		)
 	);
-} else {
-	$image_html = sprintf(
-		'<img src="%s" alt="%s" %s class="%s" />',
-		esc_url( $img_src ),
-		esc_attr( $img_alt ),
-		$style_attr,
-		esc_attr( $image_classes )
-	);
 }
 ?>
-<figure <?php echo esc_attr($wrapper_attributes); ?>>
+<figure <?php echo wp_kses_post($wrapper_attributes); ?>>
 	<?php
 		if ( $has_href ) :
 	?>
