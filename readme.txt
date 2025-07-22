@@ -51,6 +51,8 @@ Galleryberg Gallery Block enhances your WordPress content creation experience wi
 * Image zoom capability
 * Draggable images
 
+This plugin uses [GLightbox](https://github.com/biati-digital/glightbox) for its lightbox functionality.
+
 == Installation ==
 
 = Automatic Installation =
