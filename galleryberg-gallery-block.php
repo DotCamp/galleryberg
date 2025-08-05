@@ -41,3 +41,18 @@ function galleryberg_gallery_block_init() {
 	}
 }
 add_action( 'init', 'galleryberg_gallery_block_init' );
+add_action( 'wp_enqueue_scripts', function() {
+	wp_register_style(
+		'galleryberg-lightbox',
+		GALLERYBERG_BLOCKS_PLUGIN_URL . 'assets/lightbox.min.css',
+		array(),
+		defined('GALLERYBERG_BLOCKS_VERSION') ? GALLERYBERG_BLOCKS_VERSION : uniqid()
+	);
+	wp_register_script(
+		'galleryberg-lightbox',
+		GALLERYBERG_BLOCKS_PLUGIN_URL . 'assets/lightbox.min.js',
+		array(),
+		defined('GALLERYBERG_BLOCKS_VERSION') ? GALLERYBERG_BLOCKS_VERSION : uniqid(),
+		true
+	);
+});

@@ -75,6 +75,12 @@
 	"editorScript": "file:./index.js",
 	"editorStyle": "file:./index.css",
 	"style": "file:./style-index.css",
+	"viewStyle": [
+		"galleryberg-lightbox"
+	],
 	"render": "file:./render.php",
-	"viewScript": "file:./view.js"
+	"viewScript": [
+		"file:./view.js",
+		"galleryberg-lightbox"
+	]
 }
