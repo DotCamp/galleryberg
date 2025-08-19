@@ -61,6 +61,12 @@
 		"justifiedRowHeight": {
 			"type": "number",
 			"default": 180
+		},
+		"gap": {
+			"type": "object",
+			"default": {
+				"all": ""
+			}
 		}
 	},
 	"supports": {
@@ -69,7 +75,8 @@
 	},
 	"providesContext": {
 		"layout": "layout",
-		"justifiedRowHeight": "justifiedRowHeight"
+		"justifiedRowHeight": "justifiedRowHeight",
+		"gap": "gap"
 	},
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

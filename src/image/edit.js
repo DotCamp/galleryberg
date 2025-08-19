@@ -15,7 +15,10 @@ import Inspector from "./inspector";
 import BlockControls from "./block-controls";
 import classNames from "classnames";
 import exampleImage from "./preview.png";
-import { generateStyles } from "../utils/styling-helpers";
+import {
+	generateStyles,
+	getSpacingPresetCssVar,
+} from "../utils/styling-helpers";
 
 function Edit(props) {
 	const { attributes, setAttributes, isSelected, context } = props;
@@ -29,7 +32,12 @@ function Edit(props) {
 		if (context?.justifiedRowHeight) {
 			styles.height = context.justifiedRowHeight + "px";
 		}
+	} else if (context?.layout === "masonry" && context?.gap) {
+		const blockGap = getSpacingPresetCssVar(context.gap?.all) ?? "16px";
+
+		styles.marginBottom = blockGap;
 	}
+
 	const blockProps = useBlockProps({
 		className: classNames("galleryberg-image", {
 			"galleryberg-image-center": align === "center",

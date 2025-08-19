@@ -47,10 +47,16 @@ $style = [
 	'width'                      => $width ? "{$width}px" : '',
 	'height'                     => $height ? "{$height}px" : '',
 ];
+
+$wrapper_styles = [];
+
 if ( isset($context['layout']) && $context['layout'] === 'justified' ) {
 	if ( isset($context['justifiedRowHeight']) && $context['justifiedRowHeight'] ) {
 		$style['height'] = intval($context['justifiedRowHeight']) . 'px';
 	}
+} else if ( isset($context['layout']) && $context['layout'] === 'masonry' && isset($context['gap']) && $context['gap'] ) {
+	$block_gap = galleryberg_spacing_preset_css_var( $context['gap']['all'] ) ?? '16px';
+	$wrapper_styles['margin-bottom'] = $block_gap;
 }
 $border_css = galleryberg_get_border_css_properties( $border );
 $style = array_merge($style, $border_css);
@@ -78,7 +84,8 @@ $image_id = $id ? 'wp-image-' . esc_attr( $id ) : '';
 
 $wrapper_attributes = get_block_wrapper_attributes( array(
 	'class' 	=> implode(" ", $classes) ,
-	'id' 	=> $image_id
+	'id' 	=> $image_id,
+	'style' 	=> galleryberg_generate_css_string($wrapper_styles),
 ));
 
 $image_html = '';

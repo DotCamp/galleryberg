@@ -14,7 +14,10 @@ import { BlockIcon } from "@wordpress/block-editor";
 import { useMemo } from "@wordpress/element";
 import classNames from "classnames";
 import Inspector from "./inspector";
-import { generateStyles } from "../utils/styling-helpers";
+import {
+	generateStyles,
+	getSpacingPresetCssVar,
+} from "../utils/styling-helpers";
 import { blockIcon } from "./block-icon";
 
 const DEFAULT_BLOCK = { name: "galleryberg/image" };
@@ -26,8 +29,10 @@ const PLACEHOLDER_TEXT = __(
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
-	const { align, columns, layout = "tiles" } = attributes;
-	let dynamicStyle = {};
+	const { align, columns, layout = "tiles", gap } = attributes;
+	const blockGap = getSpacingPresetCssVar(gap?.all) ?? "16px";
+
+	let dynamicStyle = { gap: blockGap };
 	if (layout === "tiles" || layout === "square") {
 		dynamicStyle.gridTemplateColumns = `repeat(${columns || 3}, 1fr)`;
 	}

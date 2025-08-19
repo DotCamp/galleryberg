@@ -30,8 +30,11 @@ $layout = $attributes['layout'] ?? 'tiles';
 $classes[] = 'layout-' . esc_attr($layout);
 
 
+$gap = isset($attributes['gap']['all']) ?  galleryberg_spacing_preset_css_var($attributes['gap']['all']) : "16px";
 
-$style = array();
+$style = array(
+	'gap'	=> $gap
+);
 $layout = $attributes['layout'] ?? 'tiles';
 $columns = isset($attributes['columns']) ? intval($attributes['columns']) : 3;
 
@@ -61,9 +64,3 @@ $wrapper_attributes = get_block_wrapper_attributes($wrapper_args);
 <div <?php echo wp_kses_post($wrapper_attributes); ?>>
 	<?php echo wp_kses_post($content); ?>
 </div>
-<?php if ( $lightbox ) : ?>
-<!-- Local Assets -->
-<?php
-
-?>
-<?php endif; ?>

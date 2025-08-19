@@ -7,6 +7,7 @@ import {
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { defaultColumnsNumber } from "../utils";
+import { SpacingControl } from "../components";
 
 const MAX_COLUMNS = 8;
 
@@ -76,6 +77,13 @@ function Inspector(props) {
 						]}
 						onChange={setLayout}
 					/>
+					<SpacingControl
+						showByDefault
+						sides={["all"]}
+						attrKey="gap"
+						label={__("Gap", "ultimate-blocks")}
+					/>
+					<br></br>
 					{layout === "justified" && (
 						<RangeControl
 							label={__("Row Height (px)", "galleryberg-gallery-block")}

@@ -101,7 +101,8 @@
 	},
 	"usesContext": [
 		"justifiedRowHeight",
-		"layout"
+		"layout",
+		"gap"
 	],
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",
