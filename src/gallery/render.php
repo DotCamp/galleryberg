@@ -29,11 +29,34 @@ if ($columns !== null) {
 $layout = $attributes['layout'] ?? 'tiles';
 $classes[] = 'layout-' . esc_attr($layout);
 
-
-$gap = isset($attributes['gap']['all']) ?  galleryberg_spacing_preset_css_var($attributes['gap']['all']) : "16px";
+$bg_color = galleryberg_get_background_color_var(
+	$attributes,
+	"backgroundColor",
+	"backgroundGradient"
+);
+$padding_obj = galleryberg_get_spacing_css($attributes['padding'] ?? array());
+$margin_obj = galleryberg_get_spacing_css($attributes['margin'] ?? array());
+$bloc_gap = isset($attributes['blockSpacing']['all']) ?  galleryberg_spacing_preset_css_var($attributes['blockSpacing']['all']) : "16px";
 
 $style = array(
-	'gap'	=> $gap
+	'gap'	=> $bloc_gap,
+	'background' => $bg_color,
+	'border-top-left-radius' => $attributes['borderRadius']['topLeft'] ?? '',
+	'border-top-right-radius' => $attributes['borderRadius']['topRight'] ?? '',
+	'border-bottom-left-radius' => $attributes['borderRadius']['bottomLeft'] ?? '',
+	'border-bottom-right-radius' => $attributes['borderRadius']['bottomRight'] ?? '',
+	'padding-top' => $padding_obj['top'] ?? '',
+	'padding-right' => $padding_obj['right'] ?? '',
+	'padding-bottom' => $padding_obj['bottom'] ?? '',
+	'padding-left' => $padding_obj['left'] ?? '',
+	'margin-top' => $margin_obj['top'] ?? '',
+	'margin-right' => ($margin_obj['right'] ?? '') . ' !important',
+	'margin-bottom' => $margin_obj['bottom'] ?? '',
+	'margin-left' => ($margin_obj['left'] ?? '') . ' !important',
+	'border-top' => galleryberg_get_single_side_border_value(galleryberg_get_border_css($attributes['border']) ?? [], 'top'),
+	'border-left' => galleryberg_get_single_side_border_value(galleryberg_get_border_css($attributes['border']) ?? [], 'left'),
+	'border-right' => galleryberg_get_single_side_border_value(galleryberg_get_border_css($attributes['border']) ?? [], 'right'),
+	'border-bottom' => galleryberg_get_single_side_border_value(galleryberg_get_border_css($attributes['border']) ?? [], 'bottom'),
 );
 $layout = $attributes['layout'] ?? 'tiles';
 $columns = isset($attributes['columns']) ? intval($attributes['columns']) : 3;

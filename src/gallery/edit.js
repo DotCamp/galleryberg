@@ -16,6 +16,10 @@ import classNames from "classnames";
 import Inspector from "./inspector";
 import {
 	generateStyles,
+	getBackgroundColorVar,
+	getBorderCSS,
+	getSingleSideBorderValue,
+	getSpacingCss,
 	getSpacingPresetCssVar,
 } from "../utils/styling-helpers";
 import { blockIcon } from "./block-icon";
@@ -29,15 +33,50 @@ const PLACEHOLDER_TEXT = __(
 
 export default function Edit(props) {
 	const { attributes, setAttributes, clientId } = props;
-	const { align, columns, layout = "tiles", gap } = attributes;
-	const blockGap = getSpacingPresetCssVar(gap?.all) ?? "16px";
+	const {
+		align,
+		columns,
+		layout = "tiles",
+		blockSpacing,
+		padding,
+		margin,
+		border,
+		borderRadius,
+	} = attributes;
+	const blockGap = getSpacingPresetCssVar(blockSpacing?.all) ?? "16px";
+	const bgColor = getBackgroundColorVar(
+		attributes,
+		"backgroundColor",
+		"backgroundGradient",
+	);
+	const paddingObj = getSpacingCss(padding ?? {});
+	const marginObj = getSpacingCss(margin ?? {});
 
-	let dynamicStyle = { gap: blockGap };
+	let styles = {
+		gap: blockGap,
+		background: bgColor,
+		"border-top-left-radius": borderRadius?.topLeft,
+		"border-top-right-radius": borderRadius?.topRight,
+		"border-bottom-left-radius": borderRadius?.bottomLeft,
+		"border-bottom-right-radius": borderRadius?.bottomRight,
+		"padding-top": paddingObj?.top,
+		"padding-right": paddingObj?.right,
+		"padding-bottom": paddingObj?.bottom,
+		"padding-left": paddingObj?.left,
+		"margin-top": marginObj?.top,
+		"margin-right": marginObj?.right + " !important",
+		"margin-bottom": marginObj?.bottom,
+		"margin-left": marginObj?.left + " !important",
+		borderTop: getSingleSideBorderValue(getBorderCSS(border), "top"),
+		borderLeft: getSingleSideBorderValue(getBorderCSS(border), "left"),
+		borderRight: getSingleSideBorderValue(getBorderCSS(border), "right"),
+		borderBottom: getSingleSideBorderValue(getBorderCSS(border), "bottom"),
+	};
 	if (layout === "tiles" || layout === "square") {
-		dynamicStyle.gridTemplateColumns = `repeat(${columns || 3}, 1fr)`;
+		styles.gridTemplateColumns = `repeat(${columns || 3}, 1fr)`;
 	}
 	if (layout === "masonry") {
-		dynamicStyle.columnCount = `${columns}` || "3";
+		styles.columnCount = `${columns}` || "3";
 	}
 
 	const blockProps = useBlockProps({
@@ -47,7 +86,7 @@ export default function Edit(props) {
 			[`columns-default`]: columns === undefined,
 			[`layout-${layout}`]: layout,
 		}),
-		style: generateStyles(dynamicStyle),
+		style: generateStyles(styles),
 	});
 	const { createSuccessNotice, createErrorNotice } = useDispatch(noticesStore);
 	const { replaceInnerBlocks, selectBlock } = useDispatch("core/block-editor");

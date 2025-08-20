@@ -168,3 +168,17 @@ function galleryberg_get_border_css_properties( $border ) {
 
 	return $borders;
 }
+
+function galleryberg_get_background_color_var(
+	$attributes,
+	$bg_color_attr_key,
+	$gradient_attr_key
+) {
+	if (!empty($attributes[$bg_color_attr_key])) {
+		return $attributes[$bg_color_attr_key];
+	} else if (!empty($attributes[$gradient_attr_key])) {
+		return $attributes[$gradient_attr_key];
+	} else {
+		return "";
+	}
+}

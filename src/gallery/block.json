@@ -15,7 +15,7 @@
 			"default": true
 		},
 		"blockSpacing": {
-			"type": "array",
+			"type": "object",
 			"default": {}
 		},
 		"images": {
@@ -62,11 +62,29 @@
 			"type": "number",
 			"default": 180
 		},
-		"gap": {
+		"backgroundColor": {
+			"type": "string",
+			"default": null
+		},
+		"backgroundGradient": {
+			"type": "string",
+			"default": null
+		},
+		"padding": {
 			"type": "object",
-			"default": {
-				"all": ""
-			}
+			"default": {}
+		},
+		"margin": {
+			"type": "object",
+			"default": {}
+		},
+		"border": {
+			"type": "object",
+			"default": {}
+		},
+		"borderRadius": {
+			"type": "object",
+			"default": {}
 		}
 	},
 	"supports": {
@@ -76,7 +94,7 @@
 	"providesContext": {
 		"layout": "layout",
 		"justifiedRowHeight": "justifiedRowHeight",
-		"gap": "gap"
+		"blockSpacing": "blockSpacing"
 	},
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

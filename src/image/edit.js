@@ -32,8 +32,9 @@ function Edit(props) {
 		if (context?.justifiedRowHeight) {
 			styles.height = context.justifiedRowHeight + "px";
 		}
-	} else if (context?.layout === "masonry" && context?.gap) {
-		const blockGap = getSpacingPresetCssVar(context.gap?.all) ?? "16px";
+	} else if (context?.layout === "masonry" && context?.blockSpacing) {
+		const blockGap =
+			getSpacingPresetCssVar(context?.blockSpacing?.all) ?? "16px";
 
 		styles.marginBottom = blockGap;
 	}

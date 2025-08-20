@@ -114,3 +114,17 @@ export function generateStyles(styles) {
 			trim(value) === "undefined undefined undefined",
 	);
 }
+
+export function getBackgroundColorVar(
+	attributes,
+	bgColorAttrKey,
+	gradientAttrKey,
+) {
+	if (!isEmpty(attributes[bgColorAttrKey])) {
+		return attributes[bgColorAttrKey];
+	} else if (!isEmpty(attributes[gradientAttrKey])) {
+		return attributes[gradientAttrKey];
+	} else {
+		return "";
+	}
+}

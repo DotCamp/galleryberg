@@ -1,6 +1,7 @@
 @use "sass:math";
 
 .galleryberg-gallery-container {
+	overflow: hidden;
 	// Cropped Images.
 	figure.galleryberg-image {
 		align-self: inherit;

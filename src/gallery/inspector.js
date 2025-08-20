@@ -7,7 +7,12 @@ import {
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { defaultColumnsNumber } from "../utils";
-import { SpacingControl } from "../components";
+import {
+	BorderControl,
+	ColorSettingsWithGradient,
+	SpacingControl,
+	SpacingControlWithToolsPanel,
+} from "../components";
 
 const MAX_COLUMNS = 8;
 
@@ -64,6 +69,39 @@ function Inspector(props) {
 
 	return (
 		<>
+			<InspectorControls group="color">
+				<ColorSettingsWithGradient
+					attrBackgroundKey="backgroundColor"
+					attrGradientKey="backgroundGradient"
+					label={__("Background", "galleryberg-gallery-block")}
+				/>
+			</InspectorControls>
+			<InspectorControls group="dimensions">
+				<SpacingControlWithToolsPanel
+					showByDefault
+					sides={["all"]}
+					attrKey="blockSpacing"
+					label={__("Block Spacing", "ultimate-blocks")}
+				/>
+				<SpacingControlWithToolsPanel
+					attrKey="padding"
+					label={__("Padding", "ultimate-blocks")}
+				/>
+				<SpacingControlWithToolsPanel
+					attrKey="margin"
+					label={__("Margin", "ultimate-blocks")}
+				/>
+			</InspectorControls>
+			<InspectorControls group="border">
+				<BorderControl
+					showDefaultBorder
+					showDefaultBorderRadius
+					attrBorderKey="border"
+					attrBorderRadiusKey="borderRadius"
+					borderLabel={__("Border", "galleryberg-gallery-block")}
+					borderRadiusLabel={__("Border Radius", "galleryberg-gallery-block")}
+				/>
+			</InspectorControls>
 			<InspectorControls>
 				<PanelBody title={__("Settings")}>
 					<SelectControl
@@ -77,13 +115,6 @@ function Inspector(props) {
 						]}
 						onChange={setLayout}
 					/>
-					<SpacingControl
-						showByDefault
-						sides={["all"]}
-						attrKey="gap"
-						label={__("Gap", "ultimate-blocks")}
-					/>
-					<br></br>
 					{layout === "justified" && (
 						<RangeControl
 							label={__("Row Height (px)", "galleryberg-gallery-block")}

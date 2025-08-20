@@ -47,7 +47,7 @@ function BlockControls(props) {
 			<WPBlockControls group={"block"}>
 				<ToolbarWithDropdown
 					icon={alignNone}
-					title="Align table"
+					title={__("Alignment", "galleryberg-gallery-block")}
 					value={align}
 					onChange={(newVal) => {
 						setAttributes({ align: newVal });
