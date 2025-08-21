@@ -2,7 +2,7 @@
 Contributors:      imtiazrayhan, dotcamp
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.8
-Stable tag:        1.0.2
+Stable tag:        1.0.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.0
@@ -120,6 +120,14 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 7. Block settings panel showing customization options
 
 == Changelog ==
+
+= 1.0.3 =
+
+* FIX: Alignment left and right not working properly.
+* NEW: Gallery background color option.
+* NEW: Block Spacing option.
+* NEW: Gallery Padding and margin option.
+* NEW: Gallery border and border radius option.
 
 = 1.0.2 =
 
