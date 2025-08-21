@@ -3,8 +3,13 @@
 .galleryberg-gallery-container {
 	overflow: hidden;
 	// Cropped Images.
+	&.alignright,
+	&.alignleft {
+		max-width: var(--wp--style--global--content-size, 420px) !important;
+	}
 	figure.galleryberg-image {
 		align-self: inherit;
+		overflow: hidden;
 		> div:not(.components-drop-zone),
 		> a {
 			display: flex;
