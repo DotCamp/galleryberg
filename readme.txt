@@ -1,5 +1,5 @@
-=== Galleryberg Gallery Block ===
-Contributors:      imtiazrayhan, dotcamp
+=== Gallery Block by Galleryberg: Lightbox with Tiles, Masonry, Square, & Justified Layouts ===
+Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.8
 Stable tag:        1.0.3
