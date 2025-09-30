@@ -5,7 +5,7 @@ import {
 } from "../utils/styling-helpers";
 
 function Image(props) {
-	const { attributes, imageRef } = props;
+	const { attributes, imageRef, borderRadius: propBorderRadius } = props;
 
 	const sizeSlug = get(attributes, "sizeSlug", "large");
 	const imageSrc = get(
@@ -24,12 +24,14 @@ function Image(props) {
 		bottom: "",
 		left: "",
 	});
-	const borderRadius = get(attributes, "borderRadius", {
-		topLeft: "",
-		topRight: "",
-		bottomLeft: "",
-		bottomRight: "",
-	});
+	const borderRadius =
+		propBorderRadius ||
+		get(attributes, "borderRadius", {
+			topLeft: "",
+			topRight: "",
+			bottomLeft: "",
+			bottomRight: "",
+		});
 	const border = getBorderCSS(borderAttr);
 
 	return (

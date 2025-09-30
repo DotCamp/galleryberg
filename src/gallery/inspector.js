@@ -101,6 +101,15 @@ function Inspector(props) {
 					borderLabel={__("Border", "galleryberg-gallery-block")}
 					borderRadiusLabel={__("Border Radius", "galleryberg-gallery-block")}
 				/>
+				<BorderControl
+					isShowBorder={false}
+					showDefaultBorderRadius
+					attrBorderRadiusKey="imagesBorderRadius"
+					borderRadiusLabel={__(
+						"Images Border Radius",
+						"galleryberg-gallery-block",
+					)}
+				/>
 			</InspectorControls>
 			<InspectorControls>
 				<PanelBody title={__("Settings")}>

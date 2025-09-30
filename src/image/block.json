@@ -102,7 +102,8 @@
 	"usesContext": [
 		"justifiedRowHeight",
 		"layout",
-		"blockSpacing"
+		"blockSpacing",
+		"imagesBorderRadius"
 	],
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

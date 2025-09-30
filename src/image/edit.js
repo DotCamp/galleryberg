@@ -22,10 +22,12 @@ import {
 
 function Edit(props) {
 	const { attributes, setAttributes, isSelected, context } = props;
-	const { media, height, width, caption, align } = attributes;
+	const { media, height, width, caption, align, borderRadius } = attributes;
 	const [showCaption, setShowCaption] = useState(!!caption);
 	const [isImageEditing, setIsEditingImage] = useState(false);
 	const imageRef = useRef(null);
+
+	const effectiveBorderRadius = isEmpty(borderRadius) ? context?.imagesBorderRadius : borderRadius;
 
 	const styles = {};
 	if (context?.layout === "justified") {
@@ -155,6 +157,7 @@ function Edit(props) {
 								imageRef={imageRef}
 								attributes={attributes}
 								setAttributes={setAttributes}
+								borderRadius={effectiveBorderRadius}
 							/>
 							{showCaption && (!RichText.isEmpty(caption) || isSelected) && (
 								<RichText

@@ -89,6 +89,10 @@
 		"borderRadius": {
 			"type": "object",
 			"default": {}
+		},
+		"imagesBorderRadius": {
+			"type": "object",
+			"default": {}
 		}
 	},
 	"supports": {
@@ -98,7 +102,8 @@
 	"providesContext": {
 		"layout": "layout",
 		"justifiedRowHeight": "justifiedRowHeight",
-		"blockSpacing": "blockSpacing"
+		"blockSpacing": "blockSpacing",
+		"imagesBorderRadius": "imagesBorderRadius"
 	},
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

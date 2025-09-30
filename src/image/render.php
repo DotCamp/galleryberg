@@ -36,12 +36,14 @@ $border_radius = !empty($attributes['borderRadius']) ? $attributes['borderRadius
 
 $context = $block->context;
 
+// Use gallery-level border radius from context if the image has no border radius set
+$effective_border_radius = empty($border_radius) && isset($context['imagesBorderRadius']) ? $context['imagesBorderRadius'] : $border_radius;
 
 $style = [
-	'border-top-left-radius'     => isset($border_radius['topLeft']) ? $border_radius['topLeft'] : '',
-	'border-top-right-radius'    => isset($border_radius['topRight']) ? $border_radius['topRight'] : '',
-	'border-bottom-left-radius'  => isset($border_radius['bottomLeft']) ? $border_radius['bottomLeft'] : '',
-	'border-bottom-right-radius' => isset($border_radius['bottomRight']) ? $border_radius['bottomRight'] : '',
+	'border-top-left-radius'     => isset($effective_border_radius['topLeft']) ? $effective_border_radius['topLeft'] : '',
+	'border-top-right-radius'    => isset($effective_border_radius['topRight']) ? $effective_border_radius['topRight'] : '',
+	'border-bottom-left-radius'  => isset($effective_border_radius['bottomLeft']) ? $effective_border_radius['bottomLeft'] : '',
+	'border-bottom-right-radius' => isset($effective_border_radius['bottomRight']) ? $effective_border_radius['bottomRight'] : '',
 	'aspect-ratio'               => $aspect_ratio ? $aspect_ratio : '',
 	'object-fit'                 => $scale ? $scale : '',
 	'width'                      => $width ? "{$width}px" : '',
