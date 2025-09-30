@@ -79,7 +79,7 @@ function Inspector(props) {
 			<InspectorControls group="dimensions">
 				<SpacingControlWithToolsPanel
 					showByDefault
-					sides={["all"]}
+					sides={["horizontal", "vertical"]}
 					attrKey="blockSpacing"
 					label={__("Block Spacing", "ultimate-blocks")}
 				/>

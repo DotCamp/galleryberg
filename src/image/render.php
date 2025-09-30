@@ -55,7 +55,7 @@ if ( isset($context['layout']) && $context['layout'] === 'justified' ) {
 		$style['height'] = intval($context['justifiedRowHeight']) . 'px';
 	}
 } else if ( isset($context['layout']) && $context['layout'] === 'masonry' && isset($context['blockSpacing']) && $context['blockSpacing'] ) {
-	$block_gap = galleryberg_spacing_preset_css_var( $context['blockSpacing']['all'] ) ?? '16px';
+	$block_gap = galleryberg_spacing_preset_css_var( $context['blockSpacing']['top'] ) ?? '16px';
 	$wrapper_styles['margin-bottom'] = $block_gap;
 }
 $border_css = galleryberg_get_border_css_properties( $border );

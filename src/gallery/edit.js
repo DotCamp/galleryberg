@@ -11,7 +11,7 @@ import { createBlock } from "@wordpress/blocks";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { store as noticesStore } from "@wordpress/notices";
 import { BlockIcon } from "@wordpress/block-editor";
-import { useMemo } from "@wordpress/element";
+import { useMemo, useEffect } from "@wordpress/element";
 import classNames from "classnames";
 import Inspector from "./inspector";
 import {
@@ -38,12 +38,29 @@ export default function Edit(props) {
 		columns,
 		layout = "tiles",
 		blockSpacing,
+		isGapSeparated,
 		padding,
 		margin,
 		border,
 		borderRadius,
 	} = attributes;
-	const blockGap = getSpacingPresetCssVar(blockSpacing?.all) ?? "16px";
+
+	useEffect(() => {
+		if (!isGapSeparated && blockSpacing?.all) {
+			setAttributes({
+				blockSpacing: {
+					top: blockSpacing.all,
+					bottom: blockSpacing.all,
+					left: blockSpacing.all,
+					right: blockSpacing.all,
+				},
+				isGapSeparated: true,
+			});
+		}
+	}, []);
+
+	const blockGapRow = getSpacingPresetCssVar(blockSpacing?.top) ?? "16px";
+	const blockGapColumn = getSpacingPresetCssVar(blockSpacing?.left) ?? "16px";
 	const bgColor = getBackgroundColorVar(
 		attributes,
 		"backgroundColor",
@@ -53,7 +70,8 @@ export default function Edit(props) {
 	const marginObj = getSpacingCss(margin ?? {});
 
 	let styles = {
-		gap: blockGap,
+		rowGap: blockGapRow,
+		columnGap: blockGapColumn,
 		background: bgColor,
 		"border-top-left-radius": borderRadius?.topLeft,
 		"border-top-right-radius": borderRadius?.topRight,

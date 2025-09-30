@@ -36,10 +36,12 @@ $bg_color = galleryberg_get_background_color_var(
 );
 $padding_obj = galleryberg_get_spacing_css($attributes['padding'] ?? array());
 $margin_obj = galleryberg_get_spacing_css($attributes['margin'] ?? array());
-$bloc_gap = isset($attributes['blockSpacing']['all']) ?  galleryberg_spacing_preset_css_var($attributes['blockSpacing']['all']) : "16px";
+$row_gap = isset($attributes['blockSpacing']['top']) ?  galleryberg_spacing_preset_css_var($attributes['blockSpacing']['top']) : "16px";
+$column_gap = isset($attributes['blockSpacing']['left']) ?  galleryberg_spacing_preset_css_var($attributes['blockSpacing']['left']) : "16px";
 
 $style = array(
-	'gap'	=> $bloc_gap,
+	'row-gap' => $row_gap,
+	'column-gap' => $column_gap,
 	'background' => $bg_color,
 	'border-top-left-radius' => $attributes['borderRadius']['topLeft'] ?? '',
 	'border-top-right-radius' => $attributes['borderRadius']['topRight'] ?? '',

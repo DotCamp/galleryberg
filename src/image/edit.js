@@ -34,7 +34,7 @@ function Edit(props) {
 		}
 	} else if (context?.layout === "masonry" && context?.blockSpacing) {
 		const blockGap =
-			getSpacingPresetCssVar(context?.blockSpacing?.all) ?? "16px";
+			getSpacingPresetCssVar(context?.blockSpacing?.top) ?? "16px";
 
 		styles.marginBottom = blockGap;
 	}

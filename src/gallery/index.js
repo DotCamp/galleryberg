@@ -76,6 +76,7 @@ const transformFromCoreGallery = (attributes, innerBlocks) => {
 				: {},
 			margin: attributes?.style?.spacing?.margin,
 			padding: attributes?.style?.spacing?.padding,
+			blockSpacing: attributes?.style?.spacing?.blockGap,
 		},
 		updatedInnerBlocks,
 	);

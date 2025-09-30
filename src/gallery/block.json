@@ -18,6 +18,10 @@
 			"type": "object",
 			"default": {}
 		},
+		"isGapSeparated": {
+			"type": "boolean",
+			"default": false
+		},
 		"images": {
 			"type": "array",
 			"default": []
