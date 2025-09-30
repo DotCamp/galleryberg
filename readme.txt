@@ -2,7 +2,7 @@
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.8
-Stable tag:        1.0.3
+Stable tag:        1.0.4
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.0
@@ -120,6 +120,12 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 7. Block settings panel showing customization options
 
 == Changelog ==
+
+= 1.0.4 =
+
+* NEW: Border radius control for all images in gallery block.
+* NEW: Transform support from core/gallery to galleryberg/gallery block.
+* IMPROVE: Separate row and column gap options.
 
 = 1.0.3 =
 
