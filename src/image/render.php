@@ -18,12 +18,46 @@ $link_target   = $attributes['linkTarget']   ?? '';
 $image_classes = $attributes['imageClasses'] ?? '';
 $rel           = $attributes['rel']          ?? '';
 
+$context = $block->context;
+
+// Use individual image settings or fallback to gallery context
+$caption_type = !empty($attributes['captionType']) ? $attributes['captionType'] : ($context['galleryCaptionType'] ?? 'below');
+$caption_visibility = !empty($attributes['captionVisibility']) ? $attributes['captionVisibility'] : ($context['galleryCaptionVisibility'] ?? 'always');
+$caption_alignment = !empty($attributes['captionAlignment']) ? $attributes['captionAlignment'] : ($context['galleryCaptionAlignment'] ?? 'left');
+$caption_color = !empty($attributes['captionColor']) ? $attributes['captionColor'] : ($context['galleryCaptionColor'] ?? '');
+$caption_bg_color = !empty($attributes['captionBackgroundColor']) ? $attributes['captionBackgroundColor'] : ($context['galleryCaptionBackgroundColor'] ?? '');
+
 $has_href          = !empty($href);
 $img_src           = $url ? esc_url($url) : '';
 $link_class_attr   = $link_class ? 'class="' . esc_attr($link_class) . '"' : '';
 $link_target_attr  = $link_target ? 'target="' . esc_attr($link_target) . '"' : '';
 $new_rel_attr      = $rel ? ' rel="' . esc_attr($rel) . '"' : '';
-$caption_html      = $caption ? '<figcaption class="wp-element-caption">' . esc_html($caption) . '</figcaption>' : '';
+
+// Build caption styles
+$caption_styles = [];
+if ( $caption_color ) {
+	$caption_styles['color'] = esc_attr($caption_color);
+}
+if ( $caption_bg_color ) {
+	$caption_styles['background-color'] = esc_attr($caption_bg_color);
+}
+if ( $caption_alignment ) {
+	$caption_styles['text-align'] = esc_attr($caption_alignment);
+}
+
+$caption_style_attr = !empty($caption_styles) ? 'style="' . galleryberg_generate_css_string($caption_styles) . '"' : '';
+$caption_classes = array('wp-element-caption');
+if ( $caption_type ) {
+	$caption_classes[] = 'caption-type-' . esc_attr($caption_type);
+}
+if ( $caption_visibility ) {
+	$caption_classes[] = 'caption-visibility-' . esc_attr($caption_visibility);
+}
+if ( $caption_alignment ) {
+	$caption_classes[] = 'caption-align-' . esc_attr($caption_alignment);
+}
+$caption_class_attr = 'class="' . implode(' ', $caption_classes) . '"';
+$caption_html      = $caption ? '<figcaption ' . $caption_class_attr . ' ' . $caption_style_attr . '>' . wp_kses_post($caption) . '</figcaption>' : '';
 $id                = isset($media['id']) ? $media['id'] : '';
 
 
@@ -33,8 +67,6 @@ $width         = isset($attributes['width'])         ? intval($attributes['width
 $height        = isset($attributes['height'])        ? intval($attributes['height'])         : '';
 $border        = $attributes['border']       ?? [];
 $border_radius = !empty($attributes['borderRadius']) ? $attributes['borderRadius'] : [];
-
-$context = $block->context;
 
 // Use gallery-level border radius from context if the image has no border radius set
 $effective_border_radius = empty($border_radius) && isset($context['imagesBorderRadius']) ? $context['imagesBorderRadius'] : $border_radius;

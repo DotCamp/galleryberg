@@ -1,6 +1,8 @@
 .wp-block-galleryberg-image {
 	line-height: 1;
 	margin: 0;
+	position: relative;
+	overflow: visible;
 	&.galleryberg-image-center {
 		width: fit-content;
 		margin-left: auto;
@@ -13,8 +15,68 @@
 	}
 
 	figcaption {
-		margin-bottom: 1em;
 		margin-top: 0.5em;
+
+		// Caption Type: Below Image (default)
+		&.caption-type-below {
+			position: relative;
+			margin-top: 0.5em;
+		}
+
+		// Caption Type: Full Overlay
+		&.caption-type-full-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: 0;
+			padding: 1em;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: rgba(0, 0, 0, 0.5);
+			color: #fff;
+		}
+
+		// Caption Type: Bar Overlay
+		&.caption-type-bar-overlay {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: 0;
+			padding: 0.75em 1em;
+			background-color: rgba(0, 0, 0, 0.7);
+			color: #fff;
+		}
+
+		// Caption Visibility: Always (default - no additional styles needed)
+
+		// Caption Visibility: Show on Hover
+		&.caption-visibility-show-on-hover {
+			opacity: 0;
+			transition: opacity 0.3s ease;
+		}
+
+		// Caption Visibility: Hide on Hover
+		&.caption-visibility-hide-on-hover {
+			opacity: 1;
+			transition: opacity 0.3s ease;
+		}
+	}
+
+	// Hover states for visibility
+	&:hover {
+		figcaption {
+			&.caption-visibility-show-on-hover {
+				opacity: 1;
+			}
+
+			&.caption-visibility-hide-on-hover {
+				opacity: 0;
+			}
+		}
 	}
 
 	img {

@@ -1,70 +1,47 @@
 import { InspectorControls } from "@wordpress/block-editor";
-import {
-	PanelBody,
-	RangeControl,
-	ToggleControl,
-	SelectControl,
-} from "@wordpress/components";
+import { __experimentalToolsPanel as ToolsPanel } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import { defaultColumnsNumber } from "../utils";
 import {
 	BorderControl,
 	ColorSettingsWithGradient,
-	SpacingControl,
 	SpacingControlWithToolsPanel,
+	ColorSettings,
+	SelectControlWithToolsPanel,
+	RangeControlWithToolsPanel,
+	ToggleControlWithToolsPanel,
+	ToggleGroupControlWithToolsPanel,
 } from "../components";
 
 const MAX_COLUMNS = 8;
 
 function Inspector(props) {
 	const { attributes, setAttributes, images } = props;
-	const {
-		columns,
-		lightbox,
-		openEffect = "zoom",
-		closeEffect = "zoom",
-		slideEffect = "slide",
-		keyboardNavigation = true,
-		loop = true,
-		zoomable = true,
-		draggable = true,
-		layout = "tiles",
-		justifiedRowHeight = 180,
-	} = attributes;
-	function setColumnsNumber(value) {
-		setAttributes({ columns: value });
+	const { lightbox, layout = "tiles" } = attributes;
+
+	function resetSettings() {
+		setAttributes({
+			layout: "tiles",
+			columns: undefined,
+			justifiedRowHeight: 180,
+			lightbox: false,
+			openEffect: "zoom",
+			closeEffect: "zoom",
+			slideEffect: "slide",
+			keyboardNavigation: true,
+			loop: true,
+			zoomable: true,
+			draggable: true,
+		});
 	}
 
-	function toggleLightbox() {
-		setAttributes({ lightbox: !lightbox });
-	}
-
-	function setOpenEffect(value) {
-		setAttributes({ openEffect: value });
-	}
-	function setCloseEffect(value) {
-		setAttributes({ closeEffect: value });
-	}
-	function setSlideEffect(value) {
-		setAttributes({ slideEffect: value });
-	}
-	function setKeyboardNavigation(val) {
-		setAttributes({ keyboardNavigation: val });
-	}
-	function setLoop(val) {
-		setAttributes({ loop: val });
-	}
-	function setZoomable(val) {
-		setAttributes({ zoomable: val });
-	}
-	function setDraggable(val) {
-		setAttributes({ draggable: val });
-	}
-	function setLayout(value) {
-		setAttributes({ layout: value });
-	}
-	function setJustifiedRowHeight(value) {
-		setAttributes({ justifiedRowHeight: value });
+	function resetCaptionSettings() {
+		setAttributes({
+			galleryCaptionType: "below",
+			galleryCaptionVisibility: "always",
+			galleryCaptionAlignment: "left",
+			galleryCaptionColor: "",
+			galleryCaptionBackgroundColor: "",
+		});
 	}
 
 	return (
@@ -74,6 +51,14 @@ function Inspector(props) {
 					attrBackgroundKey="backgroundColor"
 					attrGradientKey="backgroundGradient"
 					label={__("Background", "galleryberg-gallery-block")}
+				/>
+				<ColorSettings
+					label={__("Caption Color", "galleryberg-gallery-block")}
+					attrKey="galleryCaptionColor"
+				/>
+				<ColorSettings
+					label={__("Caption Background", "galleryberg-gallery-block")}
+					attrKey="galleryCaptionBackgroundColor"
 				/>
 			</InspectorControls>
 			<InspectorControls group="dimensions">
@@ -112,102 +97,180 @@ function Inspector(props) {
 				/>
 			</InspectorControls>
 			<InspectorControls>
-				<PanelBody title={__("Settings")}>
-					<SelectControl
+				<ToolsPanel
+					label={__("Settings", "galleryberg-gallery-block")}
+					resetAll={resetSettings}
+				>
+					<SelectControlWithToolsPanel
 						label={__("Gallery Layout", "galleryberg-gallery-block")}
-						value={layout}
+						attrKey="layout"
 						options={[
 							{ label: "Tiles", value: "tiles" },
 							{ label: "Masonry", value: "masonry" },
 							{ label: "Justified", value: "justified" },
 							{ label: "Square", value: "square" },
 						]}
-						onChange={setLayout}
+						defaultValue="tiles"
 					/>
 					{layout === "justified" && (
-						<RangeControl
+						<RangeControlWithToolsPanel
 							label={__("Row Height (px)", "galleryberg-gallery-block")}
+							attrKey="justifiedRowHeight"
 							min={60}
 							max={400}
 							step={10}
-							value={justifiedRowHeight}
-							onChange={setJustifiedRowHeight}
+							defaultValue={180}
 						/>
 					)}
 					{layout !== "justified" && images.length > 1 && (
-						<RangeControl
-							__nextHasNoMarginBottom
+						<RangeControlWithToolsPanel
 							label={__("Columns", "galleryberg-gallery-block")}
-							value={columns ? columns : defaultColumnsNumber(images.length)}
-							onChange={setColumnsNumber}
+							attrKey="columns"
 							min={1}
 							max={Math.min(MAX_COLUMNS, images.length)}
-							required
-							__next40pxDefaultSize
+							required={true}
+							defaultValue={undefined}
 						/>
 					)}
-					<ToggleControl
-						__nextHasNoMarginBottom
+					<ToggleControlWithToolsPanel
 						label={__("Enable Lightbox", "galleryberg-gallery-block")}
-						checked={!!lightbox}
-						onChange={toggleLightbox}
+						attrKey="lightbox"
+						defaultValue={false}
 					/>
 					{lightbox && (
 						<>
-							<SelectControl
+							<SelectControlWithToolsPanel
 								label={__("Open Effect", "galleryberg-gallery-block")}
-								value={openEffect}
+								attrKey="openEffect"
 								options={[
 									{ label: "Zoom", value: "zoom" },
 									{ label: "Fade", value: "fade" },
 									{ label: "None", value: "none" },
 								]}
-								onChange={setOpenEffect}
+								defaultValue="zoom"
 							/>
-							<SelectControl
+							<SelectControlWithToolsPanel
 								label={__("Close Effect", "galleryberg-gallery-block")}
-								value={closeEffect}
+								attrKey="closeEffect"
 								options={[
 									{ label: "Zoom", value: "zoom" },
 									{ label: "Fade", value: "fade" },
 									{ label: "None", value: "none" },
 								]}
-								onChange={setCloseEffect}
+								defaultValue="zoom"
 							/>
-							<SelectControl
+							<SelectControlWithToolsPanel
 								label={__("Slide Effect", "galleryberg-gallery-block")}
-								value={slideEffect}
+								attrKey="slideEffect"
 								options={[
 									{ label: "Slide", value: "slide" },
 									{ label: "Fade", value: "fade" },
 									{ label: "Zoom", value: "zoom" },
 									{ label: "None", value: "none" },
 								]}
-								onChange={setSlideEffect}
+								defaultValue="slide"
 							/>
-							<ToggleControl
+							<ToggleControlWithToolsPanel
 								label={__("Keyboard Navigation", "galleryberg-gallery-block")}
-								checked={!!keyboardNavigation}
-								onChange={setKeyboardNavigation}
+								attrKey="keyboardNavigation"
+								defaultValue={true}
 							/>
-							<ToggleControl
+							<ToggleControlWithToolsPanel
 								label={__("Loop", "galleryberg-gallery-block")}
-								checked={!!loop}
-								onChange={setLoop}
+								attrKey="loop"
+								defaultValue={true}
 							/>
-							<ToggleControl
+							<ToggleControlWithToolsPanel
 								label={__("Zoomable", "galleryberg-gallery-block")}
-								checked={!!zoomable}
-								onChange={setZoomable}
+								attrKey="zoomable"
+								defaultValue={true}
 							/>
-							<ToggleControl
+							<ToggleControlWithToolsPanel
 								label={__("Draggable", "galleryberg-gallery-block")}
-								checked={!!draggable}
-								onChange={setDraggable}
+								attrKey="draggable"
+								defaultValue={true}
 							/>
 						</>
 					)}
-				</PanelBody>
+				</ToolsPanel>
+			</InspectorControls>
+			<InspectorControls>
+				<ToolsPanel
+					label={__("Caption Settings", "galleryberg-gallery-block")}
+					resetAll={resetCaptionSettings}
+				>
+					<SelectControlWithToolsPanel
+						label={__("Caption Type", "galleryberg-gallery-block")}
+						attrKey="galleryCaptionType"
+						options={[
+							{
+								label: __("Below Image", "galleryberg-gallery-block"),
+								value: "below",
+							},
+							{
+								label: __("Full Overlay", "galleryberg-gallery-block"),
+								value: "full-overlay",
+							},
+							{
+								label: __("Bar Overlay", "galleryberg-gallery-block"),
+								value: "bar-overlay",
+							},
+						]}
+						defaultValue="below"
+						help={__(
+							"Apply caption type to all images in the gallery",
+							"galleryberg-gallery-block",
+						)}
+					/>
+
+					<SelectControlWithToolsPanel
+						label={__("Caption Visibility", "galleryberg-gallery-block")}
+						attrKey="galleryCaptionVisibility"
+						options={[
+							{
+								label: __("Always Visible", "galleryberg-gallery-block"),
+								value: "always",
+							},
+							{
+								label: __("Show on Hover", "galleryberg-gallery-block"),
+								value: "show-on-hover",
+							},
+							{
+								label: __("Hide on Hover", "galleryberg-gallery-block"),
+								value: "hide-on-hover",
+							},
+						]}
+						defaultValue="always"
+						help={__(
+							"Apply caption visibility to all images in the gallery",
+							"galleryberg-gallery-block",
+						)}
+					/>
+
+					<ToggleGroupControlWithToolsPanel
+						label={__("Caption Alignment", "galleryberg-gallery-block")}
+						attrKey="galleryCaptionAlignment"
+						options={[
+							{
+								label: __("Left", "galleryberg-gallery-block"),
+								value: "left",
+							},
+							{
+								label: __("Center", "galleryberg-gallery-block"),
+								value: "center",
+							},
+							{
+								label: __("Right", "galleryberg-gallery-block"),
+								value: "right",
+							},
+						]}
+						defaultValue="left"
+						help={__(
+							"Apply caption alignment to all images in the gallery",
+							"galleryberg-gallery-block",
+						)}
+					/>
+				</ToolsPanel>
 			</InspectorControls>
 		</>
 	);

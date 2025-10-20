@@ -46,6 +46,26 @@
 			"type": "string",
 			"default": ""
 		},
+		"captionType": {
+			"type": "string",
+			"default": ""
+		},
+		"captionVisibility": {
+			"type": "string",
+			"default": ""
+		},
+		"captionAlignment": {
+			"type": "string",
+			"default": ""
+		},
+		"captionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"captionBackgroundColor": {
+			"type": "string",
+			"default": ""
+		},
 		"href": {
 			"type": "string",
 			"default": ""
@@ -103,7 +123,12 @@
 		"justifiedRowHeight",
 		"layout",
 		"blockSpacing",
-		"imagesBorderRadius"
+		"imagesBorderRadius",
+		"galleryCaptionType",
+		"galleryCaptionVisibility",
+		"galleryCaptionAlignment",
+		"galleryCaptionColor",
+		"galleryCaptionBackgroundColor"
 	],
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

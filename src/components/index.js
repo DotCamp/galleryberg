@@ -1,7 +1,10 @@
 export { default as ToolbarWithDropdown } from "./ToolbarWithDropdown";
 export { default as BorderControl } from "./BorderControl";
-export { default as CustomToggleGroupControl } from "./ToggleGroupControl";
 export { default as SpacingControl } from "./SpacingControl";
 export { default as ColorSettings } from "./ColorSettings";
 export { default as ColorSettingsWithGradient } from "./ColorSettingsWithGradient";
 export { default as SpacingControlWithToolsPanel } from "./SpacingControlWithToolsPanel";
+export { default as SelectControlWithToolsPanel } from "./SelectControlWithToolsPanel";
+export { default as RangeControlWithToolsPanel } from "./RangeControlWithToolsPanel";
+export { default as ToggleControlWithToolsPanel } from "./ToggleControlWithToolsPanel";
+export { default as ToggleGroupControlWithToolsPanel } from "./ToggleGroupControlWithToolsPanel";
