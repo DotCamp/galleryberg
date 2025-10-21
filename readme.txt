@@ -2,7 +2,7 @@
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.8
-Stable tag:        1.0.4
+Stable tag:        1.0.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.0
@@ -120,6 +120,13 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 7. Block settings panel showing customization options
 
 == Changelog ==
+
+= 1.0.5 =
+
+* NEW: Caption type options including below image, full overlay, and bar overlay.
+* NEW: Advanced caption visibility controls with always visible, show on hover, and hide on hover options.
+* NEW: Advanced caption alignment with positioning matrix for overlay captions and left/center/right options for below captions
+* IMPROVE: Enhanced gallery controls with improved user interface
 
 = 1.0.4 =
 
