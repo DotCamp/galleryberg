@@ -41,9 +41,7 @@ if ( $caption_color ) {
 if ( $caption_bg_color ) {
 	$caption_styles['background-color'] = esc_attr($caption_bg_color);
 }
-if ( $caption_alignment ) {
-	$caption_styles['text-align'] = esc_attr($caption_alignment);
-}
+
 
 $caption_style_attr = !empty($caption_styles) ? 'style="' . galleryberg_generate_css_string($caption_styles) . '"' : '';
 $caption_classes = array('wp-element-caption');
@@ -53,8 +51,19 @@ if ( $caption_type ) {
 if ( $caption_visibility ) {
 	$caption_classes[] = 'caption-visibility-' . esc_attr($caption_visibility);
 }
-if ( $caption_alignment ) {
-	$caption_classes[] = 'caption-align-' . esc_attr($caption_alignment);
+
+// Format caption alignment class for both standard (left, center, right) and matrix (top-left, etc.) formats
+$caption_alignment_class = '';
+if ($caption_alignment) {
+	// Check if it's a matrix alignment format (contains a space)
+	if (strpos($caption_alignment, ' ') !== false) {
+		// Convert "top center" format to "top-center" for CSS classes
+		$caption_alignment_class = 'caption-align-' . str_replace(' ', '-', $caption_alignment);
+	} else {
+		// Standard left/center/right format
+		$caption_alignment_class = 'caption-align-' . $caption_alignment;
+	}
+	$caption_classes[] = $caption_alignment_class;
 }
 $caption_class_attr = 'class="' . implode(' ', $caption_classes) . '"';
 $caption_html      = $caption ? '<figcaption ' . $caption_class_attr . ' ' . $caption_style_attr . '>' . wp_kses_post($caption) . '</figcaption>' : '';

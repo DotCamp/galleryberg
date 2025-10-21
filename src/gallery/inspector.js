@@ -1,5 +1,8 @@
 import { InspectorControls } from "@wordpress/block-editor";
-import { __experimentalToolsPanel as ToolsPanel } from "@wordpress/components";
+import {
+	Tip,
+	__experimentalToolsPanel as ToolsPanel,
+} from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import {
 	BorderControl,
@@ -98,6 +101,7 @@ function Inspector(props) {
 			</InspectorControls>
 			<InspectorControls>
 				<ToolsPanel
+					panelId={props.clientId}
 					label={__("Settings", "galleryberg-gallery-block")}
 					resetAll={resetSettings}
 				>
@@ -196,6 +200,7 @@ function Inspector(props) {
 			</InspectorControls>
 			<InspectorControls>
 				<ToolsPanel
+					panelId={props.clientId}
 					label={__("Caption Settings", "galleryberg-gallery-block")}
 					resetAll={resetCaptionSettings}
 				>
@@ -247,29 +252,42 @@ function Inspector(props) {
 						)}
 					/>
 
-					<ToggleGroupControlWithToolsPanel
-						label={__("Caption Alignment", "galleryberg-gallery-block")}
-						attrKey="galleryCaptionAlignment"
-						options={[
-							{
-								label: __("Left", "galleryberg-gallery-block"),
-								value: "left",
-							},
-							{
-								label: __("Center", "galleryberg-gallery-block"),
-								value: "center",
-							},
-							{
-								label: __("Right", "galleryberg-gallery-block"),
-								value: "right",
-							},
-						]}
-						defaultValue="left"
-						help={__(
-							"Apply caption alignment to all images in the gallery",
-							"galleryberg-gallery-block",
-						)}
-					/>
+					{attributes.galleryCaptionType === "below" && (
+						<ToggleGroupControlWithToolsPanel
+							label={__("Caption Alignment", "galleryberg-gallery-block")}
+							attrKey="galleryCaptionAlignment"
+							options={[
+								{
+									label: __("Left", "galleryberg-gallery-block"),
+									value: "left",
+								},
+								{
+									label: __("Center", "galleryberg-gallery-block"),
+									value: "center",
+								},
+								{
+									label: __("Right", "galleryberg-gallery-block"),
+									value: "right",
+								},
+							]}
+							defaultValue="left"
+							help={__(
+								"Apply caption alignment to all images in the gallery",
+								"galleryberg-gallery-block",
+							)}
+						/>
+					)}
+					{(attributes.galleryCaptionType === "full-overlay" ||
+						attributes.galleryCaptionType === "bar-overlay") && (
+						<div style={{ gridColumn: "1 / -1" }}>
+							<Tip>
+								{__(
+									"Use the alignment matrix control in the toolbar to position overlay captions",
+									"galleryberg-gallery-block",
+								)}
+							</Tip>
+						</div>
+					)}
 				</ToolsPanel>
 			</InspectorControls>
 		</>

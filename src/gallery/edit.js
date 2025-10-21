@@ -5,6 +5,7 @@ import {
 	MediaPlaceholder,
 	BlockControls,
 	MediaReplaceFlow,
+	__experimentalBlockAlignmentMatrixControl as BlockAlignmentMatrixControl,
 } from "@wordpress/block-editor";
 import "./editor.scss";
 import { createBlock } from "@wordpress/blocks";
@@ -42,7 +43,9 @@ export default function Edit(props) {
 		padding,
 		margin,
 		border,
+		galleryCaptionAlignment,
 		borderRadius,
+		galleryCaptionType,
 	} = attributes;
 
 	useEffect(() => {
@@ -106,7 +109,7 @@ export default function Edit(props) {
 		}),
 		style: generateStyles(styles),
 	});
-	const { createSuccessNotice, createErrorNotice } = useDispatch(noticesStore);
+	const { createErrorNotice } = useDispatch(noticesStore);
 	const { replaceInnerBlocks, selectBlock } = useDispatch("core/block-editor");
 	const { innerBlockImages } = useSelect(
 		(select) => {
@@ -256,6 +259,22 @@ export default function Edit(props) {
 					mediaIds={images.filter((image) => image.id).map((image) => image.id)}
 					addToGallery={hasImageIds}
 				/>
+			</BlockControls>
+			<BlockControls group="block">
+				<BlockAlignmentMatrixControl
+					label={__("Change caption position", "galleryberg-gallery-block")}
+					value={galleryCaptionAlignment}
+					onChange={(nextPosition) =>
+						setAttributes({
+							galleryCaptionAlignment: nextPosition,
+						})
+					}
+					isDisabled={
+						!hasImages ||
+						(galleryCaptionType !== "full-overlay" &&
+							galleryCaptionType !== "bar-overlay")
+					}
+				></BlockAlignmentMatrixControl>
 			</BlockControls>
 			<Inspector {...inspectorProps} />
 			<figure {...innerBlocksProps}>

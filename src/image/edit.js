@@ -135,6 +135,7 @@ function Edit(props) {
 						setShowCaption={setShowCaption}
 						attributes={attributes}
 						setAttributes={setAttributes}
+						context={context}
 					/>
 					{!isImageEditing && (
 						<ResizableBox
@@ -199,7 +200,14 @@ function Edit(props) {
 										__experimentalGetElementClassName("caption"),
 										`caption-type-${effectiveCaptionType}`,
 										`caption-visibility-${effectiveCaptionVisibility}`,
-										`caption-align-${effectiveCaptionAlignment}`,
+										// Format caption alignment class correctly - handle both standard and matrix formats
+										effectiveCaptionAlignment &&
+											effectiveCaptionAlignment.includes(" ")
+											? `caption-align-${effectiveCaptionAlignment.replace(
+													" ",
+													"-",
+											  )}`
+											: `caption-align-${effectiveCaptionAlignment}`,
 									)}
 									tagName="figcaption"
 									aria-label={__(
@@ -214,7 +222,12 @@ function Edit(props) {
 										color: effectiveCaptionColor || undefined,
 										backgroundColor:
 											effectiveCaptionBackgroundColor || undefined,
-										textAlign: effectiveCaptionAlignment || undefined,
+										// Only set textAlign directly for simple alignment values (left/center/right)
+										textAlign:
+											!effectiveCaptionAlignment ||
+											effectiveCaptionAlignment.includes(" ")
+												? undefined
+												: effectiveCaptionAlignment,
 									}}
 								/>
 							)}
@@ -249,7 +262,11 @@ function Edit(props) {
 							}}
 						/>
 					)}
-					<Inspector attributes={attributes} setAttributes={setAttributes} />
+					<Inspector
+						attributes={attributes}
+						setAttributes={setAttributes}
+						clientId={props.clientId}
+					/>
 				</>
 			)}
 			{!hasImage && (

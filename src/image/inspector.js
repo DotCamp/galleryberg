@@ -4,6 +4,7 @@
 import { InspectorControls } from "@wordpress/block-editor";
 import { useMemo } from "react";
 import {
+	Tip,
 	TextareaControl,
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalUnitControl as UnitControl,
@@ -25,7 +26,7 @@ import {
 	ToggleGroupControlWithToolsPanel,
 } from "../components";
 
-function Inspector({ attributes, setAttributes }) {
+function Inspector({ attributes, setAttributes, clientId }) {
 	const { alt, aspectRatio, height, scale, width } = attributes;
 	const resetAll = () => {
 		setAttributes({
@@ -38,9 +39,9 @@ function Inspector({ attributes, setAttributes }) {
 	};
 	const resetCaptionSettings = () => {
 		setAttributes({
-			captionType: "below",
-			captionVisibility: "always",
-			captionAlignment: "left",
+			captionType: "",
+			captionVisibility: "",
+			captionAlignment: "",
 			captionColor: "",
 			captionBackgroundColor: "",
 		});
@@ -151,6 +152,7 @@ function Inspector({ attributes, setAttributes }) {
 
 			<InspectorControls>
 				<ToolsPanel
+					panelId={clientId}
 					label={__("Caption Settings", "galleryberg-gallery-block")}
 					resetAll={resetCaptionSettings}
 				>
@@ -175,7 +177,7 @@ function Inspector({ attributes, setAttributes }) {
 								value: "bar-overlay",
 							},
 						]}
-						defaultValue="below"
+						defaultValue=""
 					/>
 
 					<SelectControlWithToolsPanel
@@ -202,28 +204,41 @@ function Inspector({ attributes, setAttributes }) {
 								value: "hide-on-hover",
 							},
 						]}
-						defaultValue="always"
+						defaultValue=""
 					/>
 
-					<ToggleGroupControlWithToolsPanel
-						label={__("Caption Alignment", "galleryberg-gallery-block")}
-						attrKey="captionAlignment"
-						options={[
-							{
-								label: __("Left", "galleryberg-gallery-block"),
-								value: "left",
-							},
-							{
-								label: __("Center", "galleryberg-gallery-block"),
-								value: "center",
-							},
-							{
-								label: __("Right", "galleryberg-gallery-block"),
-								value: "right",
-							},
-						]}
-						defaultValue="left"
-					/>
+					{(!attributes.captionType || attributes.captionType === "below") && (
+						<ToggleGroupControlWithToolsPanel
+							label={__("Caption Alignment", "galleryberg-gallery-block")}
+							attrKey="captionAlignment"
+							options={[
+								{
+									label: __("Left", "galleryberg-gallery-block"),
+									value: "left",
+								},
+								{
+									label: __("Center", "galleryberg-gallery-block"),
+									value: "center",
+								},
+								{
+									label: __("Right", "galleryberg-gallery-block"),
+									value: "right",
+								},
+							]}
+							defaultValue=""
+						/>
+					)}
+					{(attributes.captionType === "full-overlay" ||
+						attributes.captionType === "bar-overlay") && (
+						<div style={{ gridColumn: "1 / -1" }}>
+							<Tip>
+								{__(
+									"Use the alignment matrix control in the toolbar to position overlay captions",
+									"galleryberg-gallery-block",
+								)}
+							</Tip>
+						</div>
+					)}
 				</ToolsPanel>
 			</InspectorControls>
 

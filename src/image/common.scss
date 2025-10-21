@@ -33,25 +33,99 @@
 			margin: 0;
 			padding: 1em;
 			display: flex;
-			align-items: center;
-			justify-content: center;
 			background-color: rgba(0, 0, 0, 0.5);
 			color: #fff;
+
+			// Default alignment (center center)
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+
+			// Matrix alignment - vertical positions
+			&.caption-align-top-left,
+			&.caption-align-top-center,
+			&.caption-align-top-right {
+				align-items: flex-start;
+			}
+
+			&.caption-align-bottom-left,
+			&.caption-align-bottom-center,
+			&.caption-align-bottom-right {
+				align-items: flex-end;
+			}
+
+			// Matrix alignment - horizontal positions
+			&.caption-align-top-left,
+			&.caption-align-center-left,
+			&.caption-align-bottom-left {
+				justify-content: flex-start;
+				text-align: left;
+			}
+
+			&.caption-align-top-right,
+			&.caption-align-center-right,
+			&.caption-align-bottom-right {
+				justify-content: flex-end;
+				text-align: right;
+			}
+
+			&.caption-align-top-center,
+			&.caption-align-center-center,
+			&.caption-align-bottom-center {
+				justify-content: center;
+				text-align: center;
+			}
 		}
 
 		// Caption Type: Bar Overlay
 		&.caption-type-bar-overlay {
 			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
 			margin: 0;
 			padding: 0.75em 1em;
 			background-color: rgba(0, 0, 0, 0.7);
 			color: #fff;
-		}
 
-		// Caption Visibility: Always (default - no additional styles needed)
+			// Default position (bottom)
+			bottom: 0;
+			left: 0;
+			right: 0;
+
+			// Matrix alignment - vertical positions
+			&.caption-align-top-left,
+			&.caption-align-top-center,
+			&.caption-align-top-right {
+				bottom: auto;
+				top: 0;
+			}
+
+			// Center vertical position
+			&.caption-align-center-left,
+			&.caption-align-center-center,
+			&.caption-align-center-right {
+				bottom: auto;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			// For bar overlay, we only apply the horizontal alignment to text
+			&.caption-align-top-left,
+			&.caption-align-center-left,
+			&.caption-align-bottom-left {
+				text-align: left;
+			}
+
+			&.caption-align-top-center,
+			&.caption-align-center-center,
+			&.caption-align-bottom-center {
+				text-align: center;
+			}
+
+			&.caption-align-top-right,
+			&.caption-align-center-right,
+			&.caption-align-bottom-right {
+				text-align: right;
+			}
+		}
 
 		// Caption Visibility: Show on Hover
 		&.caption-visibility-show-on-hover {

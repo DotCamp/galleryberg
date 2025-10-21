@@ -1,4 +1,4 @@
-import { get } from "lodash";
+import { get, isEmpty } from "lodash";
 import { __ } from "@wordpress/i18n";
 import { useEffect } from "react";
 import { alignNone, caption as captionIcon, crop } from "@wordpress/icons";
@@ -6,6 +6,8 @@ import {
 	BlockControls as WPBlockControls,
 	MediaReplaceFlow,
 	__experimentalImageURLInputUI as ImageURLInputUI,
+	__experimentalBlockAlignmentMatrixControl as BlockAlignmentMatrixControl,
+	BlockAlignmentToolbar,
 } from "@wordpress/block-editor";
 import { usePrevious } from "@wordpress/compose";
 import { ToolbarButton, ToolbarGroup } from "@wordpress/components";
@@ -18,6 +20,7 @@ function BlockControls(props) {
 		setShowCaption,
 		showCaption,
 		setIsEditingImage,
+		context,
 	} = props;
 	const {
 		media,
@@ -28,6 +31,8 @@ function BlockControls(props) {
 		href,
 		rel,
 		align,
+		captionType = "",
+		captionAlignment = "",
 	} = attributes;
 	const prevCaption = usePrevious(caption);
 
@@ -39,21 +44,39 @@ function BlockControls(props) {
 	const imageUrl = get(media, "url", "");
 	const mediaId = get(media, "id", -1);
 	const imageLink = get(media, "link", "");
+
+	// Get effective caption type and alignment from context or individual attributes
+	const effectiveCaptionType = isEmpty(captionType)
+		? context?.galleryCaptionType
+		: captionType;
+
 	function onSetHref(props) {
 		setAttributes(props);
 	}
 	return (
 		<>
 			<WPBlockControls group={"block"}>
-				<ToolbarWithDropdown
-					icon={alignNone}
-					title={__("Alignment", "galleryberg-gallery-block")}
+				<BlockAlignmentToolbar
+					label={__("Alignment", "galleryberg-gallery-block")}
 					value={align}
 					onChange={(newVal) => {
 						setAttributes({ align: newVal });
 					}}
-					controlset="alignment"
 				/>
+
+				{showCaption &&
+					(effectiveCaptionType === "full-overlay" ||
+						effectiveCaptionType === "bar-overlay") && (
+						<BlockAlignmentMatrixControl
+							label={__("Change caption position", "galleryberg-gallery-block")}
+							value={captionAlignment}
+							onChange={(nextPosition) =>
+								setAttributes({
+									captionAlignment: nextPosition,
+								})
+							}
+						/>
+					)}
 				<ToolbarButton
 					onClick={() => {
 						setShowCaption(!showCaption);
