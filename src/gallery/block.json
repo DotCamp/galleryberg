@@ -93,6 +93,26 @@
 		"imagesBorderRadius": {
 			"type": "object",
 			"default": {}
+		},
+		"galleryCaptionType": {
+			"type": "string",
+			"default": "below"
+		},
+		"galleryCaptionVisibility": {
+			"type": "string",
+			"default": "always"
+		},
+		"galleryCaptionAlignment": {
+			"type": "string",
+			"default": "left"
+		},
+		"galleryCaptionColor": {
+			"type": "string",
+			"default": ""
+		},
+		"galleryCaptionBackgroundColor": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"supports": {
@@ -103,7 +123,12 @@
 		"layout": "layout",
 		"justifiedRowHeight": "justifiedRowHeight",
 		"blockSpacing": "blockSpacing",
-		"imagesBorderRadius": "imagesBorderRadius"
+		"imagesBorderRadius": "imagesBorderRadius",
+		"galleryCaptionType": "galleryCaptionType",
+		"galleryCaptionVisibility": "galleryCaptionVisibility",
+		"galleryCaptionAlignment": "galleryCaptionAlignment",
+		"galleryCaptionColor": "galleryCaptionColor",
+		"galleryCaptionBackgroundColor": "galleryCaptionBackgroundColor"
 	},
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

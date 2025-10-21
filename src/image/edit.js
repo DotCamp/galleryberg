@@ -22,13 +22,42 @@ import {
 
 function Edit(props) {
 	const { attributes, setAttributes, isSelected, context } = props;
-	const { media, height, width, caption, align, borderRadius } = attributes;
+	const {
+		media,
+		height,
+		width,
+		caption,
+		align,
+		borderRadius,
+		captionType = "",
+		captionVisibility = "",
+		captionAlignment = "",
+		captionColor = "",
+		captionBackgroundColor = "",
+	} = attributes;
 	const [showCaption, setShowCaption] = useState(!!caption);
 	const [isImageEditing, setIsEditingImage] = useState(false);
 	const imageRef = useRef(null);
 
-	const effectiveBorderRadius = isEmpty(borderRadius) ? context?.imagesBorderRadius : borderRadius;
+	const effectiveBorderRadius = isEmpty(borderRadius)
+		? context?.imagesBorderRadius
+		: borderRadius;
 
+	const effectiveCaptionType = isEmpty(captionType)
+		? context?.galleryCaptionType
+		: captionType;
+	const effectiveCaptionVisibility = isEmpty(captionVisibility)
+		? context?.galleryCaptionVisibility
+		: captionVisibility;
+	const effectiveCaptionAlignment = isEmpty(captionAlignment)
+		? context?.galleryCaptionAlignment
+		: captionAlignment;
+	const effectiveCaptionColor = isEmpty(captionColor)
+		? context?.galleryCaptionColor
+		: captionColor;
+	const effectiveCaptionBackgroundColor = isEmpty(captionBackgroundColor)
+		? context?.galleryCaptionBackgroundColor
+		: captionBackgroundColor;
 	const styles = {};
 	if (context?.layout === "justified") {
 		if (context?.justifiedRowHeight) {
@@ -106,6 +135,7 @@ function Edit(props) {
 						setShowCaption={setShowCaption}
 						attributes={attributes}
 						setAttributes={setAttributes}
+						context={context}
 					/>
 					{!isImageEditing && (
 						<ResizableBox
@@ -122,6 +152,9 @@ function Edit(props) {
 								right: true,
 								bottom: true,
 								left: false,
+							}}
+							style={{
+								position: "relative",
 							}}
 							onResize={(_, direction, elt) => {
 								let ratio = 1;
@@ -158,11 +191,24 @@ function Edit(props) {
 								attributes={attributes}
 								setAttributes={setAttributes}
 								borderRadius={effectiveBorderRadius}
+								context={context}
 							/>
 							{showCaption && (!RichText.isEmpty(caption) || isSelected) && (
 								<RichText
 									identifier="caption"
-									className={__experimentalGetElementClassName("caption")}
+									className={classNames(
+										__experimentalGetElementClassName("caption"),
+										`caption-type-${effectiveCaptionType}`,
+										`caption-visibility-${effectiveCaptionVisibility}`,
+										// Format caption alignment class correctly - handle both standard and matrix formats
+										effectiveCaptionAlignment &&
+											effectiveCaptionAlignment.includes(" ")
+											? `caption-align-${effectiveCaptionAlignment.replace(
+													" ",
+													"-",
+											  )}`
+											: `caption-align-${effectiveCaptionAlignment}`,
+									)}
 									tagName="figcaption"
 									aria-label={__(
 										"Image caption text",
@@ -172,6 +218,17 @@ function Edit(props) {
 									value={caption}
 									onChange={(value) => setAttributes({ caption: value })}
 									inlineToolbar
+									style={{
+										color: effectiveCaptionColor || undefined,
+										backgroundColor:
+											effectiveCaptionBackgroundColor || undefined,
+										// Only set textAlign directly for simple alignment values (left/center/right)
+										textAlign:
+											!effectiveCaptionAlignment ||
+											effectiveCaptionAlignment.includes(" ")
+												? undefined
+												: effectiveCaptionAlignment,
+									}}
 								/>
 							)}
 						</ResizableBox>
@@ -205,7 +262,11 @@ function Edit(props) {
 							}}
 						/>
 					)}
-					<Inspector attributes={attributes} setAttributes={setAttributes} />
+					<Inspector
+						attributes={attributes}
+						setAttributes={setAttributes}
+						clientId={props.clientId}
+					/>
 				</>
 			)}
 			{!hasImage && (
