@@ -3,10 +3,10 @@
  * Plugin Name: Galleryberg Gallery Block Pro
  * Plugin URI: https://galleryberg.com/pro
  * Description: Professional gallery layouts and features for Galleryberg
- * Version: 1.0.0
+ * Version: 1.0.5
  * Requires at least: 6.0
  * Requires PHP: 7.4
- * Author: DotCamp
+ * Author: Imtiaz Rayhan
  * License: GPL-2.0-or-later
  * Text Domain: galleryberg-gallery-block-pro
  */
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Define constants
-define( 'GALLERYBERG_PRO_VERSION', '1.0.0' );
+define( 'GALLERYBERG_PRO_VERSION', '1.0.5' );
 define( 'GALLERYBERG_PRO_PATH', plugin_dir_path( __FILE__ ) );
 define( 'GALLERYBERG_PRO_URL', plugin_dir_url( __FILE__ ) );
 
