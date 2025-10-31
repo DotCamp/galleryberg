@@ -1,0 +1,30 @@
+{
+	"name": "@galleryberg/galleryberg-gallery-block-pro",
+	"version": "1.0.0",
+	"description": "Galleryberg Gallery Block - Pro Version",
+	"author": "Dotcamp",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --blocks-manifest",
+		"start": "wp-scripts start --blocks-manifest",
+		"lint:js": "wp-scripts lint-js",
+		"lint:css": "wp-scripts lint-style",
+		"format": "wp-scripts format"
+	},
+	"dependencies": {
+		"@galleryberg/galleryberg-gallery-block": "workspace:*",
+		"@galleryberg/shared": "workspace:*",
+		"@wordpress/icons": "^10.24.0",
+		"classnames": "^2.5.1"
+	},
+	"peerDependencies": {
+		"@wordpress/block-editor": "^13.0.0",
+		"@wordpress/blocks": "^13.0.0",
+		"@wordpress/components": "^28.0.0",
+		"@wordpress/element": "^6.0.0",
+		"@wordpress/i18n": "^5.0.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.16.0"
+	}
+}

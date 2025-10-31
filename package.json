@@ -1,24 +1,37 @@
 {
-	"name": "galleryberg-gallery-block",
+	"name": "galleryberg-monorepo",
 	"version": "1.0.5",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"description": "Galleryberg Gallery Block - Monorepo for Free and Pro versions",
+	"author": "Dotcamp",
 	"license": "GPL-2.0-or-later",
-	"main": "build/index.js",
+	"private": true,
 	"scripts": {
-		"build": "wp-scripts build --blocks-manifest",
-		"format": "wp-scripts format",
-		"lint:css": "wp-scripts lint-style",
-		"lint:js": "wp-scripts lint-js",
-		"packages-update": "wp-scripts packages-update",
-		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --blocks-manifest"
+		"start": "pnpm --recursive --parallel run start",
+		"build": "pnpm --recursive --parallel run build",
+		"build:galleryberg": "pnpm --filter @galleryberg/galleryberg-gallery-block run build",
+		"build:pro": "pnpm --filter @galleryberg/galleryberg-gallery-block-pro run build",
+		"build:all": "pnpm run build:galleryberg && pnpm run build:pro",
+		"start:galleryberg": "pnpm --filter @galleryberg/galleryberg-gallery-block run start",
+		"start:pro": "pnpm --filter @galleryberg/galleryberg-gallery-block-pro run start",
+		"format": "pnpm --recursive run format",
+		"lint": "pnpm --recursive run lint",
+		"lint:js": "pnpm --recursive run lint:js",
+		"lint:css": "pnpm --recursive run lint:css",
+		"clean": "rm -rf node_modules packages/*/node_modules packages/*/build pnpm-lock.yaml",
+		"clean:build": "rm -rf packages/*/build",
+		"clean:zip": "rm -rf packages/*/*.zip releases/*.zip",
+		"prezip": "pnpm run clean:zip && mkdir -p releases",
+		"zip:galleryberg": "pnpm run build:galleryberg && cd packages/galleryberg-gallery-block && zip -r ../../releases/galleryberg-gallery-block.zip . -x '*.git*' 'node_modules/*' 'src/*' 'package*.json' 'pnpm-lock.yaml' 'composer.json' 'composer.lock' 'README.md' 'webpack.config.js' '.DS_Store' '*.log'",
+		"zip:pro": "pnpm run build:pro && cd packages/galleryberg-gallery-block-pro && zip -r ../../releases/galleryberg-gallery-block-pro.zip . -x '*.git*' 'node_modules/*' 'src/*' 'package*.json' 'pnpm-lock.yaml' 'composer.json' 'composer.lock' 'README.md' 'webpack.config.js' '.DS_Store' '*.log'",
+		"zip:both": "pnpm run prezip && pnpm run build:all && pnpm run zip:galleryberg && pnpm run zip:pro && echo '\\n✅ ZIP files created in releases/ folder'",
+		"zip:all": "pnpm run zip:both",
+		"release": "pnpm run lint && pnpm run build:all && pnpm run zip:both"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.16.0"
 	},
+	"packageManager": "pnpm@10.14.0",
 	"dependencies": {
-		"@wordpress/icons": "^10.24.0",
-		"classnames": "^2.5.1"
+		"@wordpress/icons": "^10.32.0"
 	}
 }

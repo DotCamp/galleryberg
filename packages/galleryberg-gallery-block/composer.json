@@ -1,0 +1,15 @@
+{
+	"name": "galleryberg/gallery-block",
+	"description": "Galleryberg Gallery Block - A customizable gallery block for WordPress",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"autoload": {
+		"psr-4": {
+			"Galleryberg\\": "includes/"
+		}
+	},
+	"config": {
+		"vendor-dir": "vendor",
+		"optimize-autoloader": true
+	}
+}
