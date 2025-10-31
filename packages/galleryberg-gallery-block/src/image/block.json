@@ -128,7 +128,9 @@
 		"galleryCaptionVisibility",
 		"galleryCaptionAlignment",
 		"galleryCaptionColor",
-		"galleryCaptionBackgroundColor"
+		"galleryCaptionBackgroundColor",
+		"enableHoverEffect",
+		"hoverEffect"
 	],
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

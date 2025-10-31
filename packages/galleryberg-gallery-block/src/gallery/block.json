@@ -113,6 +113,14 @@
 		"galleryCaptionBackgroundColor": {
 			"type": "string",
 			"default": ""
+		},
+		"enableHoverEffect": {
+			"type": "boolean",
+			"default": false
+		},
+		"hoverEffect": {
+			"type": "string",
+			"default": "zoom-in"
 		}
 	},
 	"supports": {
@@ -128,7 +136,9 @@
 		"galleryCaptionVisibility": "galleryCaptionVisibility",
 		"galleryCaptionAlignment": "galleryCaptionAlignment",
 		"galleryCaptionColor": "galleryCaptionColor",
-		"galleryCaptionBackgroundColor": "galleryCaptionBackgroundColor"
+		"galleryCaptionBackgroundColor": "galleryCaptionBackgroundColor",
+		"enableHoverEffect": "enableHoverEffect",
+		"hoverEffect": "hoverEffect"
 	},
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

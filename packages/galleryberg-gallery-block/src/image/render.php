@@ -120,6 +120,15 @@ if ( ! empty( $size_slug ) ) {
 	$classes[] = 'size-' . $size_slug;
 }
 
+// Add hover effect class if enabled in gallery context
+if ( isset( $context['enableHoverEffect'] ) && $context['enableHoverEffect'] ) {
+	$classes[] = 'has-hover-effect';
+
+	// Add the specific hover effect class
+	$hover_effect = isset( $context['hoverEffect'] ) ? $context['hoverEffect'] : 'zoom-in';
+	$classes[]    = 'hover-' . esc_attr( $hover_effect );
+}
+
 if ( ! empty( $width ) || ! empty( $height ) ) {
 	$classes[] = 'is-resized';
 }

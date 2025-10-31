@@ -67,10 +67,14 @@ function Edit(props) {
 		styles.marginBottom = blockGap;
 	}
 
+	const hoverEffect = context?.hoverEffect || "zoom-in";
+
 	const blockProps = useBlockProps({
 		className: classNames("galleryberg-image", {
 			"galleryberg-image-center": align === "center",
 			"galleryberg-image-right": align === "right",
+			"has-hover-effect": context?.enableHoverEffect,
+			[`hover-${hoverEffect}`]: context?.enableHoverEffect,
 		}),
 		style: generateStyles(styles),
 	});
@@ -202,14 +206,14 @@ function Edit(props) {
 											effectiveCaptionAlignment.includes(" ")
 											? `caption-align-${effectiveCaptionAlignment.replace(
 													" ",
-													"-",
+													"-"
 											  )}`
-											: `caption-align-${effectiveCaptionAlignment}`,
+											: `caption-align-${effectiveCaptionAlignment}`
 									)}
 									tagName="figcaption"
 									aria-label={__(
 										"Image caption text",
-										"galleryberg-gallery-block",
+										"galleryberg-gallery-block"
 									)}
 									placeholder={__("Add caption", "galleryberg-gallery-block")}
 									value={caption}

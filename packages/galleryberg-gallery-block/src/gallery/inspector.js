@@ -19,13 +19,15 @@ const MAX_COLUMNS = 8;
 
 function Inspector(props) {
 	const { attributes, setAttributes, images } = props;
-	const { lightbox, layout = "tiles" } = attributes;
+	const { lightbox, layout = "tiles", enableHoverEffect } = attributes;
 
 	function resetSettings() {
 		setAttributes({
 			layout: "tiles",
 			columns: undefined,
 			justifiedRowHeight: 180,
+			enableHoverEffect: false,
+			hoverEffect: "zoom-in",
 			lightbox: false,
 			openEffect: "zoom",
 			closeEffect: "zoom",
@@ -95,7 +97,7 @@ function Inspector(props) {
 					attrBorderRadiusKey="imagesBorderRadius"
 					borderRadiusLabel={__(
 						"Images Border Radius",
-						"galleryberg-gallery-block",
+						"galleryberg-gallery-block"
 					)}
 				/>
 			</InspectorControls>
@@ -134,6 +136,28 @@ function Inspector(props) {
 							max={Math.min(MAX_COLUMNS, images.length)}
 							required={true}
 							defaultValue={undefined}
+						/>
+					)}
+					<ToggleControlWithToolsPanel
+						label={__("Enable Hover Effect", "galleryberg-gallery-block")}
+						attrKey="enableHoverEffect"
+						defaultValue={false}
+					/>
+					{enableHoverEffect && (
+						<SelectControlWithToolsPanel
+							label={__("Hover Effect", "galleryberg-gallery-block")}
+							attrKey="hoverEffect"
+							options={[
+								{
+									label: __("Zoom In", "galleryberg-gallery-block"),
+									value: "zoom-in",
+								},
+								{
+									label: __("Zoom Out", "galleryberg-gallery-block"),
+									value: "zoom-out",
+								},
+							]}
+							defaultValue="zoom-in"
 						/>
 					)}
 					<ToggleControlWithToolsPanel
@@ -224,7 +248,7 @@ function Inspector(props) {
 						defaultValue="below"
 						help={__(
 							"Apply caption type to all images in the gallery",
-							"galleryberg-gallery-block",
+							"galleryberg-gallery-block"
 						)}
 					/>
 
@@ -248,7 +272,7 @@ function Inspector(props) {
 						defaultValue="always"
 						help={__(
 							"Apply caption visibility to all images in the gallery",
-							"galleryberg-gallery-block",
+							"galleryberg-gallery-block"
 						)}
 					/>
 
@@ -273,7 +297,7 @@ function Inspector(props) {
 							defaultValue="left"
 							help={__(
 								"Apply caption alignment to all images in the gallery",
-								"galleryberg-gallery-block",
+								"galleryberg-gallery-block"
 							)}
 						/>
 					)}
@@ -283,7 +307,7 @@ function Inspector(props) {
 							<Tip>
 								{__(
 									"Use the alignment matrix control in the toolbar to position overlay captions",
-									"galleryberg-gallery-block",
+									"galleryberg-gallery-block"
 								)}
 							</Tip>
 						</div>
