@@ -29,7 +29,7 @@ const DEFAULT_BLOCK = { name: "galleryberg/image" };
 const ALLOWED_MEDIA_TYPES = ["image"];
 const PLACEHOLDER_TEXT = __(
 	"Drag and drop images, upload, or choose from your library.",
-	"galleryberg",
+	"galleryberg-gallery-block"
 );
 
 export default function Edit(props) {
@@ -67,7 +67,7 @@ export default function Edit(props) {
 	const bgColor = getBackgroundColorVar(
 		attributes,
 		"backgroundColor",
-		"backgroundGradient",
+		"backgroundGradient"
 	);
 	const paddingObj = getSpacingCss(padding ?? {});
 	const marginObj = getSpacingCss(margin ?? {});
@@ -118,7 +118,7 @@ export default function Edit(props) {
 				innerBlockImages: getBlock(clientId)?.innerBlocks || [],
 			};
 		},
-		[clientId],
+		[clientId]
 	);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -137,7 +137,7 @@ export default function Edit(props) {
 				attributes: block.attributes,
 				fromSavedContent: Boolean(block.originalContent),
 			})),
-		[innerBlockImages],
+		[innerBlockImages]
 	);
 
 	function onUploadError(message) {
@@ -149,7 +149,7 @@ export default function Edit(props) {
 
 		return (
 			ALLOWED_MEDIA_TYPES.some(
-				(mediaType) => mediaTypeSelector?.indexOf(mediaType) === 0,
+				(mediaType) => mediaTypeSelector?.indexOf(mediaType) === 0
 			) || file.blob
 		);
 	}
@@ -176,7 +176,7 @@ export default function Edit(props) {
 		if (!imageArray.every(isValidFileType)) {
 			createErrorNotice(
 				__("If uploading to a gallery all files need to be image formats"),
-				{ id: "gallery-upload-invalid-file", type: "snackbar" },
+				{ id: "gallery-upload-invalid-file", type: "snackbar" }
 			);
 		}
 
@@ -199,15 +199,15 @@ export default function Edit(props) {
 
 		const existingImageBlocks = !newFileUploads
 			? innerBlockImages.filter((block) =>
-					processedImages.find((img) => img.id === block.attributes.id),
+					processedImages.find((img) => img.id === block.attributes.id)
 			  )
 			: innerBlockImages;
 
 		const newImageList = processedImages.filter(
 			(img) =>
 				!existingImageBlocks.find(
-					(existingImg) => img.id === existingImg.attributes.id,
-				),
+					(existingImg) => img.id === existingImg.attributes.id
+				)
 		);
 
 		// Create new image blocks for new images
@@ -229,8 +229,8 @@ export default function Edit(props) {
 			existingImageBlocks
 				.concat(newBlocks)
 				.sort(
-					(a, b) => newOrderMap[a.attributes.id] - newOrderMap[b.attributes.id],
-				),
+					(a, b) => newOrderMap[a.attributes.id] - newOrderMap[b.attributes.id]
+				)
 		);
 
 		// Select the first block to scroll into view when new blocks are added

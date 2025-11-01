@@ -7,6 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'Galleryberg\\Pro\\Bootstrap' => $baseDir . '/includes/Bootstrap.php',
-    'Galleryberg\\Pro\\Pro_Features' => $baseDir . '/includes/Pro_Features.php',
+    'Galleryberg\\Pro\\Assets' => $baseDir . '/includes/Assets.php',
+    'Galleryberg\\Pro\\Block_Extensions\\Gallery' => $baseDir . '/includes/Block_Extensions/Gallery.php',
 );

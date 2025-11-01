@@ -1,7 +1,11 @@
 window.addEventListener("DOMContentLoaded", () => {
 	if (typeof GLightbox !== "function") return;
+
+	// Store lightbox instances globally for Pro plugin access
+	window.gallerybergLightboxes = window.gallerybergLightboxes || new Map();
+
 	const galleries = document.querySelectorAll(
-		".galleryberg-gallery-container.galleryberg-has-lightbox",
+		".galleryberg-gallery-container.galleryberg-has-lightbox"
 	);
 	galleries.forEach((gallery) => {
 		const images = gallery.querySelectorAll("img");
@@ -32,6 +36,14 @@ window.addEventListener("DOMContentLoaded", () => {
 			closeEffect,
 			slideEffect,
 		});
+
+		// Store instance for Pro plugin access
+		const lightboxId = `lightbox-${Date.now()}-${Math.random()
+			.toString(36)
+			.substr(2, 9)}`;
+		gallery.dataset.lightboxId = lightboxId;
+		window.gallerybergLightboxes.set(lightboxId, lightbox);
+
 		images.forEach((img, idx) => {
 			img.style.cursor = "pointer";
 			img.addEventListener("click", (e) => {

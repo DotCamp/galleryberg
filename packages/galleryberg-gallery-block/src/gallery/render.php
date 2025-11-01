@@ -70,6 +70,9 @@ if ( 'tiles' === $layout || 'square' === $layout ) {
 if ( 'masonry' === $layout ) {
 	$style['column-count'] = $columns;
 }
+$galleryberg_pro_gallery_classes = apply_filters( 'galleryberg_pro_gallery_classes', array(), $attributes );
+
+$classes = array_merge( $classes, $galleryberg_pro_gallery_classes );
 
 // Get block wrapper attributes
 $wrapper_args = array(
@@ -85,6 +88,9 @@ if ( $lightbox ) {
 	$wrapper_args['data-zoomable']           = empty( $attributes['zoomable'] ) ? 'false' : 'true';
 	$wrapper_args['data-draggable']          = empty( $attributes['draggable'] ) ? 'false' : 'true';
 }
+
+// Apply Pro data attributes filter
+$wrapper_args = apply_filters( 'galleryberg_pro_gallery_data_attributes', $wrapper_args, $attributes );
 
 $wrapper_attributes = get_block_wrapper_attributes( $wrapper_args );
 

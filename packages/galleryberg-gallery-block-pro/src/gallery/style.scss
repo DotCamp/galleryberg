@@ -1,0 +1,152 @@
+/**
+ * Pro Thumbnail Styles for GLightbox
+ */
+
+.galleryberg-thumbnails {
+	position: absolute;
+	z-index: 9999;
+	background: rgba(0, 0, 0, 0.8);
+	padding: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&.galleryberg-thumbnails-bottom {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+	}
+
+	&.galleryberg-thumbnails-top {
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+	}
+
+	&.galleryberg-thumbnails-left {
+		left: 0;
+		top: 0;
+		bottom: 0;
+		height: 100%;
+		flex-direction: column;
+	}
+
+	&.galleryberg-thumbnails-right {
+		right: 0;
+		top: 0;
+		bottom: 0;
+		height: 100%;
+		flex-direction: column;
+	}
+}
+
+.galleryberg-thumbnails-wrapper {
+	display: flex;
+	gap: 8px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 5px;
+	max-width: 100%;
+
+	// Scrollbar styles
+	&::-webkit-scrollbar {
+		height: 8px;
+		width: 8px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: rgba(255, 255, 255, 0.1);
+		border-radius: 4px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: rgba(255, 255, 255, 0.3);
+		border-radius: 4px;
+
+		&:hover {
+			background: rgba(255, 255, 255, 0.5);
+		}
+	}
+
+	// Vertical layout for left/right positions
+	.galleryberg-thumbnails-left &,
+	.galleryberg-thumbnails-right & {
+		flex-direction: column;
+		overflow-x: hidden;
+		overflow-y: auto;
+		max-height: 100%;
+	}
+}
+
+.galleryberg-thumbnail {
+	flex-shrink: 0;
+	width: 80px;
+	height: 60px;
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 4px;
+	overflow: hidden;
+	opacity: 0.6;
+	transition: opacity 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+
+	&:hover {
+		opacity: 0.9;
+		transform: scale(1.05);
+	}
+
+	&.active {
+		opacity: 1;
+		border-color: #fff;
+		transform: scale(1);
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+	.galleryberg-thumbnails {
+		padding: 5px;
+	}
+
+	.galleryberg-thumbnail {
+		width: 60px;
+		height: 45px;
+	}
+
+	.galleryberg-thumbnails-wrapper {
+		gap: 5px;
+	}
+}
+
+// Adjust GLightbox container for thumbnail space
+.galleryberg-has-thumbnails {
+	.gcontainer {
+		// Bottom thumbnails
+		&:has(.galleryberg-thumbnails-bottom) {
+			padding-bottom: 90px;
+		}
+
+		// Top thumbnails
+		&:has(.galleryberg-thumbnails-top) {
+			padding-top: 90px;
+		}
+
+		// Left thumbnails
+		&:has(.galleryberg-thumbnails-left) {
+			padding-left: 100px;
+		}
+
+		// Right thumbnails
+		&:has(.galleryberg-thumbnails-right) {
+			padding-right: 100px;
+		}
+	}
+}

@@ -15,7 +15,8 @@
 		"@galleryberg/galleryberg-gallery-block": "workspace:*",
 		"@galleryberg/shared": "workspace:*",
 		"@wordpress/icons": "^10.24.0",
-		"classnames": "^2.5.1"
+		"classnames": "^2.5.1",
+		"clean-webpack-plugin": "^4.0.0"
 	},
 	"peerDependencies": {
 		"@wordpress/block-editor": "^13.0.0",

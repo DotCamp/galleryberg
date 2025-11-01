@@ -18,11 +18,27 @@ import {
 const MAX_COLUMNS = 8;
 
 function Inspector(props) {
-	const { attributes, setAttributes, images } = props;
-	const { lightbox, layout = "tiles", enableHoverEffect } = attributes;
+	const {
+		attributes,
+		setAttributes,
+		images,
+		EnableThumbnails = null,
+		ThumbnailPosition = null,
+		ThumbnailNavigation = null,
+		ThumbnailNavigationSpeed = null,
+	} = props;
+	const {
+		lightbox,
+		layout = "tiles",
+		enableHoverEffect,
+		enableThumbnails = "",
+		thumbnailPosition = "",
+		thumbnailNavigation = "",
+		thumbnailNavigationSpeed = "",
+	} = attributes;
 
 	function resetSettings() {
-		setAttributes({
+		const attributesToReset = {
 			layout: "tiles",
 			columns: undefined,
 			justifiedRowHeight: 180,
@@ -36,7 +52,20 @@ function Inspector(props) {
 			loop: true,
 			zoomable: true,
 			draggable: true,
-		});
+		};
+		if (enableThumbnails) {
+			attributesToReset.enableThumbnails = false;
+		}
+		if (thumbnailPosition) {
+			attributesToReset.thumbnailPosition = "bottom";
+		}
+		if (thumbnailNavigation) {
+			attributesToReset.thumbnailNavigation = "direct";
+		}
+		if (thumbnailNavigationSpeed) {
+			attributesToReset.thumbnailNavigationSpeed = 10;
+		}
+		setAttributes(attributesToReset);
 	}
 
 	function resetCaptionSettings() {
@@ -218,6 +247,10 @@ function Inspector(props) {
 								attrKey="draggable"
 								defaultValue={true}
 							/>
+							{EnableThumbnails && EnableThumbnails}
+							{ThumbnailPosition && ThumbnailPosition}
+							{ThumbnailNavigation && ThumbnailNavigation}
+							{ThumbnailNavigationSpeed && ThumbnailNavigationSpeed}
 						</>
 					)}
 				</ToolsPanel>

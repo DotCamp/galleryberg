@@ -22,8 +22,8 @@ class ComposerStaticInitf83df1bbd379ffcb43e04eb7bf0eefcf
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'Galleryberg\\Pro\\Bootstrap' => __DIR__ . '/../..' . '/includes/Bootstrap.php',
-        'Galleryberg\\Pro\\Pro_Features' => __DIR__ . '/../..' . '/includes/Pro_Features.php',
+        'Galleryberg\\Pro\\Assets' => __DIR__ . '/../..' . '/includes/Assets.php',
+        'Galleryberg\\Pro\\Block_Extensions\\Gallery' => __DIR__ . '/../..' . '/includes/Block_Extensions/Gallery.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -33,7 +33,11 @@ if (!class_exists('Galleryberg_Gallery_Block_Pro')) {
 	 */
 	class Galleryberg_Gallery_Block_Pro {
 		public function __construct() {
+			// Initialize assets
 			new \Galleryberg\Pro\Assets();
+
+			// Initialize Gallery block extensions
+			new \Galleryberg\Pro\Block_Extensions\Gallery();
 		}
 	}
 	new Galleryberg_Gallery_Block_Pro();
