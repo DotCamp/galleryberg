@@ -38,6 +38,9 @@ if (!class_exists('Galleryberg_Gallery_Block_Pro')) {
 
 			// Initialize Gallery block extensions
 			new \Galleryberg\Pro\Block_Extensions\Gallery();
+
+			// Initialize Image block extensions
+			new \Galleryberg\Pro\Block_Extensions\Image();
 		}
 	}
 	new Galleryberg_Gallery_Block_Pro();

@@ -102,6 +102,7 @@ if ( isset( $context['layout'] ) && 'justified' === $context['layout'] ) {
 	$block_gap                       = \Galleryberg\Helpers\Styling_Helpers::get_spacing_preset_css_var( $context['blockSpacing']['top'] ) ?? '16px';
 	$wrapper_styles['margin-bottom'] = $block_gap;
 }
+$wrapper_styles = apply_filters( 'galleryberg_image_wrapper_styles', $wrapper_styles, $attributes, $context );
 $border_css = \Galleryberg\Helpers\Styling_Helpers::get_border_css_properties( $border );
 $style      = array_merge( $style, $border_css );
 

@@ -159,11 +159,11 @@
 	gap: 16px;
 
 	figure.galleryberg-image {
-		// Default size
+		// Default size (can be overridden by inline styles)
 		grid-column: span 1;
 		grid-row: span 1;
 
-		// Vary sizes for mosaic effect
+		// Vary sizes for mosaic effect (defaults when no manual spans set)
 		&:nth-child(3n + 1) {
 			grid-column: span 2;
 			grid-row: span 1;
