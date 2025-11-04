@@ -64,7 +64,9 @@ $style = array(
 $layout  = $attributes['layout'] ?? 'tiles';
 $columns = isset( $attributes['columns'] ) ? intval( $attributes['columns'] ) : 3;
 
-if ( 'tiles' === $layout || 'square' === $layout ) {
+$pro_layouts = apply_filters( 'galleryberg_pro_layouts', [] );
+
+if ( 'tiles' === $layout || 'square' === $layout || in_array( $layout, $pro_layouts ) ) {
 	$style['grid-template-columns'] = sprintf( 'repeat(%d,1fr)', $columns );
 }
 if ( 'masonry' === $layout ) {

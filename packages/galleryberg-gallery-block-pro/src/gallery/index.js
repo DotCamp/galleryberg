@@ -71,8 +71,8 @@ function GalleryPro(props) {
 			)}
 		/>
 	);
-	const ThumbnailNavigationSpeed =
-		enableThumbnails && thumbnailNavigation === "step" && (
+	const ThumbnailNavigationSpeed = enableThumbnails &&
+		thumbnailNavigation === "step" && (
 			<RangeControlWithToolsPanel
 				label={__("Navigation Speed", "galleryberg-gallery-block-pro")}
 				attrKey="thumbnailNavigationSpeed"
@@ -96,6 +96,7 @@ function GalleryPro(props) {
 		thumbnailPosition,
 		thumbnailNavigation,
 		thumbnailNavigationSpeed,
+		proLayouts: [{ label: "Mosaic", value: "mosaic" }],
 	};
 	return (
 		<>

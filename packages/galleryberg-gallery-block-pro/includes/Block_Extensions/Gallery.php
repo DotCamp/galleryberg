@@ -19,6 +19,7 @@ class Gallery {
 	public function __construct() {
 		add_filter( 'galleryberg_pro_gallery_classes', [ $this, 'getGalleryClasses' ], 10, 2 );
 		add_filter( 'galleryberg_pro_gallery_data_attributes', [ $this, 'getGalleryDataAttributes' ], 10, 2 );
+		add_filter( 'galleryberg_pro_layouts', [ $this, 'getProLayouts' ] );
 	}
 
 	public function getGalleryClasses($classes, $attributes) {
@@ -46,6 +47,10 @@ class Gallery {
 		}
 
 		return $data_attrs;
+	}
+
+	public function getProLayouts() {
+		return ['mosaic'];
 	}
 
 }

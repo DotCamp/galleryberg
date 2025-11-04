@@ -150,3 +150,33 @@
 		}
 	}
 }
+
+/**
+ * Mosaic Layout Styles
+ */
+.layout-mosaic {
+	display: grid;
+	gap: 16px;
+
+	figure.galleryberg-image {
+		// Default size
+		grid-column: span 1;
+		grid-row: span 1;
+
+		// Vary sizes for mosaic effect
+		&:nth-child(3n + 1) {
+			grid-column: span 2;
+			grid-row: span 1;
+		}
+
+		&:nth-child(3n + 2) {
+			grid-column: span 1;
+			grid-row: span 2;
+		}
+
+		&:nth-child(3n) {
+			grid-column: span 1;
+			grid-row: span 1;
+		}
+	}
+}
