@@ -22,24 +22,53 @@ class Assets {
 	 */
 	public function __construct() {
 		add_action( 'init', array( $this, 'register_block_assets' ) );
-		add_action( 'enqueue_block_editor_assets', array( $this, 'enqueue_block_editor_assets' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
+		add_filter( 'block_type_metadata', array( $this, 'add_pro_styles_to_blocks' ) );
 	}
 
 	/**
-	 * Enqueue frontend assets
+	 * Add pro styles to gallery and image blocks via metadata filter
 	 */
-	public function enqueue_frontend_assets() {
-		wp_enqueue_script( 'galleryberg-pro-frontend-script' );
-		wp_enqueue_style( 'galleryberg-pro-block-frontend-style' );
-	}
+	public function add_pro_styles_to_blocks( $metadata ) {
+		if ( ! isset( $metadata['name'] ) ) {
+			return $metadata;
+		}
 
-	/**
-	 * Enqueue block editor assets
-	 */
-	public function enqueue_block_editor_assets() {
-		wp_enqueue_script( 'galleryberg-pro-block-editor-script' );
-		wp_enqueue_style( 'galleryberg-pro-block-editor-style' );
+		// Add pro styles to gallery and image blocks
+		if ( $metadata['name'] === 'galleryberg/gallery' ) {
+			// Add editor script
+			if ( ! isset( $metadata['editorScript'] ) ) {
+				$metadata['editorScript'] = array();
+			} elseif ( is_string( $metadata['editorScript'] ) ) {
+				$metadata['editorScript'] = array( $metadata['editorScript'] );
+			}
+			$metadata['editorScript'][] = 'galleryberg-pro-block-editor-script';
+
+			// Add editor styles
+			if ( ! isset( $metadata['editorStyle'] ) ) {
+				$metadata['editorStyle'] = array();
+			} elseif ( is_string( $metadata['editorStyle'] ) ) {
+				$metadata['editorStyle'] = array( $metadata['editorStyle'] );
+			}
+			$metadata['editorStyle'][] = 'galleryberg-pro-block-editor-style';
+
+			// Add frontend styles
+			if ( ! isset( $metadata['style'] ) ) {
+				$metadata['style'] = array();
+			} elseif ( is_string( $metadata['style'] ) ) {
+				$metadata['style'] = array( $metadata['style'] );
+			}
+			$metadata['style'][] = 'galleryberg-pro-block-frontend-style';
+
+			// Add frontend script
+			if ( ! isset( $metadata['viewScript'] ) ) {
+				$metadata['viewScript'] = array();
+			} elseif ( is_string( $metadata['viewScript'] ) ) {
+				$metadata['viewScript'] = array( $metadata['viewScript'] );
+			}
+			$metadata['viewScript'][] = 'galleryberg-pro-frontend-script';
+		}
+
+		return $metadata;
 	}
 
 	/**

@@ -26,6 +26,7 @@ function Inspector(props) {
 		ThumbnailPosition = null,
 		ThumbnailNavigation = null,
 		ThumbnailNavigationSpeed = null,
+		proLayouts = [],
 	} = props;
 	const {
 		lightbox,
@@ -144,6 +145,7 @@ function Inspector(props) {
 							{ label: "Masonry", value: "masonry" },
 							{ label: "Justified", value: "justified" },
 							{ label: "Square", value: "square" },
+							...proLayouts,
 						]}
 						defaultValue="tiles"
 					/>

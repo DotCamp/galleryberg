@@ -93,7 +93,7 @@ export default function Edit(props) {
 		borderRight: getSingleSideBorderValue(getBorderCSS(border), "right"),
 		borderBottom: getSingleSideBorderValue(getBorderCSS(border), "bottom"),
 	};
-	if (layout === "tiles" || layout === "square") {
+	if (layout === "tiles" || layout === "square" || layout === "mosaic") {
 		styles.gridTemplateColumns = `repeat(${columns || 3}, 1fr)`;
 	}
 	if (layout === "masonry") {

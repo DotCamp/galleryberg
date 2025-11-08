@@ -2,45 +2,68 @@ import { createHigherOrderComponent } from "@wordpress/compose";
 import { __ } from "@wordpress/i18n";
 import { addFilter } from "@wordpress/hooks";
 import GalleryPro from "./gallery";
+import ImagePro from "./image";
 
 /**
- * Add pro attributes to gallery block
+ * Add pro attributes to gallery and image blocks
  */
 function addProAttributes(settings, name) {
-	if (name !== "galleryberg/gallery") {
+	if (name !== "galleryberg/gallery" && name !== "galleryberg/image") {
 		return settings;
 	}
 
-	return {
-		...settings,
-		attributes: {
-			...settings.attributes,
-			// Thumbnail settings
-			enableThumbnails: {
-				type: "boolean",
-				default: false,
+	if (name === "galleryberg/gallery") {
+		return {
+			...settings,
+			attributes: {
+				...settings.attributes,
+				// Thumbnail settings
+				enableThumbnails: {
+					type: "boolean",
+					default: false,
+				},
+				thumbnailPosition: {
+					type: "string",
+					default: "bottom",
+				},
+				thumbnailNavigation: {
+					type: "string",
+					default: "direct", // 'direct' or 'step'
+				},
+				thumbnailNavigationSpeed: {
+					type: "number",
+					default: 10, // milliseconds between steps
+				},
 			},
-			thumbnailPosition: {
-				type: "string",
-				default: "bottom",
+			providesContext: {
+				...settings.providesContext,
+				"galleryberg/enableThumbnails": "enableThumbnails",
+				"galleryberg/thumbnailPosition": "thumbnailPosition",
+				"galleryberg/thumbnailNavigation": "thumbnailNavigation",
+				"galleryberg/thumbnailNavigationSpeed": "thumbnailNavigationSpeed",
 			},
-			thumbnailNavigation: {
-				type: "string",
-				default: "direct", // 'direct' or 'step'
+		};
+	}
+
+	if (name === "galleryberg/image") {
+		return {
+			...settings,
+			attributes: {
+				...settings.attributes,
+				// Mosaic span settings
+				mosaicSpanX: {
+					type: "number",
+					default: 1,
+				},
+				mosaicSpanY: {
+					type: "number",
+					default: 1,
+				},
 			},
-			thumbnailNavigationSpeed: {
-				type: "number",
-				default: 10, // milliseconds between steps
-			},
-		},
-		providesContext: {
-			...settings.providesContext,
-			"galleryberg/enableThumbnails": "enableThumbnails",
-			"galleryberg/thumbnailPosition": "thumbnailPosition",
-			"galleryberg/thumbnailNavigation": "thumbnailNavigation",
-			"galleryberg/thumbnailNavigationSpeed": "thumbnailNavigationSpeed",
-		},
-	};
+		};
+	}
+
+	return settings;
 }
 
 addFilter(
@@ -51,6 +74,7 @@ addFilter(
 
 const BlockNameToComponentMapping = {
 	"galleryberg/gallery": GalleryPro,
+	"galleryberg/image": ImagePro,
 };
 
 /**

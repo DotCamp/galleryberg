@@ -26,7 +26,13 @@ import {
 	ToggleGroupControlWithToolsPanel,
 } from "@galleryberg/shared";
 
-function Inspector({ attributes, setAttributes, clientId }) {
+function Inspector({
+	attributes,
+	setAttributes,
+	clientId,
+	MosaicSpanX = null,
+	MosaicSpanY = null,
+}) {
 	const { alt, aspectRatio, height, scale, width } = attributes;
 	const resetAll = () => {
 		setAttributes({
@@ -133,9 +139,11 @@ function Inspector({ attributes, setAttributes, clientId }) {
 						defaultValue={DEFAULT_SIZE_SLUG_OPTIONS[0].value}
 						help={__(
 							"Select the size of the source image.",
-							"galleryberg-gallery-block",
+							"galleryberg-gallery-block"
 						)}
 					/>
+					{MosaicSpanX && MosaicSpanX}
+					{MosaicSpanY && MosaicSpanY}
 				</ToolsPanel>
 			</InspectorControls>
 
@@ -187,7 +195,7 @@ function Inspector({ attributes, setAttributes, clientId }) {
 							{
 								label: __(
 									"Select Caption Visibility",
-									"galleryberg-gallery-block",
+									"galleryberg-gallery-block"
 								),
 								value: "",
 							},
@@ -234,7 +242,7 @@ function Inspector({ attributes, setAttributes, clientId }) {
 							<Tip>
 								{__(
 									"Use the alignment matrix control in the toolbar to position overlay captions",
-									"galleryberg-gallery-block",
+									"galleryberg-gallery-block"
 								)}
 							</Tip>
 						</div>

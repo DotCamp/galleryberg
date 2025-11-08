@@ -102,6 +102,7 @@ if ( isset( $context['layout'] ) && 'justified' === $context['layout'] ) {
 	$block_gap                       = \Galleryberg\Helpers\Styling_Helpers::get_spacing_preset_css_var( $context['blockSpacing']['top'] ) ?? '16px';
 	$wrapper_styles['margin-bottom'] = $block_gap;
 }
+$wrapper_styles = apply_filters( 'galleryberg_image_wrapper_styles', $wrapper_styles, $attributes, $context );
 $border_css = \Galleryberg\Helpers\Styling_Helpers::get_border_css_properties( $border );
 $style      = array_merge( $style, $border_css );
 
@@ -144,7 +145,17 @@ $wrapper_attributes = get_block_wrapper_attributes(
 );
 
 $image_html = '';
-if ( $id ) {
+// Validate that the ID actually belongs to the URL to prevent showing wrong images
+$use_attachment = false;
+if ( $id && $img_src ) {
+	$attachment_url = wp_get_attachment_url( $id );
+	// Check if the attachment URL matches the stored URL (at least the filename)
+	if ( $attachment_url && basename( $attachment_url ) === basename( $img_src ) ) {
+		$use_attachment = true;
+	}
+}
+
+if ( $use_attachment ) {
 	$image_html = wp_get_attachment_image(
 		$id,
 		$size_slug ? $size_slug : 'full',
@@ -157,6 +168,17 @@ if ( $id ) {
 			),
 			array() // Add more attributes if needed
 		)
+	);
+}
+
+// Fallback to URL if attachment doesn't match or doesn't exist
+if ( empty( $image_html ) && ! empty( $img_src ) ) {
+	$image_html = sprintf(
+		'<img src="%s" alt="%s" style="%s" class="%s" />',
+		$img_src,
+		$img_alt,
+		\Galleryberg\Helpers\Styling_Helpers::generate_css_string( $style ),
+		trim( $image_classes )
 	);
 }
 ?>

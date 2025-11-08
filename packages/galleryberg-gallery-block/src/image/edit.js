@@ -18,7 +18,13 @@ import exampleImage from "./preview.png";
 import { generateStyles, getSpacingPresetCssVar } from "@galleryberg/shared";
 
 function Edit(props) {
-	const { attributes, setAttributes, isSelected, context } = props;
+	const {
+		attributes,
+		setAttributes,
+		isSelected,
+		context,
+		mosaicStyles = {},
+	} = props;
 	const {
 		media,
 		height,
@@ -66,6 +72,9 @@ function Edit(props) {
 
 		styles.marginBottom = blockGap;
 	}
+
+	// Merge pro-provided mosaic styles
+	Object.assign(styles, mosaicStyles);
 
 	const hoverEffect = context?.hoverEffect || "zoom-in";
 
@@ -263,11 +272,7 @@ function Edit(props) {
 							}}
 						/>
 					)}
-					<Inspector
-						attributes={attributes}
-						setAttributes={setAttributes}
-						clientId={props.clientId}
-					/>
+					<Inspector {...props} />
 				</>
 			)}
 			{!hasImage && (
