@@ -2,6 +2,7 @@ import { InspectorControls } from "@wordpress/block-editor";
 import {
 	Tip,
 	__experimentalToolsPanel as ToolsPanel,
+	PanelBody,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import {
@@ -14,6 +15,7 @@ import {
 	ToggleControlWithToolsPanel,
 	ToggleGroupControlWithToolsPanel,
 } from "@galleryberg/shared";
+import { blockIcon } from "./block-icon";
 
 const MAX_COLUMNS = 8;
 
@@ -27,6 +29,7 @@ function Inspector(props) {
 		ThumbnailNavigation = null,
 		ThumbnailNavigationSpeed = null,
 		proLayouts = [],
+		isPro = false,
 	} = props;
 	const {
 		lightbox,
@@ -349,6 +352,64 @@ function Inspector(props) {
 					)}
 				</ToolsPanel>
 			</InspectorControls>
+			{!isPro && (
+				<InspectorControls>
+					<PanelBody
+						title={__("Galleryberg PRO", "galleryberg-gallery-block")}
+						icon={blockIcon}
+						initialOpen={true}
+					>
+						<h3
+							style={{
+								fontSize: "14px",
+								fontWeight: "600",
+								margin: "0 0 8px 0",
+								color: "#1e1e1e",
+								letterSpacing: "0.5px",
+							}}
+						>
+							{__(
+								"GET GALLERYBERG PRO - EARLY BIRD DEAL",
+								"galleryberg-gallery-block"
+							)}
+						</h3>
+						<p
+							style={{
+								fontSize: "13px",
+								color: "#757575",
+								margin: "0 0 16px 0",
+								lineHeight: "1.5",
+							}}
+						>
+							{__(
+								"Unlock advanced layouts, lightbox thumbnails, and more.",
+								"galleryberg-gallery-block"
+							)}
+						</p>
+						<a
+							href="http://galleryberg.com/pricing/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{
+								display: "block",
+								width: "100%",
+								padding: "12px 24px",
+								background: "#4c6ef5",
+								color: "#fff",
+								borderRadius: "4px",
+								textDecoration: "none",
+								fontWeight: "500",
+								fontSize: "14px",
+								textAlign: "center",
+								border: "none",
+								cursor: "pointer",
+							}}
+						>
+							{__("Get Lifetime Access - $49", "galleryberg-gallery-block")}
+						</a>
+					</PanelBody>
+				</InspectorControls>
+			)}
 		</>
 	);
 }

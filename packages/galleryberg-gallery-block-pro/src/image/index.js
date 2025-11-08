@@ -55,6 +55,7 @@ function ImagePro(props) {
 		MosaicSpanX,
 		MosaicSpanY,
 		mosaicStyles,
+		isPro: true,
 	};
 
 	return (

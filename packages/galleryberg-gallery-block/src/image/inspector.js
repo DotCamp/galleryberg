@@ -9,6 +9,7 @@ import {
 	__experimentalToolsPanel as ToolsPanel,
 	__experimentalUnitControl as UnitControl,
 	__experimentalToolsPanelItem as ToolsPanelItem,
+	PanelBody,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 /***
@@ -25,6 +26,7 @@ import {
 	SelectControlWithToolsPanel,
 	ToggleGroupControlWithToolsPanel,
 } from "@galleryberg/shared";
+import { blockIcon } from "../gallery/block-icon";
 
 function Inspector({
 	attributes,
@@ -32,6 +34,7 @@ function Inspector({
 	clientId,
 	MosaicSpanX = null,
 	MosaicSpanY = null,
+	isPro = false,
 }) {
 	const { alt, aspectRatio, height, scale, width } = attributes;
 	const resetAll = () => {
@@ -260,8 +263,66 @@ function Inspector({
 					attrKey="captionBackgroundColor"
 				/>
 			</InspectorControls>
+
+			{!isPro && (
+				<InspectorControls>
+					<PanelBody
+						title={__("Galleryberg PRO", "galleryberg-gallery-block")}
+						icon={blockIcon}
+						initialOpen={true}
+					>
+						<h3
+							style={{
+								fontSize: "14px",
+								fontWeight: "600",
+								margin: "0 0 8px 0",
+								color: "#1e1e1e",
+								letterSpacing: "0.5px",
+							}}
+						>
+							{__(
+								"GET GALLERYBERG PRO - EARLY BIRD DEAL",
+								"galleryberg-gallery-block"
+							)}
+						</h3>
+						<p
+							style={{
+								fontSize: "13px",
+								color: "#757575",
+								margin: "0 0 16px 0",
+								lineHeight: "1.5",
+							}}
+						>
+							{__(
+								"Unlock advanced layouts, lightbox thumbnails, and more.",
+								"galleryberg-gallery-block"
+							)}
+						</p>
+						<a
+							href="http://galleryberg.com/pricing/"
+							target="_blank"
+							rel="noopener noreferrer"
+							style={{
+								display: "block",
+								width: "100%",
+								padding: "12px 24px",
+								background: "#4c6ef5",
+								color: "#fff",
+								borderRadius: "4px",
+								textDecoration: "none",
+								fontWeight: "500",
+								fontSize: "14px",
+								textAlign: "center",
+								border: "none",
+								cursor: "pointer",
+							}}
+						>
+							{__("Get Lifetime Access - $49", "galleryberg-gallery-block")}
+						</a>
+					</PanelBody>
+				</InspectorControls>
+			)}
 		</>
 	);
 }
-
 export default Inspector;

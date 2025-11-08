@@ -97,6 +97,7 @@ function GalleryPro(props) {
 		thumbnailNavigation,
 		thumbnailNavigationSpeed,
 		proLayouts: [{ label: "Mosaic", value: "mosaic" }],
+		isPro: true,
 	};
 	return (
 		<>
