@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Galleryberg Gallery Block
  * Description:       A customizable gallery block for displaying images in columns with optional cropping and spacing.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Imtiaz Rayhan
@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'GALLERYBERG_BLOCKS_VERSION' ) ) {
-	define( 'GALLERYBERG_BLOCKS_VERSION', '1.0.5' );
+	define( 'GALLERYBERG_BLOCKS_VERSION', '1.0.6' );
 }
 
 if ( ! defined( 'GALLERYBERG_BLOCKS_DIR_PATH' ) ) {
@@ -32,6 +32,40 @@ if ( ! defined( 'GALLERYBERG_BLOCKS_PLUGIN_URL' ) ) {
 if ( file_exists( GALLERYBERG_BLOCKS_DIR_PATH . 'vendor/autoload.php' ) ) {
 	require_once GALLERYBERG_BLOCKS_DIR_PATH . 'vendor/autoload.php';
 }
+
+if ( ! function_exists( 'gal_fs' ) ) {
+    // Create a helper function for easy SDK access.
+    function gal_fs() {
+        global $gal_fs;
+
+        if ( ! isset( $gal_fs ) ) {
+            // Include Freemius SDK.
+            require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
+
+            $gal_fs = fs_dynamic_init( array(
+                'id'                  => '21743',
+                'slug'                => 'galleryberg-gallery-block',
+                'premium_slug'        => 'galleryberg-gallery-block-pro',
+                'type'                => 'plugin',
+                'public_key'          => 'pk_76372b4a6fdc50cc1d28d1ee6efc8',
+                'is_premium'          => false,
+                'has_addons'          => true,
+                'has_paid_plans'      => false,
+                'menu'                => array(
+                    'first-path'     => 'plugins.php',
+                ),
+            ) );
+        }
+
+        return $gal_fs;
+    }
+
+    // Init Freemius.
+    gal_fs();
+    // Signal that SDK was initiated.
+    do_action( 'gal_fs_loaded' );
+}
+
 
 function galleryberg_gallery_block_init() {
 	/**
