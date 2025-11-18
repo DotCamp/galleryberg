@@ -2,7 +2,7 @@
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.8
-Stable tag:        1.0.5
+Stable tag:        1.0.7
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.0
@@ -120,6 +120,14 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 7. Block settings panel showing customization options
 
 == Changelog ==
+
+= 1.0.7 =
+
+* PRO: FIX: Enhanced security checks and implemented fixes
+
+= 1.0.6 =
+
+* NEW: Galleryberg Gallery Block Pro is now publicly available with advanced features and layouts.
 
 = 1.0.5 =
 
