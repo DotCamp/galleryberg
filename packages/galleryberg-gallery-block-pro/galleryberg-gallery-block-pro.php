@@ -25,9 +25,9 @@ if ( ! function_exists( 'gp_fs' ) ) {
 			if ( file_exists( dirname( dirname( __FILE__ ) ) . '/galleryberg-gallery-block/freemius/start.php' ) ) {
 				// Try to load SDK from parent plugin folder.
 				require_once dirname( dirname( __FILE__ ) ) . '/galleryberg-gallery-block/freemius/start.php';
-			} elseif ( file_exists( dirname( dirname( __FILE__ ) ) . '/galleryberg-pro-premium/freemius/start.php' ) ) {
+			} elseif ( file_exists( dirname( dirname( __FILE__ ) ) . '/galleryberg-gallery-block-pro/freemius/start.php' ) ) {
 				// Try to load SDK from premium parent plugin folder.
-				require_once dirname( dirname( __FILE__ ) ) . '/galleryberg-pro-premium/freemius/start.php';
+				require_once dirname( dirname( __FILE__ ) ) . '/galleryberg-gallery-block-pro/freemius/start.php';
 			} else {
 				require_once dirname( __FILE__ ) . '/vendor/freemius/start.php';
 			}
@@ -84,7 +84,7 @@ function gp_fs_is_parent_active() {
 
 	foreach ( $active_plugins as $basename ) {
 		if ( 0 === strpos( $basename, 'galleryberg-gallery-block/' ) ||
-			 0 === strpos( $basename, 'galleryberg-pro-premium/' )
+			 0 === strpos( $basename, 'galleryberg-gallery-block-pro/' )
 		) {
 			return true;
 		}
@@ -109,6 +109,8 @@ function gp_fs_init() {
 			class Galleryberg_Gallery_Block_Pro {
 				public function __construct() {
 					// Initialize assets
+					if(gp_fs()->has_active_valid_license()){
+
 					new \Galleryberg\Pro\Assets();
 
 					// Initialize Gallery block extensions
@@ -116,6 +118,7 @@ function gp_fs_init() {
 
 					// Initialize Image block extensions
 					new \Galleryberg\Pro\Block_Extensions\Image();
+					}
 				}
 			}
 			new Galleryberg_Gallery_Block_Pro();
@@ -124,6 +127,17 @@ function gp_fs_init() {
 	} else {
 		// Parent is inactive, add your error handling here.
 	}
+}
+
+if ( gp_fs_is_parent_active_and_loaded() ) {
+	// If parent already included, init add-on.
+	gp_fs_init();
+} elseif ( gp_fs_is_parent_active() ) {
+	// Init add-on only after the parent is loaded.
+	add_action( 'gal_fs_loaded', 'gp_fs_init' );
+} else {
+	// Even though the parent is not activated, execute add-on for activation / uninstall hooks.
+	gp_fs_init();
 }
 add_action( 'admin_init', function () {
 	if ( ! is_plugin_active( 'galleryberg-gallery-block/galleryberg-gallery-block.php' ) ) {
@@ -137,13 +151,3 @@ add_action( 'admin_init', function () {
 		}
 	}
 } );
-if ( gp_fs_is_parent_active_and_loaded() ) {
-	// If parent already included, init add-on.
-	gp_fs_init();
-} elseif ( gp_fs_is_parent_active() ) {
-	// Init add-on only after the parent is loaded.
-	add_action( 'gal_fs_loaded', 'gp_fs_init' );
-} else {
-	// Even though the parent is not activated, execute add-on for activation / uninstall hooks.
-	gp_fs_init();
-}

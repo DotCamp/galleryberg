@@ -86,18 +86,21 @@ function GalleryPro(props) {
 				)}
 			/>
 		);
+	// Check if user has valid premium license
+	const isPremium = window.gallerybergSettings?.isPremium || false;
+
 	const proProps = {
 		...props,
-		EnableThumbnails,
-		ThumbnailPosition,
-		ThumbnailNavigation,
-		ThumbnailNavigationSpeed,
+		EnableThumbnails: isPremium ? EnableThumbnails : null,
+		ThumbnailPosition: isPremium ? ThumbnailPosition : null,
+		ThumbnailNavigation: isPremium ? ThumbnailNavigation : null,
+		ThumbnailNavigationSpeed: isPremium ? ThumbnailNavigationSpeed : null,
 		enableThumbnails,
 		thumbnailPosition,
 		thumbnailNavigation,
 		thumbnailNavigationSpeed,
-		proLayouts: [{ label: "Mosaic", value: "mosaic" }],
-		isPro: true,
+		proLayouts: isPremium ? [{ label: "Mosaic", value: "mosaic" }] : [],
+		isPro: isPremium,
 	};
 	return (
 		<>

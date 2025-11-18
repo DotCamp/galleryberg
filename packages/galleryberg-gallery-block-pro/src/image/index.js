@@ -50,12 +50,15 @@ function ImagePro(props) {
 		/>
 	);
 
+	// Check if user has valid premium license
+	const isPremium = window.gallerybergSettings?.isPremium || false;
+
 	const proProps = {
 		...props,
-		MosaicSpanX,
-		MosaicSpanY,
-		mosaicStyles,
-		isPro: true,
+		MosaicSpanX: isPremium ? MosaicSpanX : null,
+		MosaicSpanY: isPremium ? MosaicSpanY : null,
+		mosaicStyles: isPremium ? mosaicStyles : {},
+		isPro: isPremium,
 	};
 
 	return (

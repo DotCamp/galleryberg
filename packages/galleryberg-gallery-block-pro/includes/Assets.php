@@ -83,6 +83,18 @@ class Assets {
 			GALLERYBERG_PRO_VERSION
 		);
 
+		// Check if user has valid license (both premium and active license required)
+		$is_premium = function_exists( 'gp_fs' ) && gp_fs()->is_premium() && gp_fs()->has_active_valid_license();
+
+		// Localize script with license status
+		wp_localize_script(
+			'galleryberg-pro-block-editor-script',
+			'gallerybergSettings',
+			array(
+				'isPremium' => $is_premium,
+			)
+		);
+
 		// Register Pro block editor styles
 		wp_register_style(
 			'galleryberg-pro-block-editor-style',
