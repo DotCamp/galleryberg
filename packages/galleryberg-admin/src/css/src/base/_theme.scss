@@ -1,0 +1,26 @@
+@import "colors";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+// Font
+$font-family: "Inter", sans-serif;
+$text-color: $black;
+$text-faded-color: $o-gray-500;
+
+// Font sizes
+$font-size: 1rem;
+$font-pill-size: 0.8rem;
+$phrase-font-size: 2.5rem;
+
+// Spacing
+$main-wrapper-max-width: 1120px;
+$header-height: 80px;
+$logo-height: 40px;
+$border-color: $o-gray-200;
+$box-content-padding: 20px;
+
+// Feature card
+$feature-card-padding: 24px;
+$feature-card-border-radius: 8px;
+
+// Buttons
+$button-border-radius: 4px;

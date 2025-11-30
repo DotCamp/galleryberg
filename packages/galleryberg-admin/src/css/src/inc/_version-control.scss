@@ -1,0 +1,226 @@
+// Version Control Styles
+
+.version-control-container {
+	display: flex;
+	align-items: center;
+}
+
+.galleryberg-header-version-info {
+	select {
+		padding: 4px 8px;
+		font-size: 13px;
+		color: $o-gray-500;
+		border: 1px solid $o-gray-300;
+		border-radius: 4px;
+		background: $white;
+		cursor: pointer;
+		min-width: 80px;
+		appearance: auto;
+
+		&:hover {
+			border-color: $o-gray-400;
+		}
+
+		&:focus {
+			outline: none;
+			border-color: $deep-aqua-500;
+		}
+	}
+}
+
+// Version Control Popup Modal
+.version-control-popup {
+	position: fixed;
+	inset: 0;
+	z-index: 10000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: fadeIn 0.2s ease-out forwards;
+
+	.modal-backdrop {
+		position: absolute;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.7);
+		cursor: pointer;
+	}
+
+	.modal-container {
+		position: relative;
+		background: $white;
+		border-radius: 8px;
+		padding: 40px 60px;
+		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+		max-width: 600px;
+		width: 90%;
+		z-index: 1;
+	}
+
+	.rollback-versions {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 40px;
+		margin-bottom: 30px;
+
+		.version-id {
+			font-size: 2.5rem;
+			font-weight: bold;
+			user-select: none;
+
+			&.version-positive {
+				color: $green-500;
+			}
+
+			&.version-negative {
+				color: $red-500;
+			}
+		}
+
+		.version-icon {
+			color: $o-gray-500;
+			transition: transform 0.3s ease;
+
+			&[data-in-progress="true"] {
+				animation: stay-a-while-and-listen 2s ease-out infinite;
+			}
+
+			.version-icon-inner {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				svg {
+					width: 2.5rem;
+					height: 2.5rem;
+				}
+			}
+		}
+	}
+
+	.version-content {
+		text-align: center;
+
+		.version-warning {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+
+			> div:first-child {
+				color: $o-gray-700;
+				line-height: 1.6;
+			}
+
+			.version-button-container {
+				display: flex;
+				gap: 20px;
+
+				button {
+					padding: 10px 20px;
+					font-size: 0.8rem;
+					font-weight: 500;
+					border: none;
+					border-radius: 8px;
+					cursor: pointer;
+					transition: all 0.2s ease;
+					color: $white;
+
+					&.button-primary {
+						background: $green-500;
+
+						&:hover {
+							background: darken($green-500, 5%);
+							transform: translateY(-1px);
+							box-shadow: 0 4px 12px rgba($green-500, 0.3);
+						}
+
+						&:active {
+							transform: translateY(0);
+						}
+					}
+
+					&.button-secondary {
+						background: $red-500;
+
+						&:hover {
+							background: darken($red-500, 5%);
+							transform: translateY(-1px);
+							box-shadow: 0 4px 12px rgba($red-500, 0.3);
+						}
+
+						&:active {
+							transform: translateY(0);
+						}
+					}
+				}
+			}
+		}
+
+		.operation-finished-wrapper {
+			.version-control-response {
+				font-weight: bold;
+				font-size: 1.1rem;
+				margin-bottom: 15px;
+				color: $green-500;
+
+				&[data-resp-type="error"] {
+					color: $red-500;
+				}
+			}
+
+			> div:last-child {
+				color: $o-gray-600;
+				font-size: 0.95rem;
+			}
+		}
+	}
+}
+
+// Animations
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes stay-a-while-and-listen {
+	0% {
+		transform: translateX(-100%);
+	}
+
+	40% {
+		transform: translateX(0);
+	}
+
+	60% {
+		transform: translateX(0);
+	}
+
+	100% {
+		transform: translateX(100%);
+	}
+}
+@keyframes pulse {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+}
+
+// Right container layout
+.right-container {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	.version-control-header-wrapper {
+		padding-right: 16px;
+	}
+}
