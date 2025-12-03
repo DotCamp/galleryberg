@@ -21,17 +21,8 @@ function WelcomePage() {
 			<div className={"galleryberg-welcome-content__main"}>
 				<div className={"galleryberg-welcome-video-section galleryberg-card"}>
 					<div className={"galleryberg-card-welcome"}>
-						<h2>
-							{welcomeData.title ||
-								__("Welcome to Galleryberg!", "galleryberg-gallery-block")}
-						</h2>
-						<p>
-							{welcomeData.content ||
-								__(
-									"Elevate Your Content with Beautiful Galleries - The Ultimate WordPress Block Editor Plugin for Effortless Gallery Creation!",
-									"galleryberg-gallery-block"
-								)}
-						</p>
+						<h2>{welcomeData.title}</h2>
+						<p>{welcomeData.content}</p>
 					</div>
 					<div className={"galleryberg-card-video"}>
 						<div className={"galleryberg-video-wrapper"}>
@@ -39,10 +30,7 @@ function WelcomePage() {
 								width="560"
 								height="315"
 								src={`https://www.youtube.com/embed/${videoData.video_id}`}
-								title={
-									videoData.title ||
-									__("Galleryberg Tutorial", "galleryberg-gallery-block")
-								}
+								title={videoData.title}
 								frameBorder="0"
 								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 								allowFullScreen
@@ -60,46 +48,28 @@ function WelcomePage() {
 							rel="noopener noreferrer"
 							className={"button button-primary button-upgrade"}
 						>
-							{upgradeData.button ||
-								__("GET GALLERYBERG PRO", "galleryberg-gallery-block")}
+							{upgradeData.button}
 						</a>
 					</div>
 				)}
 			</div>
 			<div className={"galleryberg-welcome-content__sidebar"}>
 				<div className={"galleryberg-card"}>
-					<h3>
-						{documentationData.title ||
-							__("Documentation", "galleryberg-gallery-block")}
-					</h3>
-					<p>
-						{documentationData.content ||
-							__(
-								"Elevate your space with Galleryberg: a sleek, modern gallery block for style and functionality.",
-								"galleryberg-gallery-block"
-							)}
-					</p>
+					<h3>{documentationData.title}</h3>
+					<p>{documentationData.content}</p>
 					<ButtonLink
 						url={documentationData.url || "https://galleryberg.com/docs/"}
-						title={__("Visit Documents", "galleryberg-gallery-block")}
+						title={documentationData.button}
 						type={ButtonLinkType.DEFAULT}
 					/>
 				</div>
 
 				<div className={"galleryberg-card"}>
-					<h3>
-						{supportData.title || __("Support", "galleryberg-gallery-block")}
-					</h3>
-					<p>
-						{supportData.content ||
-							__(
-								"Visit our Galleryberg Support Page for quick solutions and assistance.",
-								"galleryberg-gallery-block"
-							)}
-					</p>
+					<h3>{supportData.title}</h3>
+					<p>{supportData.content}</p>
 					<ButtonLink
-						url={supportData.url || "https://galleryberg.com/support/"}
-						title={__("Support Forum", "galleryberg-gallery-block")}
+						url={supportData.url || "https://galleryberg.com/contact/"}
+						title={supportData.button}
 						type={ButtonLinkType.DEFAULT}
 					/>
 				</div>

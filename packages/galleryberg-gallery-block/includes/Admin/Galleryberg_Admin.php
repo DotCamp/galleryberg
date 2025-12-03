@@ -84,7 +84,7 @@ class Galleryberg_Admin {
 
 		$data['welcome'] = array(
 			'title'   => __( 'Welcome to Galleryberg!', 'galleryberg-gallery-block' ),
-			'content' => __( 'Elevate Your Content with Beautiful Galleries - The Ultimate WordPress Block Editor Plugin for Effortless Gallery Creation!', 'galleryberg-gallery-block' ),
+			'content' => __( 'Build stunning, fast, and flexible galleries using the Gutenberg block editor - no shortcodes or clunky builder.', 'galleryberg-gallery-block' ),
 		);
 
 		$data['video'] = array(
@@ -95,52 +95,67 @@ class Galleryberg_Admin {
 
 		$data['documentation'] = array(
 			'title'   => __( 'Documentation', 'galleryberg-gallery-block' ),
-			'content' => __( 'Elevate your space with Galleryberg: a sleek, modern gallery block for style and functionality. Crafted for timeless elegance and versatility.', 'galleryberg-gallery-block' ),
+			'content' => __( 'Guides and tutorials to help you create beautiful galleries with ease.', 'galleryberg-gallery-block' ),
 			'url'     => 'https://galleryberg.com/docs/',
-			'button'  => __( 'Visit Documents', 'galleryberg-gallery-block' ),
+			'button'  => __( 'View Docs', 'galleryberg-gallery-block' ),
 		);
 
 		$data['support'] = array(
 			'title'   => __( 'Support', 'galleryberg-gallery-block' ),
-			'content' => __( 'Visit our Galleryberg Support Page for quick solutions and assistance. We\'re here to ensure your Galleryberg experience is seamless and satisfying.', 'galleryberg-gallery-block' ),
-			'url'     => 'https://galleryberg.com/support/',
-			'button'  => __( 'Support Forum', 'galleryberg-gallery-block' ),
+			'content' => __( 'Have a question? We\'re here to help.', 'galleryberg-gallery-block' ),
+			'url'     => 'https://galleryberg.com/contact/',
+			'button'  => __( 'Contact Us', 'galleryberg-gallery-block' ),
 		);
 
 		$data['upgrade'] = array(
 			'title'   => __( 'Upgrade to Galleryberg PRO!', 'galleryberg-gallery-block' ),
-			'content' => __( 'Elevate Your Content with Beautiful Galleries - The Ultimate WordPress Block Editor Plugin for Effortless Gallery Creation!', 'galleryberg-gallery-block' ),
+			'content' => __( 'Unlock premium layouts, advanced customization, and enhanced gallery controls.', 'galleryberg-gallery-block' ),
 			'url'     => 'https://galleryberg.com/pricing/',
-			'button'  => __( 'GET GALLERYBERG PRO', 'galleryberg-gallery-block' ),
+			'button'  => __( 'Get Galleryberg Pro', 'galleryberg-gallery-block' ),
 		);
 
 		$data['features'] = array(
-			'title'       => __( 'Gallery Features', 'galleryberg-gallery-block' ),
+			'title'       => __( 'Galleryberg Features', 'galleryberg-gallery-block' ),
 			'description' => __( 'Explore the powerful features available in Galleryberg Gallery Block.', 'galleryberg-gallery-block' ),
 			'list'        => array(
 				array(
-					'title'       => __( 'Column Layouts', 'galleryberg-gallery-block' ),
-					'description' => __( 'Display your images in flexible column layouts with customizable gaps and spacing.', 'galleryberg-gallery-block' ),
+					'title'       => __( 'Gallery Layouts', 'galleryberg-gallery-block' ),
+					'description' => __( 'Choose from Tiles, Masonry, Justified, and Square layouts for flexible, modern gallery designs.', 'galleryberg-gallery-block' ),
 					'is_pro'      => false,
 				),
 				array(
-					'title'       => __( 'Image Cropping', 'galleryberg-gallery-block' ),
-					'description' => __( 'Choose from multiple aspect ratios to crop your images uniformly.', 'galleryberg-gallery-block' ),
+					'title'       => __( 'Hover Effects', 'galleryberg-gallery-block' ),
+					'description' => __( 'Add smooth Zoom In/Out hover effects for a more interactive browsing experience.', 'galleryberg-gallery-block' ),
 					'is_pro'      => false,
 				),
 				array(
-					'title'       => __( 'Lightbox Integration', 'galleryberg-gallery-block' ),
-					'description' => __( 'Built-in lightbox functionality for viewing images in full size.', 'galleryberg-gallery-block' ),
+					'title'       => __( 'Lightbox Viewer', 'galleryberg-gallery-block' ),
+					'description' => __( 'Show images in a fullscreen lightbox with animations, slide transitions, zoom, drag, and keyboard navigation.', 'galleryberg-gallery-block' ),
 					'is_pro'      => false,
 				),
 				array(
-					'title'       => __( 'Mosaic Layout', 'galleryberg-gallery-block' ),
-					'description' => __( 'Create stunning mosaic galleries with varying image sizes for a modern, dynamic look.', 'galleryberg-gallery-block' ),
+					'title'       => __( 'Advanced Captions', 'galleryberg-gallery-block' ),
+					'description' => __( 'Use caption styles like below image, overlay, or bar overlay, with full control over visibility and alignment.', 'galleryberg-gallery-block' ),
+					'is_pro'      => false,
+				),
+				array(
+					'title'       => __( 'Gallery Styles', 'galleryberg-gallery-block' ),
+					'description' => __( 'Customize spacing, colors, borders, and radius to match your site\'s style.', 'galleryberg-gallery-block' ),
+					'is_pro'      => false,
+				),
+				array(
+					'title'       => __( 'Mosaic Layout (PRO)', 'galleryberg-gallery-block' ),
+					'description' => __( 'Build mosaic galleries with varied image sizes for a premium visual look.', 'galleryberg-gallery-block' ),
 					'is_pro'      => true,
 				),
 				array(
-					'title'       => __( 'Manual Span Controls', 'galleryberg-gallery-block' ),
-					'description' => __( 'Control individual image sizes with manual span controls (1-5) for horizontal and vertical dimensions.', 'galleryberg-gallery-block' ),
+					'title'       => __( 'Lightbox Thumbnails (PRO)', 'galleryberg-gallery-block' ),
+					'description' => __( 'Display clickable thumbnails inside the lightbox for quicker navigation.', 'galleryberg-gallery-block' ),
+					'is_pro'      => true,
+				),
+				array(
+					'title'       => __( 'More Coming Soon (PRO)', 'galleryberg-gallery-block' ),
+					'description' => __( 'Get early access to upcoming premium layouts and advanced controls.', 'galleryberg-gallery-block' ),
 					'is_pro'      => true,
 				),
 			),
