@@ -1,0 +1,298 @@
+@import "./base/colors";
+@import "./base/theme";
+@import "./base/common";
+@import "./inc/navigation";
+@import "./inc/button-link";
+@import "./inc/version-control";
+
+* {
+	box-sizing: border-box;
+}
+
+.galleryberg-admin-menu-wrapper {
+	font-family: $font-family;
+	color: $text-color;
+	background: $o-gray-50;
+	min-height: 100vh;
+}
+
+.galleryberg-admin-menu-container {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background: $white;
+}
+
+// Header
+.header-wrapper {
+	background: $white;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.menu-header {
+	max-width: $main-wrapper-max-width;
+	margin: 0 auto;
+	height: $header-height;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 20px;
+}
+
+.left-container {
+	display: flex;
+	align-items: center;
+}
+
+.logo-container {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	img {
+		max-height: $logo-height;
+		width: auto;
+	}
+}
+
+.galleryberg-plugin-logo-text {
+	font-size: 20px;
+	font-weight: 600;
+	color: $text-color;
+}
+
+.galleryberg-menu-navigation-wrapper {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	max-width: 600px;
+	margin: 0 40px;
+	height: 100%;
+}
+
+.right-container {
+	.upgrade-button {
+		display: inline-block;
+		padding: 10px 20px;
+		background: $deep-aqua-500;
+		color: $white;
+		text-decoration: none;
+		border-radius: $button-border-radius;
+		font-weight: 500;
+		transition: background 0.2s ease;
+
+		&:hover {
+			background: $deep-aqua-600;
+		}
+	}
+}
+
+// Content Area
+.galleryberg-router-content {
+	flex: 1;
+	max-width: $main-wrapper-max-width;
+	margin: 0 auto;
+	padding: 40px 20px;
+	width: 100%;
+}
+
+// Welcome Page
+.galleryberg-welcome-content {
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	gap: 30px;
+
+	@media (max-width: 968px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.galleryberg-welcome-content__main {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	.galleryberg-card {
+		padding: 32px 48px;
+	}
+}
+
+.galleryberg-welcome-content__sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+// Card Styles
+.galleryberg-card {
+	padding: 32px;
+	border: 1px solid #e2e8f0;
+	border-radius: 12px;
+	display: grid;
+	grid-template-columns: 1fr;
+	align-items: flex-start;
+	grid-template-rows: auto auto;
+	grid-gap: 24px;
+	* {
+		margin: 0;
+		font-weight: 400;
+	}
+	h3 {
+		font-size: 1.75rem;
+		line-height: 2.125rem;
+	}
+}
+
+.galleryberg-card-welcome {
+	h2 {
+		margin: 0;
+		font-size: 2rem;
+		line-height: 2.5rem;
+		font-weight: 400;
+	}
+
+	p {
+		font-size: 16px;
+		margin-bottom: 0;
+		color: #64748b;
+	}
+}
+
+.galleryberg-card-video {
+	padding: 0;
+	overflow: hidden;
+}
+
+.galleryberg-video-wrapper {
+	position: relative;
+	padding-bottom: 56.25%; // 16:9 aspect ratio
+	height: 0;
+	overflow: hidden;
+
+	iframe {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+}
+
+.galleryberg-card-upgrade {
+	padding: 32px;
+
+	h3 {
+		font-size: 24px;
+		margin: 0;
+	}
+
+	p {
+		font-size: 15px;
+		margin: 0;
+	}
+	.button-upgrade {
+		@extend %pointer;
+		@extend %galleryberg-click;
+
+		width: fit-content;
+		background-color: $galleryberg-brand;
+		color: $white;
+		border: 1px solid $galleryberg-brand;
+		outline: none !important;
+		box-shadow: none !important;
+		&:hover,
+		&:focus,
+		&:active {
+			background-color: $red-700;
+			border-color: $red-700;
+		}
+	}
+}
+
+// Features Page
+.galleryberg-features-content {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+}
+
+.galleryberg-features-header {
+	text-align: center;
+
+	h2 {
+		font-size: 32px;
+		font-weight: 600;
+		color: #1e1e1e;
+	}
+
+	p {
+		font-size: 16px;
+		color: #666;
+	}
+}
+
+.galleryberg-features-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	gap: 24px;
+}
+
+.galleryberg-feature-card {
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+	&:hover {
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		transform: translateY(-2px);
+	}
+
+	&.is-pro-feature {
+		border-color: $galleryberg-brand;
+		// background: $galleryberg-brand;
+	}
+
+	.feature-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+
+		h3 {
+			margin: 0;
+			font-size: 18px;
+			font-weight: 600;
+			flex: 1;
+			color: #1e1e1e;
+		}
+	}
+
+	p {
+		line-height: 1.7;
+		color: #666;
+		font-size: 15px;
+	}
+
+	.pro-badge {
+		display: inline-block;
+		padding: 4px 12px;
+		background: $galleryberg-brand;
+		color: $white;
+		font-size: 11px;
+		font-weight: 600;
+		border-radius: 12px;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-left: 8px;
+	}
+
+	.upgrade-link {
+		display: inline-block;
+		color: $galleryberg-brand;
+		text-decoration: none;
+		font-weight: 500;
+		font-size: 14px;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: $red-700;
+		}
+	}
+}

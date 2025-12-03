@@ -52,7 +52,7 @@ if ( ! function_exists( 'gal_fs' ) ) {
                 'has_addons'          => true,
                 'has_paid_plans'      => false,
                 'menu'                => array(
-                    'first-path'     => 'plugins.php',
+                    'first-path'     => 'admin.php?page=galleryberg-settings&route=welcome',
                 ),
             ) );
         }
@@ -66,6 +66,12 @@ if ( ! function_exists( 'gal_fs' ) ) {
     do_action( 'gal_fs_loaded' );
 }
 
+// Initialize admin settings page
+if ( is_admin() ) {
+	require_once GALLERYBERG_BLOCKS_DIR_PATH . 'includes/Version_Control.php';
+	require_once GALLERYBERG_BLOCKS_DIR_PATH . 'includes/Admin/Galleryberg_Admin.php';
+	new \Galleryberg\Admin\Galleryberg_Admin();
+}
 
 function galleryberg_gallery_block_init() {
 	/**
