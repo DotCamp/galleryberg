@@ -14,17 +14,10 @@ import { ToolbarButton, ToolbarGroup } from "@wordpress/components";
 import { ToolbarWithDropdown } from "@galleryberg/shared";
 
 function BlockControls(props) {
-	const {
-		attributes,
-		setAttributes,
-		setShowCaption,
-		showCaption,
-		setIsEditingImage,
-		context,
-	} = props;
+	const { attributes, setAttributes, showCaption, setIsEditingImage, context } =
+		props;
 	const {
 		media,
-		caption,
 		linkClass,
 		linkDestination,
 		linkTarget,
@@ -34,13 +27,6 @@ function BlockControls(props) {
 		captionType = "",
 		captionAlignment = "",
 	} = attributes;
-	const prevCaption = usePrevious(caption);
-
-	useEffect(() => {
-		if (caption && !prevCaption) {
-			setShowCaption(true);
-		}
-	}, [caption, prevCaption]);
 	const imageUrl = get(media, "url", "");
 	const mediaId = get(media, "id", -1);
 	const imageLink = get(media, "link", "");
@@ -79,14 +65,17 @@ function BlockControls(props) {
 					)}
 				<ToolbarButton
 					onClick={() => {
-						setShowCaption(!showCaption);
-						if (showCaption && caption) {
-							setAttributes({ caption: undefined });
+						const galleryShouldShowCaptions = context?.showCaptions || false;
+						// Only allow toggling if gallery showCaptions is OFF
+						if (!galleryShouldShowCaptions) {
+							const newShowCaption = !showCaption;
+							setAttributes({ showCaption: newShowCaption });
 						}
 					}}
 					icon={captionIcon}
-					isPressed={showCaption}
-					label={showCaption ? __("Remove caption") : __("Add caption")}
+					isPressed={context?.showCaptions ? false : showCaption}
+					disabled={context?.showCaptions || false}
+					label={showCaption ? __("Hide caption") : __("Show caption")}
 				/>
 				<ImageURLInputUI
 					url={href || ""}

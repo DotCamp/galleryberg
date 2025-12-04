@@ -121,6 +121,10 @@
 		"hoverEffect": {
 			"type": "string",
 			"default": "zoom-in"
+		},
+		"showCaptions": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {
@@ -138,7 +142,8 @@
 		"galleryCaptionColor": "galleryCaptionColor",
 		"galleryCaptionBackgroundColor": "galleryCaptionBackgroundColor",
 		"enableHoverEffect": "enableHoverEffect",
-		"hoverEffect": "hoverEffect"
+		"hoverEffect": "hoverEffect",
+		"showCaptions": "showCaptions"
 	},
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

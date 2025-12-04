@@ -32,13 +32,22 @@ function Edit(props) {
 		caption,
 		align,
 		borderRadius,
+		showCaption: showCaptionAttr,
 		captionType = "",
 		captionVisibility = "",
 		captionAlignment = "",
 		captionColor = "",
 		captionBackgroundColor = "",
 	} = attributes;
-	const [showCaption, setShowCaption] = useState(!!caption);
+
+	// Compute showCaption directly from attribute or gallery context
+	// If gallery showCaptions is ON, always show (can't be turned off individually)
+	// If gallery showCaptions is OFF, use individual image setting
+	const galleryShouldShowCaptions = context?.showCaptions || false;
+	const showCaption = galleryShouldShowCaptions
+		? true
+		: showCaptionAttr || false;
+
 	const [isImageEditing, setIsEditingImage] = useState(false);
 	const imageRef = useRef(null);
 
@@ -142,7 +151,6 @@ function Edit(props) {
 					<BlockControls
 						setIsEditingImage={setIsEditingImage}
 						showCaption={showCaption}
-						setShowCaption={setShowCaption}
 						attributes={attributes}
 						setAttributes={setAttributes}
 						context={context}

@@ -266,6 +266,24 @@ function Inspector(props) {
 					label={__("Caption Settings", "galleryberg-gallery-block")}
 					resetAll={resetCaptionSettings}
 				>
+					<ToggleControlWithToolsPanel
+						label={__("Show Captions", "galleryberg-gallery-block")}
+						attrKey="showCaptions"
+						defaultValue={false}
+						help={__(
+							"Enable captions for all images in the gallery.",
+							"galleryberg-gallery-block"
+						)}
+					/>
+					<div style={{ gridColumn: "1 / -1" }}>
+						<Tip>
+							{__(
+								"When enabled, individual image caption controls are disabled. All images will show captions using the gallery settings.",
+								"galleryberg-gallery-block"
+							)}
+						</Tip>
+					</div>
+
 					<SelectControlWithToolsPanel
 						label={__("Caption Type", "galleryberg-gallery-block")}
 						attrKey="galleryCaptionType"

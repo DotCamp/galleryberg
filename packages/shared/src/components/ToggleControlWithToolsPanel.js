@@ -14,11 +14,12 @@ function ToggleControlWithToolsPanel({
 	attrKey,
 	defaultValue = false,
 	isShownByDefault = true,
+	help = "",
 }) {
 	const { clientId } = useBlockEditContext();
 
 	const attributes = useSelect((select) =>
-		select("core/block-editor").getBlockAttributes(clientId),
+		select("core/block-editor").getBlockAttributes(clientId)
 	);
 	const { updateBlockAttributes } = useDispatch("core/block-editor");
 	const setAttributes = (newAttributes) => {
@@ -48,6 +49,7 @@ function ToggleControlWithToolsPanel({
 						[attrKey]: newValue,
 					});
 				}}
+				help={help}
 				__nextHasNoMarginBottom
 			/>
 		</ToolsPanelItem>

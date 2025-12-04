@@ -46,6 +46,10 @@
 			"type": "string",
 			"default": ""
 		},
+		"showCaption": {
+			"type": "boolean",
+			"default": false
+		},
 		"captionType": {
 			"type": "string",
 			"default": ""
@@ -130,7 +134,8 @@
 		"galleryCaptionColor",
 		"galleryCaptionBackgroundColor",
 		"enableHoverEffect",
-		"hoverEffect"
+		"hoverEffect",
+		"showCaptions"
 	],
 	"textdomain": "galleryberg-gallery-block",
 	"editorScript": "file:./index.js",

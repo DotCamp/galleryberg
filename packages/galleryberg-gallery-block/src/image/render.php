@@ -14,6 +14,7 @@ $size_slug     = $attributes['sizeSlug'] ?? '';
 $url           = $media['sizes'][ $size_slug ]['url'] ?? $media['url'] ?? '';
 $img_alt       = esc_attr( $attributes['alt'] ) ?? '';
 $caption       = $attributes['caption'] ?? '';
+$show_caption  = $attributes['showCaption'] ?? false;
 $align         = $attributes['align'] ?? '';
 $href          = $attributes['href'] ?? '';
 $link_class    = $attributes['linkClass'] ?? '';
@@ -22,6 +23,10 @@ $image_classes = $attributes['imageClasses'] ?? '';
 $rel           = $attributes['rel'] ?? '';
 
 $context = $block->context;
+
+// Check if captions should be shown (either individually or from gallery)
+$gallery_show_captions = isset( $context['showCaptions'] ) ? $context['showCaptions'] : false;
+$should_show_caption   = $show_caption || $gallery_show_captions;
 
 // Use individual image settings or fallback to gallery context
 $caption_type       = ! empty( $attributes['captionType'] ) ? $attributes['captionType'] : ( $context['galleryCaptionType'] ?? 'below' );
@@ -68,7 +73,7 @@ if ( $caption_alignment ) {
 	$caption_classes[] = $caption_alignment_class;
 }
 $caption_class_attr = 'class="' . implode( ' ', $caption_classes ) . '"';
-$caption_html       = $caption ? '<figcaption ' . $caption_class_attr . ' ' . $caption_style_attr . '>' . wp_kses_post( $caption ) . '</figcaption>' : '';
+$caption_html       = ( $should_show_caption && $caption ) ? '<figcaption ' . $caption_class_attr . ' ' . $caption_style_attr . '>' . wp_kses_post( $caption ) . '</figcaption>' : '';
 $id                 = isset( $media['id'] ) ? $media['id'] : '';
 
 $aspect_ratio  = ! empty( $attributes['aspectRatio'] ) ? esc_attr( $attributes['aspectRatio'] ) : '';
