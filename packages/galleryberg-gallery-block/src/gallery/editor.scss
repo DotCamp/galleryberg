@@ -3,3 +3,11 @@
 	grid-column: 1 / span 3;
 	column-span: all;
 }
+.galleryberg-gallery-columns {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	grid-column: 1 / -1;
+	margin-bottom: -50px;
+	z-index: 9;
+}

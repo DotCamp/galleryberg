@@ -169,25 +169,7 @@ function Inspector(props) {
 					)}
 					{layout !== "justified" && images.length > 1 && (
 						<>
-							<div
-								style={{
-									display: "flex",
-									justifyContent: "space-between",
-									alignItems: "center",
-									marginBottom: "12px",
-									gridColumn: "1 / -1",
-								}}
-							>
-								<label
-									style={{
-										display: "block",
-										fontSize: "11px",
-										fontWeight: "500",
-										textTransform: "uppercase",
-									}}
-								>
-									{__("Columns Per Device", "galleryberg-gallery-block")}
-								</label>
+							<div className="galleryberg-gallery-columns">
 								<div
 									style={{
 										display: "flex",

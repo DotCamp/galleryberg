@@ -24,7 +24,9 @@
 			"type": "object",
 			"default": {
 				"top": "16px",
-				"left": "16px"
+				"left": "16px",
+				"right": "16px",
+				"bottom": "16px"
 			}
 		},
 		"isGapSeparated": {
