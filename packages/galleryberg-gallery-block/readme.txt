@@ -2,7 +2,7 @@
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.8
-Stable tag:        1.0.7
+Stable tag:        1.0.8
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.0
@@ -120,6 +120,13 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 7. Block settings panel showing customization options
 
 == Changelog ==
+
+= 1.0.8 =
+
+* NEW: Gallery-level show captions option to control caption visibility for all images
+* NEW: Responsive columns control for mobile and tablet devices with device selector
+* FIX: Spacing issue between images resolved
+* IMPROVE: Optimized CSS output using custom properties for responsive columns
 
 = 1.0.7 =
 
