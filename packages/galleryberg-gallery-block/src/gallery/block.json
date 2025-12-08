@@ -10,6 +10,12 @@
 			"type": "number",
 			"default": 3
 		},
+		"mobileColumns": {
+			"type": "number"
+		},
+		"tabletColumns": {
+			"type": "number"
+		},
 		"cropImages": {
 			"type": "boolean",
 			"default": true

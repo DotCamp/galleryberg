@@ -1,1 +1,45 @@
 @import "./common.scss";
+
+// Responsive Columns - Tablet (up to 1024px)
+@media (max-width: 1024px) {
+	// Grid layouts (tiles, square, mosaic)
+	.galleryberg-gallery-container.layout-tiles,
+	.galleryberg-gallery-container.layout-square,
+	.galleryberg-gallery-container.layout-mosaic {
+		&[style*="--galleryberg-tablet-columns"] {
+			grid-template-columns: repeat(
+				var(--galleryberg-tablet-columns),
+				1fr
+			) !important;
+		}
+	}
+
+	// Masonry layout
+	.galleryberg-gallery-container.layout-masonry {
+		&[style*="--galleryberg-tablet-columns"] {
+			column-count: var(--galleryberg-tablet-columns) !important;
+		}
+	}
+}
+
+// Responsive Columns - Mobile (up to 768px)
+@media (max-width: 768px) {
+	// Grid layouts (tiles, square, mosaic)
+	.galleryberg-gallery-container.layout-tiles,
+	.galleryberg-gallery-container.layout-square,
+	.galleryberg-gallery-container.layout-mosaic {
+		&[style*="--galleryberg-mobile-columns"] {
+			grid-template-columns: repeat(
+				var(--galleryberg-mobile-columns),
+				1fr
+			) !important;
+		}
+	}
+
+	// Masonry layout
+	.galleryberg-gallery-container.layout-masonry {
+		&[style*="--galleryberg-mobile-columns"] {
+			column-count: var(--galleryberg-mobile-columns) !important;
+		}
+	}
+}

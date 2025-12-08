@@ -37,6 +37,8 @@ export default function Edit(props) {
 	const {
 		align,
 		columns,
+		mobileColumns,
+		tabletColumns,
 		layout = "tiles",
 		blockSpacing,
 		isGapSeparated,

@@ -72,6 +72,18 @@ if ( 'tiles' === $layout || 'square' === $layout || in_array( $layout, $pro_layo
 if ( 'masonry' === $layout ) {
 	$style['column-count'] = $columns;
 }
+
+// Add responsive column CSS custom properties
+$mobile_columns = isset( $attributes['mobileColumns'] ) ? intval( $attributes['mobileColumns'] ) : null;
+$tablet_columns = isset( $attributes['tabletColumns'] ) ? intval( $attributes['tabletColumns'] ) : null;
+
+if ( $mobile_columns ) {
+	$style['--galleryberg-mobile-columns'] = $mobile_columns;
+}
+if ( $tablet_columns ) {
+	$style['--galleryberg-tablet-columns'] = $tablet_columns;
+}
+
 $galleryberg_pro_gallery_classes = apply_filters( 'galleryberg_pro_gallery_classes', array(), $attributes );
 
 $classes = array_merge( $classes, $galleryberg_pro_gallery_classes );
@@ -97,6 +109,7 @@ $wrapper_args = apply_filters( 'galleryberg_pro_gallery_data_attributes', $wrapp
 $wrapper_attributes = get_block_wrapper_attributes( $wrapper_args );
 
 ?>
+
 
 <div <?php echo wp_kses_post( $wrapper_attributes ); ?>>
 	<?php echo wp_kses_post( $content ); ?>

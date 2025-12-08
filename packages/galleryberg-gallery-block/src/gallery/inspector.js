@@ -3,8 +3,11 @@ import {
 	Tip,
 	__experimentalToolsPanel as ToolsPanel,
 	PanelBody,
+	Button,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
+import { useState } from "@wordpress/element";
+import { desktop, tablet, mobile } from "@wordpress/icons";
 import {
 	BorderControl,
 	ColorSettingsWithGradient,
@@ -40,6 +43,8 @@ function Inspector(props) {
 		thumbnailNavigation = "",
 		thumbnailNavigationSpeed = "",
 	} = attributes;
+
+	const [selectedDevice, setSelectedDevice] = useState("desktop");
 
 	function resetSettings() {
 		const attributesToReset = {
@@ -163,14 +168,96 @@ function Inspector(props) {
 						/>
 					)}
 					{layout !== "justified" && images.length > 1 && (
-						<RangeControlWithToolsPanel
-							label={__("Columns", "galleryberg-gallery-block")}
-							attrKey="columns"
-							min={1}
-							max={Math.min(MAX_COLUMNS, images.length)}
-							required={true}
-							defaultValue={undefined}
-						/>
+						<>
+							<div
+								style={{
+									display: "flex",
+									justifyContent: "space-between",
+									alignItems: "center",
+									marginBottom: "12px",
+									gridColumn: "1 / -1",
+								}}
+							>
+								<label
+									style={{
+										display: "block",
+										fontSize: "11px",
+										fontWeight: "500",
+										textTransform: "uppercase",
+									}}
+								>
+									{__("Columns Per Device", "galleryberg-gallery-block")}
+								</label>
+								<div
+									style={{
+										display: "flex",
+										gap: "4px",
+									}}
+								>
+									<Button
+										icon={desktop}
+										isPressed={selectedDevice === "desktop"}
+										onClick={() => setSelectedDevice("desktop")}
+										label={__("Desktop", "galleryberg-gallery-block")}
+										size="small"
+									/>
+									<Button
+										icon={tablet}
+										isPressed={selectedDevice === "tablet"}
+										onClick={() => setSelectedDevice("tablet")}
+										label={__("Tablet", "galleryberg-gallery-block")}
+										size="small"
+									/>
+									<Button
+										icon={mobile}
+										isPressed={selectedDevice === "mobile"}
+										onClick={() => setSelectedDevice("mobile")}
+										label={__("Mobile", "galleryberg-gallery-block")}
+										size="small"
+									/>
+								</div>
+							</div>
+							{selectedDevice === "desktop" && (
+								<RangeControlWithToolsPanel
+									label={__("Columns (Desktop)", "galleryberg-gallery-block")}
+									attrKey="columns"
+									min={1}
+									max={Math.min(MAX_COLUMNS, images.length)}
+									required={true}
+									defaultValue={undefined}
+									help={__(
+										"Columns for desktop screens (>1024px)",
+										"galleryberg-gallery-block"
+									)}
+								/>
+							)}
+							{selectedDevice === "tablet" && (
+								<RangeControlWithToolsPanel
+									label={__("Columns (Tablet)", "galleryberg-gallery-block")}
+									attrKey="tabletColumns"
+									min={1}
+									max={Math.min(MAX_COLUMNS, images.length)}
+									defaultValue={undefined}
+									help={__(
+										"Columns for tablet screens (768px - 1024px). Leave empty to use desktop value.",
+										"galleryberg-gallery-block"
+									)}
+								/>
+							)}
+							{selectedDevice === "mobile" && (
+								<RangeControlWithToolsPanel
+									label={__("Columns (Mobile)", "galleryberg-gallery-block")}
+									attrKey="mobileColumns"
+									min={1}
+									max={Math.min(MAX_COLUMNS, images.length)}
+									defaultValue={undefined}
+									help={__(
+										"Columns for mobile screens (<768px). Leave empty to use tablet value.",
+										"galleryberg-gallery-block"
+									)}
+								/>
+							)}
+						</>
 					)}
 					<ToggleControlWithToolsPanel
 						label={__("Enable Hover Effect", "galleryberg-gallery-block")}
