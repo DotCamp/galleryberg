@@ -43,7 +43,6 @@
 	display: block;
 }
 .galleryberg-gallery-container.layout-masonry > figure.galleryberg-image {
-	display: inline-block;
 	width: 100%;
 	margin-bottom: 16px;
 }
@@ -74,4 +73,7 @@
 	object-fit: cover;
 	width: 100%;
 	height: auto;
+}
+.galleryberg-gallery-container figure.galleryberg-image img {
+	display: block !important;
 }

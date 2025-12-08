@@ -64,8 +64,8 @@ export default function Edit(props) {
 		}
 	}, []);
 
-	const blockGapRow = getSpacingPresetCssVar(blockSpacing?.top) ?? "16px";
-	const blockGapColumn = getSpacingPresetCssVar(blockSpacing?.left) ?? "16px";
+	const blockGapRow = getSpacingPresetCssVar(blockSpacing?.top) ?? "";
+	const blockGapColumn = getSpacingPresetCssVar(blockSpacing?.left) ?? "";
 	const bgColor = getBackgroundColorVar(
 		attributes,
 		"backgroundColor",

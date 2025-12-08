@@ -22,7 +22,10 @@
 		},
 		"blockSpacing": {
 			"type": "object",
-			"default": {}
+			"default": {
+				"top": "16px",
+				"left": "16px"
+			}
 		},
 		"isGapSeparated": {
 			"type": "boolean",

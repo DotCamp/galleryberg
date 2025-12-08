@@ -37,8 +37,8 @@ $bg_color    = \Galleryberg\Helpers\Styling_Helpers::get_background_color_var(
 );
 $padding_obj = \Galleryberg\Helpers\Styling_Helpers::get_spacing_css( $attributes['padding'] ?? array() );
 $margin_obj  = \Galleryberg\Helpers\Styling_Helpers::get_spacing_css( $attributes['margin'] ?? array() );
-$row_gap     = isset( $attributes['blockSpacing']['top'] ) ? \Galleryberg\Helpers\Styling_Helpers::get_spacing_preset_css_var( $attributes['blockSpacing']['top'] ) : '16px';
-$column_gap  = isset( $attributes['blockSpacing']['left'] ) ? \Galleryberg\Helpers\Styling_Helpers::get_spacing_preset_css_var( $attributes['blockSpacing']['left'] ) : '16px';
+$row_gap     = isset( $attributes['blockSpacing']['top'] ) ? \Galleryberg\Helpers\Styling_Helpers::get_spacing_preset_css_var( $attributes['blockSpacing']['top'] ) : '';
+$column_gap  = isset( $attributes['blockSpacing']['left'] ) ? \Galleryberg\Helpers\Styling_Helpers::get_spacing_preset_css_var( $attributes['blockSpacing']['left'] ) : '';
 
 $style = array(
 	'row-gap'                    => $row_gap,
