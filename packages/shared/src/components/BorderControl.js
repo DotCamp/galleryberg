@@ -27,7 +27,7 @@ function BorderControl({
 }) {
 	const { clientId } = useBlockEditContext();
 	const attributes = useSelect((select) =>
-		select("core/block-editor").getBlockAttributes(clientId),
+		select("core/block-editor").getBlockAttributes(clientId)
 	);
 	const { updateBlockAttributes } = useDispatch("core/block-editor");
 	const setAttributes = (newAttributes) => {
@@ -85,10 +85,13 @@ function BorderControl({
 						setAttributes({ [attrBorderRadiusKey]: {} });
 					}}
 				>
-					<BaseControl.VisualLabel as="legend">
+					<BaseControl.VisualLabel
+						as="legend"
+						className="galleryberg-component-label"
+					>
 						{borderRadiusLabel}
 					</BaseControl.VisualLabel>
-					<div className="ub-border-radius-control">
+					<div className="galleryberg-border-radius-control">
 						<BorderRadiusControl
 							values={attributes[attrBorderRadiusKey]}
 							onChange={(newBorderRadius) => {

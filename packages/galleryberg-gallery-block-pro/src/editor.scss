@@ -1,1 +1,7 @@
 @import "./gallery/style.scss";
+.galleryberg-border-radius-control .components-base-control__label {
+	visibility: hidden;
+}
+.galleryberg-component-label {
+	position: absolute;
+}
