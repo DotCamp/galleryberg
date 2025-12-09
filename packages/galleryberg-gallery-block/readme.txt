@@ -1,7 +1,7 @@
 === Gallery Block by Galleryberg: Lightbox with Tiles, Masonry, Square, & Justified Layouts ===
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
-Tested up to:      6.8
+Tested up to:      6.9
 Stable tag:        1.0.8
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
