@@ -135,7 +135,7 @@
 		},
 		"showCaptions": {
 			"type": "boolean",
-			"default": false
+			"default": true
 		}
 	},
 	"supports": {
