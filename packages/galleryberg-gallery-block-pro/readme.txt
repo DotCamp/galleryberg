@@ -207,4 +207,4 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 
 == Privacy ==
 
-This plugin does not collect or store any personal data. All images and settings are stored locally in your WordPress database.
+Galleryberg does not collect or store any personal data. All images, captions, and settings remain fully inside your own WordPress site.
