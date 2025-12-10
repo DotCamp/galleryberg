@@ -1,7 +1,7 @@
 === Gallery Block by Galleryberg: Lightbox with Tiles, Masonry, Square, & Justified Layouts ===
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
-Tested up to:      6.8
+Tested up to:      6.9
 Stable tag:        1.0.8
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -12,44 +12,81 @@ A powerful and customizable gallery block for WordPress.
 
 == Description ==
 
-Galleryberg Gallery Block enhances your WordPress content creation experience with a feature-rich gallery solution for the block editor. Create stunning image galleries with multiple layout options and built-in lightbox functionality.
+[Demo](https://galleryberg.com) | [Documentation](https://galleryberg.com/docs/) | [Get Pro (Early Bird Offer)](https://galleryberg.com/pricing/)
+
+Galleryberg is a modern, feature-rich Gutenberg Gallery Block Plugin that makes it incredibly easy to build visually stunning, flexible image galleries right inside the WordPress block editor.
+
+Whether you're showcasing portfolios, products, travel photos, photography shots, or blog images, Galleryberg gives you complete creative control with multiple layouts, a built-in lightbox, advanced captions, and powerful customization tools.
+
+It's fast, simple, and designed to work beautifully without adding extra bloat.
 
 = Key Features =
 
-* **Multiple Gallery Layouts** - Choose from tiles, square, masonry, or justified layouts to best showcase your images
-* **Responsive Design** - Adjustable column counts that adapt beautifully to any screen size
-* **Built-in Lightbox** - Professional lightbox with zoom effects, keyboard navigation, and touch support
-* **Advanced Image Controls** - Individual image customization including borders, captions, and aspect ratios
-* **Performance Optimized** - Server-side rendering ensures fast page loads
-* **Accessibility Ready** - Proper ARIA labels and keyboard navigation support
+**Multiple Gallery Layouts**
 
-= Layout Options =
+Choose the perfect style for any gallery:
 
-* **Tiles Layout** - Classic grid layout with consistent spacing
-* **Square Layout** - Perfect square image containers
-* **Masonry Layout** - Pinterest-style layout that maximizes space usage
-* **Justified Layout** - Rows of images with equal heights
+* **Tiles** – clean, classic grid with even spacing
+* **Square** – uniform square images for modern designs
+* **Masonry** – Pinterest-like cascading layout
+* **Justified** – balanced row-based layout with equal heights
+* **Mosaic (Pro)** – artistic collage-style layout
 
-= Customization Options =
+**Fully Responsive**
 
-* Adjustable number of columns (1-8)
-* Custom spacing between images
-* Image cropping toggle
-* Caption display options
-* Border and border-radius controls
-* Multiple image size options
-* Duotone filter support
+Your gallery automatically adapts to mobile, tablet, and desktop. You can set different column counts for each device. Spacing and alignment settings ensure a clean and consistent look across all screen sizes.
+
+**Built-in Lightbox (GLightbox)**
+
+A sleek, professional lightbox with:
+
+* Smooth zoom & fade animations
+* Keyboard navigation
+* Touch & swipe support
+* Image zoom + drag
+* Loop navigation
+* Thumbnail navigation (Pro)
+
+**Advanced Caption Options**
+
+Give your images meaningful context without clutter:
+
+* Below Image, Full Overlay, or Bar Overlay
+* Always Visible / Show on Hover / Hide on Hover
+* Global caption settings
+* Precise alignment controls
+
+Clean layouts, easy-to-read captions—your choice.
+
+**Advanced Image Controls**
+
+Fine-tune each image individually:
+
+* Borders & rounded corners
+* Cropping toggle
+* Aspect ratio options
+* Custom image sizes
+* Duotone filters
 * Custom link destinations
 
-= Lightbox Features =
+**Other Customization Options**
 
-* Smooth zoom open/close effects
-* Slide navigation between images
-* Keyboard navigation (arrow keys, ESC)
-* Touch-friendly on mobile devices
-* Loop functionality
-* Image zoom capability
-* Draggable images
+* Adjust block spacing, padding, and margins
+* Customize border width, color, and radius
+* Set separate border radius for images
+* Choose caption text and background colors
+
+**Performance Optimized**
+
+* Server-side rendering (no heavy scripts)
+* Fast loading on all devices
+* Works smoothly even with large images
+
+**Accessibility Ready**
+
+* ARIA labels
+* Keyboard navigation
+* Better usability for everyone
 
 This plugin uses [GLightbox](https://github.com/biati-digital/glightbox) for its lightbox functionality.
 
