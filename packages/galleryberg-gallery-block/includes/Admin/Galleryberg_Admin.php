@@ -89,8 +89,8 @@ class Galleryberg_Admin {
 
 		$data['video'] = array(
 			'title'     => __( 'Getting Started with Galleryberg', 'galleryberg-gallery-block' ),
-			'video_id'  => 'XbkADuIWemA',
-			'thumbnail' => 'https://img.youtube.com/vi/XbkADuIWemA/maxresdefault.jpg',
+			'video_id'  => 'zBrPTRmQBaU',
+			'thumbnail' => 'https://img.youtube.com/vi/zBrPTRmQBaU/maxresdefault.jpg',
 		);
 
 		$data['documentation'] = array(
