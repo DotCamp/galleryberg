@@ -84,7 +84,6 @@ Fine-tune each image individually:
 
 **Accessibility Ready**
 
-* ARIA labels
 * Keyboard navigation
 * Better usability for everyone
 
