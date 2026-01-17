@@ -12,7 +12,7 @@ import { createBlock } from "@wordpress/blocks";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { store as noticesStore } from "@wordpress/notices";
 import { BlockIcon } from "@wordpress/block-editor";
-import { useMemo, useEffect } from "@wordpress/element";
+import { useMemo, useEffect, useState } from "@wordpress/element";
 import classNames from "classnames";
 import Inspector from "./inspector";
 import {
@@ -24,6 +24,7 @@ import {
 	getSpacingPresetCssVar,
 } from "@galleryberg/shared";
 import { blockIcon } from "./block-icon";
+import { store as editorStore } from "@wordpress/editor";
 
 const DEFAULT_BLOCK = { name: "galleryberg/image" };
 const ALLOWED_MEDIA_TYPES = ["image"];
@@ -49,7 +50,15 @@ export default function Edit(props) {
 		borderRadius,
 		galleryCaptionType,
 	} = attributes;
+	// Local state for device selection
+	const [selectedDevice, setSelectedDevice] = useState("desktop");
+	// Dispatch to change device type
+	const { setDeviceType } = useDispatch(editorStore);
 
+	// Handler to change device
+	const handleDeviceChange = (device) => {
+		setDeviceType(device);
+	};
 	useEffect(() => {
 		if (!isGapSeparated && blockSpacing?.all) {
 			setAttributes({
@@ -63,6 +72,35 @@ export default function Edit(props) {
 			});
 		}
 	}, []);
+
+	// Get device type from Gutenberg's responsive preview to apply correct columns
+	const { deviceType } = useSelect((select) => {
+		const { getDeviceType } = select(editorStore);
+		return {
+			deviceType: getDeviceType ? getDeviceType() : "Desktop",
+		};
+	});
+	useEffect(() => {
+		if (deviceType) {
+			setSelectedDevice(deviceType.toLowerCase());
+		}
+	}, [deviceType]);
+	// Determine which column value to use based on device preview
+	const getActiveColumns = () => {
+		const device = selectedDevice;
+
+		if (device === "mobile") {
+			// Mobile: use mobileColumns, fallback to tabletColumns, then columns
+			return mobileColumns || tabletColumns || columns || 3;
+		} else if (device === "tablet") {
+			// Tablet: use tabletColumns, fallback to columns
+			return tabletColumns || columns || 3;
+		}
+		// Desktop: use columns
+		return columns || 3;
+	};
+
+	const activeColumns = getActiveColumns();
 
 	const blockGapRow = getSpacingPresetCssVar(blockSpacing?.top) ?? "";
 	const blockGapColumn = getSpacingPresetCssVar(blockSpacing?.left) ?? "";
@@ -96,17 +134,17 @@ export default function Edit(props) {
 		borderBottom: getSingleSideBorderValue(getBorderCSS(border), "bottom"),
 	};
 	if (layout === "tiles" || layout === "square" || layout === "mosaic") {
-		styles.gridTemplateColumns = `repeat(${columns || 3}, 1fr)`;
+		styles.gridTemplateColumns = `repeat(${activeColumns}, 1fr)`;
 	}
 	if (layout === "masonry") {
-		styles.columnCount = `${columns}` || "3";
+		styles.columnCount = `${activeColumns}`;
 	}
 
 	const blockProps = useBlockProps({
 		className: classNames("galleryberg-gallery-container", {
 			[`align${align}`]: align,
-			[`columns-${columns}`]: columns !== undefined,
-			[`columns-default`]: columns === undefined,
+			[`columns-${activeColumns}`]: activeColumns !== undefined,
+			[`columns-default`]: activeColumns === undefined,
 			[`layout-${layout}`]: layout,
 		}),
 		style: generateStyles(styles),
@@ -247,6 +285,8 @@ export default function Edit(props) {
 		hasImageIds,
 		...props,
 		images,
+		handleDeviceChange,
+		selectedDevice,
 	};
 	return (
 		<>

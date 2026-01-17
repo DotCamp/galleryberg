@@ -6,7 +6,6 @@ import {
 	Button,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
-import { useState } from "@wordpress/element";
 import { desktop, tablet, mobile } from "@wordpress/icons";
 import {
 	BorderControl,
@@ -33,6 +32,8 @@ function Inspector(props) {
 		ThumbnailNavigationSpeed = null,
 		proLayouts = [],
 		isPro = false,
+		selectedDevice,
+		handleDeviceChange,
 	} = props;
 	const {
 		lightbox,
@@ -43,8 +44,6 @@ function Inspector(props) {
 		thumbnailNavigation = "",
 		thumbnailNavigationSpeed = "",
 	} = attributes;
-
-	const [selectedDevice, setSelectedDevice] = useState("desktop");
 
 	function resetSettings() {
 		const attributesToReset = {
@@ -179,21 +178,21 @@ function Inspector(props) {
 									<Button
 										icon={desktop}
 										isPressed={selectedDevice === "desktop"}
-										onClick={() => setSelectedDevice("desktop")}
+										onClick={() => handleDeviceChange("Desktop")}
 										label={__("Desktop", "galleryberg-gallery-block")}
 										size="small"
 									/>
 									<Button
 										icon={tablet}
 										isPressed={selectedDevice === "tablet"}
-										onClick={() => setSelectedDevice("tablet")}
+										onClick={() => handleDeviceChange("Tablet")}
 										label={__("Tablet", "galleryberg-gallery-block")}
 										size="small"
 									/>
 									<Button
 										icon={mobile}
 										isPressed={selectedDevice === "mobile"}
-										onClick={() => setSelectedDevice("mobile")}
+										onClick={() => handleDeviceChange("Mobile")}
 										label={__("Mobile", "galleryberg-gallery-block")}
 										size="small"
 									/>
