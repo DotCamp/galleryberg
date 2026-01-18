@@ -438,64 +438,189 @@ function Inspector(props) {
 					)}
 				</ToolsPanel>
 			</InspectorControls>
-			{!isPro && (
-				<InspectorControls>
-					<PanelBody
-						title={__("Galleryberg PRO", "galleryberg-gallery-block")}
-						icon={blockIcon}
-						initialOpen={true}
-					>
-						<h3
-							style={{
-								fontSize: "14px",
-								fontWeight: "600",
-								margin: "0 0 8px 0",
-								color: "#1e1e1e",
-								letterSpacing: "0.5px",
-							}}
-						>
-							{__(
-								"GET GALLERYBERG PRO - EARLY BIRD DEAL",
-								"galleryberg-gallery-block"
-							)}
-						</h3>
-						<p
-							style={{
-								fontSize: "13px",
-								color: "#757575",
-								margin: "0 0 16px 0",
-								lineHeight: "1.5",
-							}}
-						>
-							{__(
-								"Unlock advanced layouts, lightbox thumbnails, and more.",
-								"galleryberg-gallery-block"
-							)}
-						</p>
-						<a
-							href="http://galleryberg.com/pricing/"
-							target="_blank"
-							rel="noopener noreferrer"
-							style={{
-								display: "block",
-								width: "100%",
-								padding: "12px 24px",
-								background: "#4c6ef5",
-								color: "#fff",
-								borderRadius: "4px",
-								textDecoration: "none",
-								fontWeight: "500",
-								fontSize: "14px",
-								textAlign: "center",
-								border: "none",
-								cursor: "pointer",
-							}}
-						>
-							{__("Get Lifetime Access - $49", "galleryberg-gallery-block")}
-						</a>
-					</PanelBody>
-				</InspectorControls>
-			)}
+			<InspectorControls>
+				<PanelBody
+					title={__("Galleryberg PRO", "galleryberg-gallery-block")}
+					icon={blockIcon}
+					initialOpen={true}
+				>
+					{isPro ? (
+						<>
+							<p
+								style={{
+									fontSize: "14px",
+									fontWeight: "600",
+									margin: "0 0 12px 0",
+									color: "#1e1e1e",
+								}}
+							>
+								{__("✅ You're a Pro User!", "galleryberg-gallery-block")}
+							</p>
+							<ul
+								style={{
+									listStyle: "none",
+									padding: 0,
+									margin: "0 0 16px 0",
+									display: "grid",
+									gap: "10px",
+								}}
+							>
+								<li>
+									<a
+										href="https://galleryberg.com/contact/"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{
+											textDecoration: "none",
+											color: "#1e1e1e",
+											fontWeight: "500",
+											outline: "none",
+											boxShadow: "none",
+										}}
+									>
+										{__("🛟 Priority Support", "galleryberg-gallery-block")}
+									</a>
+								</li>
+								<li>
+									<a
+										href="https://galleryberg.com/docs/"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{
+											textDecoration: "none",
+											color: "#1e1e1e",
+											fontWeight: "500",
+											outline: "none",
+											boxShadow: "none",
+										}}
+									>
+										{__("📔 Documentation", "galleryberg-gallery-block")}
+									</a>
+								</li>
+								<li>
+									<a
+										href="http://galleryberg.com/request-a-feature/"
+										target="_blank"
+										rel="noopener noreferrer"
+										style={{
+											textDecoration: "none",
+											color: "#1e1e1e",
+											fontWeight: "500",
+											outline: "none",
+											boxShadow: "none",
+										}}
+									>
+										{__("💡 Request a Feature", "galleryberg-gallery-block")}
+									</a>
+								</li>
+							</ul>
+							<hr style={{ border: 0, borderTop: "1px solid #e5e7eb" }} />
+							<div style={{ marginTop: "12px" }}>
+								<a
+									href="https://galleryberg.com/pricing/#wp-block-suite"
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{
+										textDecoration: "none",
+										color: "#1e1e1e",
+										outline: "none",
+										boxShadow: "none",
+										fontWeight: "600",
+									}}
+								>
+									{__("📦 Get WP Block Suite", "galleryberg-gallery-block")}
+								</a>
+							</div>
+						</>
+					) : (
+						<>
+							<h3
+								style={{
+									fontSize: "14px",
+									fontWeight: "600",
+									margin: "0 0 8px 0",
+									color: "#1e1e1e",
+									letterSpacing: "0.5px",
+								}}
+							>
+								{__(
+									"GET GALLERYBERG PRO - EARLY BIRD DEAL",
+									"galleryberg-gallery-block"
+								)}
+							</h3>
+							<p
+								style={{
+									fontSize: "13px",
+									color: "#757575",
+									margin: "0 0 16px 0",
+									lineHeight: "1.5",
+								}}
+							>
+								{__(
+									"Unlock advanced layouts, lightbox thumbnails, and more.",
+									"galleryberg-gallery-block"
+								)}
+							</p>
+							<a
+								href="http://galleryberg.com/pricing/"
+								target="_blank"
+								rel="noopener noreferrer"
+								style={{
+									display: "block",
+									width: "100%",
+									padding: "12px 24px",
+									background: "#4c6ef5",
+									color: "#fff",
+									borderRadius: "4px",
+									textDecoration: "none",
+									fontWeight: "500",
+									fontSize: "14px",
+									textAlign: "center",
+									border: "none",
+									cursor: "pointer",
+								}}
+							>
+								{__("Get Lifetime Access - $49", "galleryberg-gallery-block")}
+							</a>
+							<div
+								style={{
+									marginTop: "10px",
+									fontSize: "12px",
+									color: "#6b7280",
+									textAlign: "center",
+								}}
+							>
+								<a
+									href="https://galleryberg.com/docs/"
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{ color: "inherit", textDecoration: "none" }}
+								>
+									{__("Docs", "galleryberg-gallery-block")}
+								</a>
+								<span> | </span>
+								<a
+									href="https://wordpress.org/support/plugin/galleryberg-gallery-block/"
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{ color: "inherit", textDecoration: "none" }}
+								>
+									{__("Support", "galleryberg-gallery-block")}
+								</a>
+								<span> | </span>
+								<a
+									href="http://galleryberg.com/request-a-feature/"
+									target="_blank"
+									rel="noopener noreferrer"
+									style={{ color: "inherit", textDecoration: "none" }}
+								>
+									{__("Request a Feature", "galleryberg-gallery-block")}
+								</a>
+							</div>
+						</>
+					)}
+				</PanelBody>
+			</InspectorControls>
 		</>
 	);
 }
