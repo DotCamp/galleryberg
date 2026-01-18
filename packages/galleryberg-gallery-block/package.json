@@ -1,6 +1,6 @@
 {
 	"name": "@galleryberg/galleryberg-gallery-block",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"author": "Dotcamp",
 	"description": "Galleryberg Gallery Block - Free Version",
 	"main": "build/index.js",

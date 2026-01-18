@@ -157,6 +157,13 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 
 == Changelog ==
 
+= 1.0.9 =
+
+* NEW: Responsive columns now work with gutenberg device preview in the editor
+* NEW: Show captions in lightbox option
+* IMPROVE: Reorganized inspector panels for better user experience
+* IMPROVE: Updated upsell panel with distinct layouts for free and Pro users
+
 = 1.0.8 =
 
 * NEW: Gallery-level show captions option to control caption visibility for all images
