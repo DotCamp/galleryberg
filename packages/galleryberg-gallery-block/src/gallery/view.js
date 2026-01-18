@@ -9,11 +9,22 @@ window.addEventListener("DOMContentLoaded", () => {
 	);
 	galleries.forEach((gallery) => {
 		const images = gallery.querySelectorAll("img");
-		const slides = Array.from(images).map((img) => ({
-			href: img.src,
-			type: "image",
-			title: img.title || "",
-		}));
+		const showLightboxCaptions =
+			gallery.getAttribute("data-show-lightbox-captions") === "true";
+
+		const slides = Array.from(images).map((img) => {
+			const figure = img.closest("figure");
+			const figcaption = figure ? figure.querySelector("figcaption") : null;
+			const description =
+				showLightboxCaptions && figcaption ? figcaption.innerHTML : "";
+
+			return {
+				href: img.src,
+				type: "image",
+				title: img.title || "",
+				description: description,
+			};
+		});
 
 		// Read effect options from data attributes
 		const openEffect = gallery.getAttribute("data-open-effect") || "zoom";

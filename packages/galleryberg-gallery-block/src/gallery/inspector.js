@@ -52,6 +52,22 @@ function Inspector(props) {
 			justifiedRowHeight: 180,
 			enableHoverEffect: false,
 			hoverEffect: "zoom-in",
+		};
+		setAttributes(attributesToReset);
+	}
+
+	function resetCaptionSettings() {
+		setAttributes({
+			galleryCaptionType: "below",
+			galleryCaptionVisibility: "always",
+			galleryCaptionAlignment: "left",
+			galleryCaptionColor: "",
+			galleryCaptionBackgroundColor: "",
+		});
+	}
+
+	function resetLightboxSettings() {
+		const attributesToReset = {
 			lightbox: false,
 			openEffect: "zoom",
 			closeEffect: "zoom",
@@ -60,6 +76,7 @@ function Inspector(props) {
 			loop: true,
 			zoomable: true,
 			draggable: true,
+			showLightboxCaptions: false,
 		};
 		if (enableThumbnails) {
 			attributesToReset.enableThumbnails = false;
@@ -74,16 +91,6 @@ function Inspector(props) {
 			attributesToReset.thumbnailNavigationSpeed = 10;
 		}
 		setAttributes(attributesToReset);
-	}
-
-	function resetCaptionSettings() {
-		setAttributes({
-			galleryCaptionType: "below",
-			galleryCaptionVisibility: "always",
-			galleryCaptionAlignment: "left",
-			galleryCaptionColor: "",
-			galleryCaptionBackgroundColor: "",
-		});
 	}
 
 	return (
@@ -262,6 +269,14 @@ function Inspector(props) {
 							defaultValue="zoom-in"
 						/>
 					)}
+				</ToolsPanel>
+			</InspectorControls>
+			<InspectorControls>
+				<ToolsPanel
+					panelId={props.clientId}
+					label={__("Lightbox", "galleryberg-gallery-block")}
+					resetAll={resetLightboxSettings}
+				>
 					<ToggleControlWithToolsPanel
 						label={__("Enable Lightbox", "galleryberg-gallery-block")}
 						attrKey="lightbox"
@@ -319,6 +334,18 @@ function Inspector(props) {
 								label={__("Draggable", "galleryberg-gallery-block")}
 								attrKey="draggable"
 								defaultValue={true}
+							/>
+							<ToggleControlWithToolsPanel
+								label={__(
+									"Show captions in lightbox",
+									"galleryberg-gallery-block"
+								)}
+								attrKey="showLightboxCaptions"
+								defaultValue={false}
+								help={__(
+									"Display image captions below the image when lightbox is enabled.",
+									"galleryberg-gallery-block"
+								)}
 							/>
 							{EnableThumbnails && EnableThumbnails}
 							{ThumbnailPosition && ThumbnailPosition}

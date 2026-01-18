@@ -136,6 +136,10 @@
 		"showCaptions": {
 			"type": "boolean",
 			"default": true
+		},
+		"showLightboxCaptions": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

@@ -101,6 +101,7 @@ if ( $lightbox ) {
 	$wrapper_args['data-loop']               = empty( $attributes['loop'] ) ? 'false' : 'true';
 	$wrapper_args['data-zoomable']           = empty( $attributes['zoomable'] ) ? 'false' : 'true';
 	$wrapper_args['data-draggable']          = empty( $attributes['draggable'] ) ? 'false' : 'true';
+	$wrapper_args['data-show-lightbox-captions'] = empty( $attributes['showLightboxCaptions'] ) ? 'false' : 'true';
 }
 
 // Apply Pro data attributes filter
