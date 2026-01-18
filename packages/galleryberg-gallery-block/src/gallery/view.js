@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded", () => {
 		const slides = Array.from(images).map((img) => ({
 			href: img.src,
 			type: "image",
-			description: img.alt || "",
 			title: img.title || "",
 		}));
 
