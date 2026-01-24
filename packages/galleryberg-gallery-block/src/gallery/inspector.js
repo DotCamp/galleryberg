@@ -27,6 +27,7 @@ function Inspector(props) {
 		setAttributes,
 		images,
 		EnableThumbnails = null,
+		EnableLazyLoading = null,
 		ThumbnailPosition = null,
 		ThumbnailNavigation = null,
 		ThumbnailNavigationSpeed = null,
@@ -39,6 +40,7 @@ function Inspector(props) {
 		lightbox,
 		layout = "tiles",
 		enableHoverEffect,
+		enableLazyLoading = "",
 		enableThumbnails = "",
 		thumbnailPosition = "",
 		thumbnailNavigation = "",
@@ -53,6 +55,9 @@ function Inspector(props) {
 			enableHoverEffect: false,
 			hoverEffect: "zoom-in",
 		};
+		if (enableLazyLoading) {
+			attributesToReset.enableLazyLoading = false;
+		}
 		setAttributes(attributesToReset);
 	}
 
@@ -269,6 +274,7 @@ function Inspector(props) {
 							defaultValue="zoom-in"
 						/>
 					)}
+					{EnableLazyLoading && EnableLazyLoading}
 				</ToolsPanel>
 			</InspectorControls>
 			<InspectorControls>

@@ -147,6 +147,7 @@
 		"align": true
 	},
 	"providesContext": {
+		"galleryberg/enableLazyLoading": "enableLazyLoading",
 		"layout": "layout",
 		"justifiedRowHeight": "justifiedRowHeight",
 		"blockSpacing": "blockSpacing",

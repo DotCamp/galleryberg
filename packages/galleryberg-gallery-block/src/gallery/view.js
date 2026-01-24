@@ -17,9 +17,10 @@ window.addEventListener("DOMContentLoaded", () => {
 			const figcaption = figure ? figure.querySelector("figcaption") : null;
 			const description =
 				showLightboxCaptions && figcaption ? figcaption.innerHTML : "";
+			const href = img.getAttribute("data-src") || img.currentSrc || img.src;
 
 			return {
-				href: img.src,
+				href,
 				type: "image",
 				title: img.title || "",
 				description: description,

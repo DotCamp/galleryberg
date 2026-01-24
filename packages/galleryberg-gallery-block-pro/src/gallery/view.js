@@ -6,6 +6,44 @@
  */
 
 window.addEventListener("DOMContentLoaded", () => {
+	const loadImage = (img) => {
+		if (!img || img.dataset.loaded) return;
+		const src = img.getAttribute("data-src");
+		const srcset = img.getAttribute("data-srcset");
+		const sizes = img.getAttribute("data-sizes");
+		if (src) img.src = src;
+		if (srcset) img.srcset = srcset;
+		if (sizes) img.sizes = sizes;
+		img.removeAttribute("data-src");
+		img.removeAttribute("data-srcset");
+		img.removeAttribute("data-sizes");
+		img.dataset.loaded = "true";
+		img.classList.add("galleryberg-lazy-loaded");
+	};
+
+	const initLazyLoading = () => {
+		const images = document.querySelectorAll("img[data-src], img[data-srcset]");
+		if (!images.length) return;
+		if ("IntersectionObserver" in window) {
+			const observer = new IntersectionObserver(
+				(entries, obs) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							loadImage(entry.target);
+							obs.unobserve(entry.target);
+						}
+					});
+				},
+				{ rootMargin: "200px 0px", threshold: 0.01 }
+			);
+			images.forEach((img) => observer.observe(img));
+		} else {
+			images.forEach((img) => loadImage(img));
+		}
+	};
+
+	initLazyLoading();
+
 	if (typeof GLightbox !== "function") return;
 
 	// Store gallery data for thumbnail injection
@@ -124,7 +162,7 @@ function injectThumbnails(
 		}
 
 		const thumbImg = document.createElement("img");
-		thumbImg.src = img.dataset.thumbnail || img.src;
+		thumbImg.src = img.dataset.thumbnail || img.dataset.src || img.src;
 		thumbImg.alt = img.alt || "";
 		thumbImg.loading = "lazy";
 

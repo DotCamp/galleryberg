@@ -124,6 +124,7 @@
 		}
 	},
 	"usesContext": [
+		"galleryberg/enableLazyLoading",
 		"justifiedRowHeight",
 		"layout",
 		"blockSpacing",

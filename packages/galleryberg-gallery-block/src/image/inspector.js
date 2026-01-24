@@ -24,6 +24,7 @@ import {
 	BorderControl,
 	ColorSettings,
 	SelectControlWithToolsPanel,
+	ToggleControlWithToolsPanel,
 	ToggleGroupControlWithToolsPanel,
 } from "@galleryberg/shared";
 import { blockIcon } from "../gallery/block-icon";
@@ -34,6 +35,7 @@ function Inspector({
 	clientId,
 	MosaicSpanX = null,
 	MosaicSpanY = null,
+	EnableLazyLoading = null,
 	isPro = false,
 }) {
 	const { alt, aspectRatio, height, scale, width } = attributes;
@@ -145,6 +147,7 @@ function Inspector({
 							"galleryberg-gallery-block"
 						)}
 					/>
+					{EnableLazyLoading && EnableLazyLoading}
 					{MosaicSpanX && MosaicSpanX}
 					{MosaicSpanY && MosaicSpanY}
 				</ToolsPanel>

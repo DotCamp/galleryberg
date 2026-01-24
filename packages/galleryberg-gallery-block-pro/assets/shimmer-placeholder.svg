@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="shimmer">
+      <stop offset="0%" stop-color="#f6f7f8"/>
+      <stop offset="20%" stop-color="#edeef1"/>
+      <stop offset="40%" stop-color="#f6f7f8"/>
+      <stop offset="100%" stop-color="#f6f7f8"/>
+    </linearGradient>
+  </defs>
+  <rect fill="#f6f7f8" width="800" height="600"/>
+  <rect id="shimmerRect" fill="url(#shimmer)" width="800" height="600">
+    <animate attributeName="x" from="-800" to="800" dur="1.5s" repeatCount="indefinite"/>
+  </rect>
+</svg>

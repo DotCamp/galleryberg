@@ -17,6 +17,11 @@ function addProAttributes(settings, name) {
 			...settings,
 			attributes: {
 				...settings.attributes,
+				// Lazy loading
+				enableLazyLoading: {
+					type: "boolean",
+					default: false,
+				},
 				// Thumbnail settings
 				enableThumbnails: {
 					type: "boolean",
@@ -37,6 +42,7 @@ function addProAttributes(settings, name) {
 			},
 			providesContext: {
 				...settings.providesContext,
+				"galleryberg/enableLazyLoading": "enableLazyLoading",
 				"galleryberg/enableThumbnails": "enableThumbnails",
 				"galleryberg/thumbnailPosition": "thumbnailPosition",
 				"galleryberg/thumbnailNavigation": "thumbnailNavigation",
@@ -50,6 +56,11 @@ function addProAttributes(settings, name) {
 			...settings,
 			attributes: {
 				...settings.attributes,
+				// Lazy loading
+				enableLazyLoading: {
+					type: "boolean",
+					default: false,
+				},
 				// Mosaic span settings
 				mosaicSpanX: {
 					type: "number",

@@ -68,6 +68,16 @@ class Assets {
 			$metadata['viewScript'][] = 'galleryberg-pro-frontend-script';
 		}
 
+		if ( $metadata['name'] === 'galleryberg/image' ) {
+			// Add frontend script for Pro lazy loading
+			if ( ! isset( $metadata['viewScript'] ) ) {
+				$metadata['viewScript'] = array();
+			} elseif ( is_string( $metadata['viewScript'] ) ) {
+				$metadata['viewScript'] = array( $metadata['viewScript'] );
+			}
+			$metadata['viewScript'][] = 'galleryberg-pro-frontend-script';
+		}
+
 		return $metadata;
 	}
 

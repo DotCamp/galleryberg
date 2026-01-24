@@ -8,11 +8,24 @@ import {
 function GalleryPro(props) {
 	const { attributes, clientId, BlockEdit } = props;
 	const {
+		enableLazyLoading,
 		enableThumbnails,
 		thumbnailPosition,
 		thumbnailNavigation,
 		thumbnailNavigationSpeed,
 	} = attributes;
+
+	const EnableLazyLoading = (
+		<ToggleControlWithToolsPanel
+			label={__("Enable Lazy Loading", "galleryberg-gallery-block-pro")}
+			attrKey="enableLazyLoading"
+			defaultValue={false}
+			help={__(
+				"Load gallery images only when they enter the viewport",
+				"galleryberg-gallery-block-pro"
+			)}
+		/>
+	);
 
 	const EnableThumbnails = (
 		<ToggleControlWithToolsPanel
@@ -91,10 +104,12 @@ function GalleryPro(props) {
 
 	const proProps = {
 		...props,
+		EnableLazyLoading: isPremium ? EnableLazyLoading : null,
 		EnableThumbnails: isPremium ? EnableThumbnails : null,
 		ThumbnailPosition: isPremium ? ThumbnailPosition : null,
 		ThumbnailNavigation: isPremium ? ThumbnailNavigation : null,
 		ThumbnailNavigationSpeed: isPremium ? ThumbnailNavigationSpeed : null,
+		enableLazyLoading,
 		enableThumbnails,
 		thumbnailPosition,
 		thumbnailNavigation,
