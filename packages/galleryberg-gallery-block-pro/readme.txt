@@ -159,6 +159,8 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 
 = 1.1.0 =
 
+* FIX: Upload button not working in gallery block
+* FIX: Captions being reset when adding images via media library
 * PRO: NEW: Image lazy loading for improved performance
 
 = 1.0.9 =
