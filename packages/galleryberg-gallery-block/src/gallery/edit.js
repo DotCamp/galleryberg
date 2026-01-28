@@ -30,7 +30,7 @@ const DEFAULT_BLOCK = { name: "galleryberg/image" };
 const ALLOWED_MEDIA_TYPES = ["image"];
 const PLACEHOLDER_TEXT = __(
 	"Drag and drop images, upload, or choose from your library.",
-	"galleryberg-gallery-block"
+	"galleryberg-gallery-block",
 );
 
 export default function Edit(props) {
@@ -107,7 +107,7 @@ export default function Edit(props) {
 	const bgColor = getBackgroundColorVar(
 		attributes,
 		"backgroundColor",
-		"backgroundGradient"
+		"backgroundGradient",
 	);
 	const paddingObj = getSpacingCss(padding ?? {});
 	const marginObj = getSpacingCss(margin ?? {});
@@ -158,7 +158,7 @@ export default function Edit(props) {
 				innerBlockImages: getBlock(clientId)?.innerBlocks || [],
 			};
 		},
-		[clientId]
+		[clientId],
 	);
 
 	const innerBlocksProps = useInnerBlocksProps(blockProps, {
@@ -177,7 +177,7 @@ export default function Edit(props) {
 				attributes: block.attributes,
 				fromSavedContent: Boolean(block.originalContent),
 			})),
-		[innerBlockImages]
+		[innerBlockImages],
 	);
 
 	function onUploadError(message) {
@@ -189,7 +189,7 @@ export default function Edit(props) {
 
 		return (
 			ALLOWED_MEDIA_TYPES.some(
-				(mediaType) => mediaTypeSelector?.indexOf(mediaType) === 0
+				(mediaType) => mediaTypeSelector?.indexOf(mediaType) === 0,
 			) || file.blob
 		);
 	}
@@ -210,13 +210,15 @@ export default function Edit(props) {
 						};
 					}
 					return file;
-			  })
-			: selectedImages;
+				})
+			: Array.isArray(selectedImages)
+				? selectedImages
+				: [selectedImages];
 
 		if (!imageArray.every(isValidFileType)) {
 			createErrorNotice(
 				__("If uploading to a gallery all files need to be image formats"),
-				{ id: "gallery-upload-invalid-file", type: "snackbar" }
+				{ id: "gallery-upload-invalid-file", type: "snackbar" },
 			);
 		}
 
@@ -231,49 +233,88 @@ export default function Edit(props) {
 				return file;
 			});
 
-		// Create a map to maintain the order of images
-		const newOrderMap = processedImages.reduce((result, image, index) => {
-			result[image.id] = index;
+		const getImageKey = (image) => image?.id ?? image?.url ?? image?.blob;
+
+		// Create a map of existing blocks by their media attributes for quick lookup
+		const existingBlocksMap = innerBlockImages.reduce((result, block) => {
+			const key =
+				block.attributes?.media?.id ??
+				block.attributes?.media?.url ??
+				block.attributes?.media?.blob ??
+				block.attributes?.id;
+			if (key) {
+				result[key] = block;
+			}
 			return result;
 		}, {});
 
-		const existingImageBlocks = !newFileUploads
-			? innerBlockImages.filter((block) =>
-					processedImages.find((img) => img.id === block.attributes.id)
-			  )
-			: innerBlockImages;
-
-		const newImageList = processedImages.filter(
-			(img) =>
-				!existingImageBlocks.find(
-					(existingImg) => img.id === existingImg.attributes.id
-				)
+		// Separate existing images from new ones
+		const existingImagesInSelection = processedImages.filter(
+			(image) => existingBlocksMap[getImageKey(image)],
+		);
+		const newImagesOnly = processedImages.filter(
+			(image) => !existingBlocksMap[getImageKey(image)],
 		);
 
-		// Create new image blocks for new images
-		const newBlocks = newImageList.map((image) => {
-			return createBlock("galleryberg/image", {
-				media: {
-					id: image.id,
-					blob: image.blob,
-					url: image.url,
-				},
-				caption: image.caption,
-				alt: image.alt,
+		// Check if this is "add to gallery" mode:
+		// 1. All existing blocks are in the selection plus some new images (MediaReplaceFlow with addToGallery)
+		// 2. OR only new images are being added when gallery already has images (upload button)
+		const isAddToGalleryMode =
+			(existingImagesInSelection.length === innerBlockImages.length &&
+				newImagesOnly.length > 0) ||
+			(existingImagesInSelection.length === 0 &&
+				newImagesOnly.length > 0 &&
+				innerBlockImages.length > 0);
+
+		let finalBlocks = [];
+		const newBlocks = [];
+
+		if (isAddToGalleryMode) {
+			// Add to gallery mode: Keep existing blocks and only append new images
+			finalBlocks = [...innerBlockImages];
+
+			newImagesOnly.forEach((image) => {
+				const newBlock = createBlock("galleryberg/image", {
+					media: {
+						id: image.id,
+						blob: image.blob,
+						url: image.url,
+					},
+					caption: image.caption,
+					alt: image.alt,
+				});
+				finalBlocks.push(newBlock);
+				newBlocks.push(newBlock);
 			});
-		});
+		} else {
+			// Reorder/replace mode: Reorder based on selection, preserving captions
+			processedImages.forEach((image) => {
+				const existingBlock = existingBlocksMap[getImageKey(image)];
 
-		// Replace inner blocks with sorted combination of existing and new blocks
-		replaceInnerBlocks(
-			clientId,
-			existingImageBlocks
-				.concat(newBlocks)
-				.sort(
-					(a, b) => newOrderMap[a.attributes.id] - newOrderMap[b.attributes.id]
-				)
-		);
+				if (existingBlock) {
+					// Image already exists - reuse the existing block to preserve captions
+					finalBlocks.push(existingBlock);
+				} else {
+					// New image - create a new block
+					const newBlock = createBlock("galleryberg/image", {
+						media: {
+							id: image.id,
+							blob: image.blob,
+							url: image.url,
+						},
+						caption: image.caption,
+						alt: image.alt,
+					});
+					finalBlocks.push(newBlock);
+					newBlocks.push(newBlock);
+				}
+			});
+		}
 
-		// Select the first block to scroll into view when new blocks are added
+		// Replace inner blocks with the reordered/updated blocks
+		replaceInnerBlocks(clientId, finalBlocks);
+
+		// Select the first new block
 		if (newBlocks?.length > 0) {
 			selectBlock(newBlocks[0].clientId);
 		}
@@ -294,7 +335,6 @@ export default function Edit(props) {
 				<MediaReplaceFlow
 					allowedTypes={ALLOWED_MEDIA_TYPES}
 					accept="image/*"
-					handleUpload={false}
 					onSelect={updateImages}
 					name={__("Add")}
 					multiple
