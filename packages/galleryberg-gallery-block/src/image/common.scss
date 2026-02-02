@@ -21,6 +21,36 @@
 		&.caption-type-below {
 			position: relative;
 			margin-top: 0.5em;
+
+			&.caption-align-left {
+				text-align: left;
+			}
+
+			&.caption-align-center {
+				text-align: center;
+			}
+
+			&.caption-align-right {
+				text-align: right;
+			}
+
+			&.caption-align-top-left,
+			&.caption-align-center-left,
+			&.caption-align-bottom-left {
+				text-align: left;
+			}
+
+			&.caption-align-top-center,
+			&.caption-align-center-center,
+			&.caption-align-bottom-center {
+				text-align: center;
+			}
+
+			&.caption-align-top-right,
+			&.caption-align-center-right,
+			&.caption-align-bottom-right {
+				text-align: right;
+			}
 		}
 
 		// Caption Type: Full Overlay
