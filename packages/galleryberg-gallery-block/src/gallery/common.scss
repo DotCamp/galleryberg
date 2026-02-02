@@ -1,7 +1,7 @@
 @use "sass:math";
 
 .galleryberg-gallery-container {
-	overflow: hidden;
+	overflow: visible;
 	// Cropped Images.
 	&.alignright,
 	&.alignleft {
