@@ -2,7 +2,7 @@
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.9
-Stable tag:        1.1.0
+Stable tag:        1.1.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.0
@@ -157,12 +157,16 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 
 == Changelog ==
 
+
+= 1.1.1 =
+
+* FIX: Caption alignment not working below the image
+* Fix: Caption visibility issue on last row of gallery
+
 = 1.1.0 =
 
 * FIX: Upload button not working in gallery block
 * FIX: Captions being reset when adding images via media library
-* FIX: Caption alignment not working below the image
-* Fix: Caption visibility issue on last row of gallery
 * PRO: NEW: Image lazy loading for improved performance
 
 = 1.0.9 =
