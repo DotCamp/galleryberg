@@ -189,9 +189,10 @@
 
 	// Hover Effect
 	&.has-hover-effect {
+		overflow: hidden;
+
 		img {
 			transition: transform 0.3s ease;
-			overflow: hidden;
 		}
 
 		// Zoom In: Image scales up on hover
