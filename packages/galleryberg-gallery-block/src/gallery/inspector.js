@@ -63,11 +63,13 @@ function Inspector(props) {
 
 	function resetCaptionSettings() {
 		setAttributes({
-			galleryCaptionType: "below",
+			galleryCaptionType: "full-overlay",
 			galleryCaptionVisibility: "always",
-			galleryCaptionAlignment: "left",
+			galleryCaptionAlignment: "bottom center",
 			galleryCaptionColor: "",
 			galleryCaptionBackgroundColor: "",
+			galleryCaptionBackgroundGradient:
+				"linear-gradient(0deg,rgb(0,0,0) 0%,rgba(0,0,0,0) 100%)",
 		});
 	}
 
@@ -110,9 +112,10 @@ function Inspector(props) {
 					label={__("Caption Color", "galleryberg-gallery-block")}
 					attrKey="galleryCaptionColor"
 				/>
-				<ColorSettings
+				<ColorSettingsWithGradient
+					attrBackgroundKey="galleryCaptionBackgroundColor"
+					attrGradientKey="galleryCaptionBackgroundGradient"
 					label={__("Caption Background", "galleryberg-gallery-block")}
-					attrKey="galleryCaptionBackgroundColor"
 				/>
 			</InspectorControls>
 			<InspectorControls group="dimensions">
@@ -146,7 +149,7 @@ function Inspector(props) {
 					attrBorderRadiusKey="imagesBorderRadius"
 					borderRadiusLabel={__(
 						"Images Border Radius",
-						"galleryberg-gallery-block"
+						"galleryberg-gallery-block",
 					)}
 				/>
 			</InspectorControls>
@@ -220,7 +223,7 @@ function Inspector(props) {
 									defaultValue={undefined}
 									help={__(
 										"Columns for desktop screens (>1024px)",
-										"galleryberg-gallery-block"
+										"galleryberg-gallery-block",
 									)}
 								/>
 							)}
@@ -233,7 +236,7 @@ function Inspector(props) {
 									defaultValue={undefined}
 									help={__(
 										"Columns for tablet screens (768px - 1024px). Leave empty to use desktop value.",
-										"galleryberg-gallery-block"
+										"galleryberg-gallery-block",
 									)}
 								/>
 							)}
@@ -246,7 +249,7 @@ function Inspector(props) {
 									defaultValue={undefined}
 									help={__(
 										"Columns for mobile screens (<768px). Leave empty to use tablet value.",
-										"galleryberg-gallery-block"
+										"galleryberg-gallery-block",
 									)}
 								/>
 							)}
@@ -344,13 +347,13 @@ function Inspector(props) {
 							<ToggleControlWithToolsPanel
 								label={__(
 									"Show captions in lightbox",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 								attrKey="showLightboxCaptions"
 								defaultValue={false}
 								help={__(
 									"Display image captions below the image when lightbox is enabled.",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 							/>
 							{EnableThumbnails && EnableThumbnails}
@@ -373,14 +376,14 @@ function Inspector(props) {
 						defaultValue={false}
 						help={__(
 							"Enable captions for all images in the gallery.",
-							"galleryberg-gallery-block"
+							"galleryberg-gallery-block",
 						)}
 					/>
 					<div style={{ gridColumn: "1 / -1" }}>
 						<Tip>
 							{__(
 								"When enabled, individual image caption controls are disabled. All images will show captions using the gallery settings.",
-								"galleryberg-gallery-block"
+								"galleryberg-gallery-block",
 							)}
 						</Tip>
 					</div>
@@ -405,7 +408,7 @@ function Inspector(props) {
 						defaultValue="below"
 						help={__(
 							"Apply caption type to all images in the gallery",
-							"galleryberg-gallery-block"
+							"galleryberg-gallery-block",
 						)}
 					/>
 
@@ -429,7 +432,7 @@ function Inspector(props) {
 						defaultValue="always"
 						help={__(
 							"Apply caption visibility to all images in the gallery",
-							"galleryberg-gallery-block"
+							"galleryberg-gallery-block",
 						)}
 					/>
 
@@ -454,7 +457,7 @@ function Inspector(props) {
 							defaultValue="left"
 							help={__(
 								"Apply caption alignment to all images in the gallery",
-								"galleryberg-gallery-block"
+								"galleryberg-gallery-block",
 							)}
 						/>
 					)}
@@ -464,7 +467,7 @@ function Inspector(props) {
 							<Tip>
 								{__(
 									"Use the alignment matrix control in the toolbar to position overlay captions",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 							</Tip>
 						</div>
@@ -578,7 +581,7 @@ function Inspector(props) {
 							>
 								{__(
 									"GET GALLERYBERG PRO - EARLY BIRD DEAL",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 							</h3>
 							<p
@@ -591,7 +594,7 @@ function Inspector(props) {
 							>
 								{__(
 									"Unlock advanced layouts, lightbox thumbnails, and more.",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 							</p>
 							<a

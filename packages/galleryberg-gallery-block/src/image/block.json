@@ -68,7 +68,11 @@
 		},
 		"captionBackgroundColor": {
 			"type": "string",
-			"default": ""
+			"default": null
+		},
+		"captionBackgroundGradient": {
+			"type": "string",
+			"default": null
 		},
 		"href": {
 			"type": "string",
@@ -134,6 +138,7 @@
 		"galleryCaptionAlignment",
 		"galleryCaptionColor",
 		"galleryCaptionBackgroundColor",
+		"galleryCaptionBackgroundGradient",
 		"enableHoverEffect",
 		"hoverEffect",
 		"showCaptions"

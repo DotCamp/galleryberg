@@ -23,6 +23,7 @@ import {
 import {
 	BorderControl,
 	ColorSettings,
+	ColorSettingsWithGradient,
 	SelectControlWithToolsPanel,
 	ToggleControlWithToolsPanel,
 	ToggleGroupControlWithToolsPanel,
@@ -55,6 +56,7 @@ function Inspector({
 			captionAlignment: "",
 			captionColor: "",
 			captionBackgroundColor: "",
+			captionBackgroundGradient: "",
 		});
 	};
 	const scaleOptions = DEFAULT_SCALE_OPTIONS;
@@ -144,7 +146,7 @@ function Inspector({
 						defaultValue={DEFAULT_SIZE_SLUG_OPTIONS[0].value}
 						help={__(
 							"Select the size of the source image.",
-							"galleryberg-gallery-block"
+							"galleryberg-gallery-block",
 						)}
 					/>
 					{EnableLazyLoading && EnableLazyLoading}
@@ -201,7 +203,7 @@ function Inspector({
 							{
 								label: __(
 									"Select Caption Visibility",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								),
 								value: "",
 							},
@@ -248,7 +250,7 @@ function Inspector({
 							<Tip>
 								{__(
 									"Use the alignment matrix control in the toolbar to position overlay captions",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 							</Tip>
 						</div>
@@ -261,9 +263,10 @@ function Inspector({
 					label={__("Caption Color", "galleryberg-gallery-block")}
 					attrKey="captionColor"
 				/>
-				<ColorSettings
+				<ColorSettingsWithGradient
+					attrBackgroundKey="captionBackgroundColor"
+					attrGradientKey="captionBackgroundGradient"
 					label={__("Caption Background", "galleryberg-gallery-block")}
-					attrKey="captionBackgroundColor"
 				/>
 			</InspectorControls>
 
@@ -366,7 +369,7 @@ function Inspector({
 							>
 								{__(
 									"GET GALLERYBERG PRO - EARLY BIRD DEAL",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 							</h3>
 							<p
@@ -379,7 +382,7 @@ function Inspector({
 							>
 								{__(
 									"Unlock advanced layouts, lightbox thumbnails, and more.",
-									"galleryberg-gallery-block"
+									"galleryberg-gallery-block",
 								)}
 							</p>
 							<a

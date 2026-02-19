@@ -107,7 +107,7 @@
 		},
 		"galleryCaptionType": {
 			"type": "string",
-			"default": "below"
+			"default": "full-overlay"
 		},
 		"galleryCaptionVisibility": {
 			"type": "string",
@@ -115,7 +115,7 @@
 		},
 		"galleryCaptionAlignment": {
 			"type": "string",
-			"default": "left"
+			"default": "bottom center"
 		},
 		"galleryCaptionColor": {
 			"type": "string",
@@ -124,6 +124,10 @@
 		"galleryCaptionBackgroundColor": {
 			"type": "string",
 			"default": ""
+		},
+		"galleryCaptionBackgroundGradient": {
+			"type": "string",
+			"default": "linear-gradient(0deg,rgb(0,0,0) 0%,rgba(0,0,0,0) 100%)"
 		},
 		"enableHoverEffect": {
 			"type": "boolean",
@@ -157,6 +161,7 @@
 		"galleryCaptionAlignment": "galleryCaptionAlignment",
 		"galleryCaptionColor": "galleryCaptionColor",
 		"galleryCaptionBackgroundColor": "galleryCaptionBackgroundColor",
+		"galleryCaptionBackgroundGradient": "galleryCaptionBackgroundGradient",
 		"enableHoverEffect": "enableHoverEffect",
 		"hoverEffect": "hoverEffect",
 		"showCaptions": "showCaptions"

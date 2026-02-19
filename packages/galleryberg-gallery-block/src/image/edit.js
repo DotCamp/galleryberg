@@ -15,7 +15,11 @@ import Inspector from "./inspector";
 import BlockControls from "./block-controls";
 import classNames from "classnames";
 import exampleImage from "./preview.png";
-import { generateStyles, getSpacingPresetCssVar } from "@galleryberg/shared";
+import {
+	generateStyles,
+	getSpacingPresetCssVar,
+	getBackgroundColorVar,
+} from "@galleryberg/shared";
 
 function Edit(props) {
 	const {
@@ -38,6 +42,7 @@ function Edit(props) {
 		captionAlignment = "",
 		captionColor = "",
 		captionBackgroundColor = "",
+		captionBackgroundGradient = "",
 	} = attributes;
 
 	// Compute showCaption directly from attribute or gallery context
@@ -70,6 +75,20 @@ function Edit(props) {
 	const effectiveCaptionBackgroundColor = isEmpty(captionBackgroundColor)
 		? context?.galleryCaptionBackgroundColor
 		: captionBackgroundColor;
+	const effectiveCaptionBackgroundGradient = isEmpty(captionBackgroundGradient)
+		? context?.galleryCaptionBackgroundGradient
+		: captionBackgroundGradient;
+
+	// Combine color and gradient for caption background
+	const captionBgStyle = getBackgroundColorVar(
+		{
+			captionBackgroundColor: effectiveCaptionBackgroundColor,
+			captionBackgroundGradient: effectiveCaptionBackgroundGradient,
+		},
+		"captionBackgroundColor",
+		"captionBackgroundGradient",
+	);
+
 	const styles = {};
 	if (context?.layout === "justified") {
 		if (context?.justifiedRowHeight) {
@@ -223,14 +242,14 @@ function Edit(props) {
 											effectiveCaptionAlignment.includes(" ")
 											? `caption-align-${effectiveCaptionAlignment.replace(
 													" ",
-													"-"
-											  )}`
-											: `caption-align-${effectiveCaptionAlignment}`
+													"-",
+												)}`
+											: `caption-align-${effectiveCaptionAlignment}`,
 									)}
 									tagName="figcaption"
 									aria-label={__(
 										"Image caption text",
-										"galleryberg-gallery-block"
+										"galleryberg-gallery-block",
 									)}
 									placeholder={__("Add caption", "galleryberg-gallery-block")}
 									value={caption}
@@ -238,8 +257,7 @@ function Edit(props) {
 									inlineToolbar
 									style={{
 										color: effectiveCaptionColor || undefined,
-										backgroundColor:
-											effectiveCaptionBackgroundColor || undefined,
+										background: captionBgStyle || undefined,
 										// Only set textAlign directly for simple alignment values (left/center/right)
 										textAlign:
 											!effectiveCaptionAlignment ||

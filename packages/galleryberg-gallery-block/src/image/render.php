@@ -34,6 +34,7 @@ $caption_visibility = ! empty( $attributes['captionVisibility'] ) ? $attributes[
 $caption_alignment  = ! empty( $attributes['captionAlignment'] ) ? $attributes['captionAlignment'] : ( $context['galleryCaptionAlignment'] ?? 'left' );
 $caption_color      = ! empty( $attributes['captionColor'] ) ? $attributes['captionColor'] : ( $context['galleryCaptionColor'] ?? '' );
 $caption_bg_color   = ! empty( $attributes['captionBackgroundColor'] ) ? $attributes['captionBackgroundColor'] : ( $context['galleryCaptionBackgroundColor'] ?? '' );
+$caption_bg_gradient = ! empty( $attributes['captionBackgroundGradient'] ) ? $attributes['captionBackgroundGradient'] : ( $context['galleryCaptionBackgroundGradient'] ?? '' );
 
 $has_href         = ! empty( $href );
 $img_src          = $url ? esc_url( $url ) : '';
@@ -41,13 +42,22 @@ $link_class_attr  = $link_class ? 'class="' . esc_attr( $link_class ) . '"' : ''
 $link_target_attr = $link_target ? 'target="' . esc_attr( $link_target ) . '"' : '';
 $new_rel_attr     = $rel ? ' rel="' . esc_attr( $rel ) . '"' : '';
 
-// Build caption styles
+// Build caption styles - combine background color and gradient
+$caption_bg_style = \Galleryberg\Helpers\Styling_Helpers::get_background_color_var(
+	array(
+		'captionBackgroundColor' => $caption_bg_color,
+		'captionBackgroundGradient' => $caption_bg_gradient,
+	),
+	'captionBackgroundColor',
+	'captionBackgroundGradient'
+);
+
 $caption_styles = array();
 if ( $caption_color ) {
 	$caption_styles['color'] = esc_attr( $caption_color );
 }
-if ( $caption_bg_color ) {
-	$caption_styles['background-color'] = esc_attr( $caption_bg_color );
+if ( $caption_bg_style ) {
+	$caption_styles['background'] = $caption_bg_style;
 }
 
 $caption_style_attr = ! empty( $caption_styles ) ? 'style="' . \Galleryberg\Helpers\Styling_Helpers::generate_css_string( $caption_styles ) . '"' : '';
