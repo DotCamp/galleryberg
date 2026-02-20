@@ -7,6 +7,7 @@ import {
 	MediaReplaceFlow,
 	__experimentalBlockAlignmentMatrixControl as BlockAlignmentMatrixControl,
 } from "@wordpress/block-editor";
+import { ToolbarButton } from "@wordpress/components";
 import "./editor.scss";
 import { createBlock } from "@wordpress/blocks";
 import { useSelect, useDispatch } from "@wordpress/data";
@@ -25,6 +26,7 @@ import {
 } from "@galleryberg/shared";
 import { blockIcon } from "./block-icon";
 import { store as editorStore } from "@wordpress/editor";
+import { shuffle } from "@wordpress/icons";
 
 const DEFAULT_BLOCK = { name: "galleryberg/image" };
 const ALLOWED_MEDIA_TYPES = ["image"];
@@ -319,6 +321,15 @@ export default function Edit(props) {
 			selectBlock(newBlocks[0].clientId);
 		}
 	}
+	function shuffleImages() {
+		const shuffled = [...innerBlockImages];
+		for (let i = shuffled.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+		}
+		replaceInnerBlocks(clientId, shuffled);
+	}
+
 	const hasImages = !!images.length;
 	const hasImageIds = hasImages && images.some((image) => !!image.id);
 	const inspectorProps = {
@@ -332,6 +343,12 @@ export default function Edit(props) {
 	return (
 		<>
 			<BlockControls group="other">
+				<ToolbarButton
+					icon={shuffle}
+					label={__("Shuffle images", "galleryberg-gallery-block")}
+					onClick={shuffleImages}
+					disabled={!hasImages || images.length < 2}
+				/>
 				<MediaReplaceFlow
 					allowedTypes={ALLOWED_MEDIA_TYPES}
 					accept="image/*"
