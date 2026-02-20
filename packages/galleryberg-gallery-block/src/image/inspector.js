@@ -25,10 +25,9 @@ import {
 	ColorSettings,
 	ColorSettingsWithGradient,
 	SelectControlWithToolsPanel,
-	ToggleControlWithToolsPanel,
 	ToggleGroupControlWithToolsPanel,
 } from "@galleryberg/shared";
-import { blockIcon } from "../gallery/block-icon";
+import { upsellIcon } from "../../assets/upsell-icon.js";
 
 function Inspector({
 	attributes,
@@ -273,7 +272,7 @@ function Inspector({
 			<InspectorControls>
 				<PanelBody
 					title={__("Galleryberg PRO", "galleryberg-gallery-block")}
-					icon={blockIcon}
+					icon={upsellIcon}
 					initialOpen={true}
 				>
 					{isPro ? (

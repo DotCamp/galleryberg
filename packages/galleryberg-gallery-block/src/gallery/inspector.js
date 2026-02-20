@@ -17,7 +17,8 @@ import {
 	ToggleControlWithToolsPanel,
 	ToggleGroupControlWithToolsPanel,
 } from "@galleryberg/shared";
-import { blockIcon } from "./block-icon";
+
+import { upsellIcon } from "../../assets/upsell-icon.js";
 
 const MAX_COLUMNS = 8;
 
@@ -477,7 +478,7 @@ function Inspector(props) {
 			<InspectorControls>
 				<PanelBody
 					title={__("Galleryberg PRO", "galleryberg-gallery-block")}
-					icon={blockIcon}
+					icon={upsellIcon}
 					initialOpen={true}
 				>
 					{isPro ? (
