@@ -10,6 +10,8 @@ import {
 	__experimentalUnitControl as UnitControl,
 	__experimentalToolsPanelItem as ToolsPanelItem,
 	PanelBody,
+	ToggleControl,
+	RangeControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 /***
@@ -28,6 +30,7 @@ import {
 	ToggleGroupControlWithToolsPanel,
 } from "@galleryberg/shared";
 import { upsellIcon } from "../../assets/upsell-icon.js";
+import LockedControl from "../components/upsell/LockedControl";
 
 function Inspector({
 	attributes,
@@ -151,6 +154,26 @@ function Inspector({
 					{EnableLazyLoading && EnableLazyLoading}
 					{MosaicSpanX && MosaicSpanX}
 					{MosaicSpanY && MosaicSpanY}
+					{!EnableLazyLoading && !isPro && (
+						<LockedControl featureKey="lazy-loading">
+							<ToggleControl
+								label={__("Enable Lazy Loading", "galleryberg-gallery-block")}
+								checked={false}
+								__nextHasNoMarginBottom
+							/>
+						</LockedControl>
+					)}
+					{!MosaicSpanX && !isPro && (
+						<LockedControl featureKey="mosaic-span">
+							<RangeControl
+								label={__("Mosaic Column Span", "galleryberg-gallery-block")}
+								value={1}
+								min={1}
+								max={5}
+								__nextHasNoMarginBottom
+							/>
+						</LockedControl>
+					)}
 				</ToolsPanel>
 			</InspectorControls>
 

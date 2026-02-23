@@ -1,0 +1,310 @@
+// LockedControl styles
+.galleryberg-locked-root {
+	position: relative;
+	grid-column: 1 / -1;
+}
+
+.galleryberg-locked-children {
+	opacity: 0.5;
+	pointer-events: none;
+	user-select: none;
+	filter: grayscale(30%);
+}
+
+.galleryberg-lock-overlay {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding-right: 8px;
+	cursor: pointer;
+	background: transparent;
+	border: none;
+	z-index: 1;
+
+	&:hover .galleryberg-lock-badge {
+		background: #a63a50;
+		color: #fff;
+
+		svg,
+		.galleryberg-lock-badge-text {
+			fill: #ffffff;
+			color: #ffffff;
+		}
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: none;
+	}
+}
+
+.galleryberg-lock-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 10px 4px 6px;
+	background: #fdf0f2;
+	border-radius: 4px;
+	transition:
+		background 0.15s ease,
+		color 0.15s ease;
+
+	svg {
+		width: 16px;
+		height: 16px;
+		fill: #a63a50;
+		transition: fill 0.15s ease;
+	}
+}
+
+.galleryberg-lock-badge-text {
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	color: #a63a50;
+}
+
+// UpsellModal styles
+.galleryberg-upsell-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 100001;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.galleryberg-upsell-modal-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.55);
+}
+
+.galleryberg-upsell-modal-outer {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	animation: galleryberg-modal-enter 0.2s ease-out;
+}
+
+.galleryberg-upsell-modal-container {
+	background: #fff;
+	border-radius: 8px;
+	box-shadow:
+		0 20px 60px rgba(0, 0, 0, 0.2),
+		0 0 0 1px rgba(0, 0, 0, 0.05);
+	max-width: 500px;
+	width: 90vw;
+	overflow: hidden;
+}
+
+@keyframes galleryberg-modal-enter {
+	from {
+		opacity: 0;
+		transform: scale(0.95) translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+// Colored header bar
+.galleryberg-upsell-modal-header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 14px 20px;
+	background: linear-gradient(135deg, #a63a50 0%, #c95c6e 100%);
+	color: #fff;
+
+	svg {
+		stroke: #fff;
+		rect {
+			stroke: #fff;
+		}
+	}
+}
+
+.galleryberg-upsell-modal-header-icon {
+	display: flex;
+	align-items: center;
+}
+
+.galleryberg-upsell-modal-header-title {
+	font-size: 16px;
+	font-weight: 600;
+	letter-spacing: 0.3px;
+}
+
+// Slide wrapper & animation
+.galleryberg-upsell-slide-wrapper {
+	overflow: hidden;
+	position: relative;
+}
+
+.galleryberg-upsell-slide {
+	padding: 24px 24px 4px;
+}
+
+.galleryberg-upsell-slide.slide-left {
+	animation: galleryberg-slide-from-left 0.3s ease-out;
+}
+
+@keyframes galleryberg-slide-from-left {
+	from {
+		opacity: 0;
+		transform: translateX(-30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+.galleryberg-upsell-slide.slide-right {
+	animation: galleryberg-slide-from-right 0.3s ease-out;
+}
+
+@keyframes galleryberg-slide-from-right {
+	from {
+		opacity: 0;
+		transform: translateX(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+// Nav arrows
+.galleryberg-upsell-nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	background: rgba(255, 255, 255, 0.9);
+	border: none;
+	border-radius: 50%;
+	color: #a63a50;
+	cursor: pointer;
+	transition:
+		background 0.15s ease,
+		transform 0.15s ease,
+		box-shadow 0.15s ease;
+	flex-shrink: 0;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+	&:hover {
+		background: #fff;
+		transform: scale(1.1);
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+	}
+
+	&:focus {
+		outline: none;
+		box-shadow: 0 0 0 2px #a63a50;
+	}
+
+	svg {
+		pointer-events: none;
+	}
+}
+
+.galleryberg-upsell-modal-description {
+	font-size: 18px;
+	color: #4b5563;
+	margin: 0 0 16px 0;
+	line-height: 1.65;
+	text-align: center;
+
+	strong {
+		color: #1e1e1e;
+	}
+}
+
+.galleryberg-upsell-modal-image {
+	width: 100%;
+	border-radius: 6px;
+	margin-bottom: 16px;
+	border: 1px solid #e5e7eb;
+}
+
+.galleryberg-upsell-promo {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 14px;
+	background: #fdf0f2;
+	border: 1px dashed #a63a50;
+	border-radius: 6px;
+	margin-bottom: 16px;
+	font-size: 13px;
+	color: #374151;
+
+	code {
+		font-weight: 700;
+		background: #a63a50;
+		color: #fff;
+		padding: 2px 10px;
+		border-radius: 4px;
+		letter-spacing: 0.5px;
+	}
+}
+
+.galleryberg-upsell-modal-footer {
+	display: flex;
+	gap: 12px;
+	justify-content: space-between;
+	padding: 16px 24px 20px;
+	border-top: 1px solid #e5e7eb;
+}
+
+.galleryberg-upsell-modal-cancel {
+	padding: 10px 20px;
+	background: transparent;
+	border: 1px solid #d0d5dd;
+	border-radius: 6px;
+	color: #374151;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition:
+		background 0.15s ease,
+		border-color 0.15s ease;
+
+	&:hover {
+		background: #f3f4f6;
+		border-color: #9ca3af;
+	}
+}
+
+.galleryberg-upsell-modal-cta {
+	display: inline-flex;
+	align-items: center;
+	padding: 10px 24px;
+	background: #a63a50;
+	color: #fff;
+	border: none;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 600;
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		background 0.15s ease,
+		box-shadow 0.15s ease;
+
+	&:hover {
+		background: #8e3145;
+		box-shadow: 0 2px 8px rgba(166, 58, 80, 0.3);
+		color: #fff;
+	}
+}

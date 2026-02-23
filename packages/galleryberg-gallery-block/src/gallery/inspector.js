@@ -4,6 +4,8 @@ import {
 	__experimentalToolsPanel as ToolsPanel,
 	PanelBody,
 	Button,
+	ToggleControl,
+	SelectControl,
 } from "@wordpress/components";
 import { __ } from "@wordpress/i18n";
 import { desktop, tablet, mobile } from "@wordpress/icons";
@@ -19,6 +21,7 @@ import {
 } from "@galleryberg/shared";
 
 import { upsellIcon } from "../../assets/upsell-icon.js";
+import LockedControl from "../components/upsell/LockedControl";
 
 const MAX_COLUMNS = 8;
 
@@ -172,6 +175,17 @@ function Inspector(props) {
 						]}
 						defaultValue="tiles"
 					/>
+					{proLayouts.length === 0 && !isPro && (
+						<LockedControl featureKey="mosaic-layout">
+							<SelectControl
+								label={__("Gallery Layout", "galleryberg-gallery-block")}
+								value="mosaic"
+								options={[{ label: "Mosaic", value: "mosaic" }]}
+								size="__unstable-large"
+								__nextHasNoMarginBottom
+							/>
+						</LockedControl>
+					)}
 					{layout === "justified" && (
 						<RangeControlWithToolsPanel
 							label={__("Row Height (px)", "galleryberg-gallery-block")}
@@ -279,6 +293,15 @@ function Inspector(props) {
 						/>
 					)}
 					{EnableLazyLoading && EnableLazyLoading}
+					{!EnableLazyLoading && !isPro && (
+						<LockedControl featureKey="lazy-loading">
+							<ToggleControl
+								label={__("Enable Lazy Loading", "galleryberg-gallery-block")}
+								checked={false}
+								__nextHasNoMarginBottom
+							/>
+						</LockedControl>
+					)}
 				</ToolsPanel>
 			</InspectorControls>
 			<InspectorControls>
@@ -360,7 +383,16 @@ function Inspector(props) {
 							{EnableThumbnails && EnableThumbnails}
 							{ThumbnailPosition && ThumbnailPosition}
 							{ThumbnailNavigation && ThumbnailNavigation}
-							{ThumbnailNavigationSpeed && ThumbnailNavigationSpeed}
+							{ThumbnailNavigationSpeed && ThumbnailNavigationSpeed}{" "}
+							{!EnableThumbnails && !isPro && (
+								<LockedControl featureKey="lightbox-thumbnails">
+									<ToggleControl
+										label={__("Enable Thumbnails", "galleryberg-gallery-block")}
+										checked={false}
+										__nextHasNoMarginBottom
+									/>
+								</LockedControl>
+							)}{" "}
 						</>
 					)}
 				</ToolsPanel>

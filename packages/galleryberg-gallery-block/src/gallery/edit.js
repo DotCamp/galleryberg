@@ -12,7 +12,6 @@ import "./editor.scss";
 import { createBlock } from "@wordpress/blocks";
 import { useSelect, useDispatch } from "@wordpress/data";
 import { store as noticesStore } from "@wordpress/notices";
-import { BlockIcon } from "@wordpress/block-editor";
 import { useMemo, useEffect, useState } from "@wordpress/element";
 import classNames from "classnames";
 import Inspector from "./inspector";
