@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", () => {
 	window.gallerybergLightboxes = window.gallerybergLightboxes || new Map();
 
 	const galleries = document.querySelectorAll(
-		".galleryberg-gallery-container.galleryberg-has-lightbox"
+		".galleryberg-gallery-container.galleryberg-has-lightbox",
 	);
 	galleries.forEach((gallery) => {
 		const images = gallery.querySelectorAll("img");
@@ -61,6 +61,22 @@ window.addEventListener("DOMContentLoaded", () => {
 				e.preventDefault();
 				lightbox.openAt(idx);
 			});
+
+			// Overlay captions sit above the image and block clicks — attach
+			// the same handler so clicking the overlay also opens the lightbox.
+			const figure = img.closest("figure");
+			if (figure) {
+				const overlayCaption = figure.querySelector(
+					"figcaption.caption-type-full-overlay, figcaption.caption-type-bar-overlay",
+				);
+				if (overlayCaption) {
+					overlayCaption.style.cursor = "pointer";
+					overlayCaption.addEventListener("click", (e) => {
+						e.preventDefault();
+						lightbox.openAt(idx);
+					});
+				}
+			}
 		});
 	});
 });
