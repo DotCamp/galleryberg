@@ -6,9 +6,7 @@ import { useMemo } from "react";
 import {
 	Tip,
 	TextareaControl,
-	__experimentalToolsPanel as ToolsPanel,
 	__experimentalUnitControl as UnitControl,
-	__experimentalToolsPanelItem as ToolsPanelItem,
 	PanelBody,
 	ToggleControl,
 	RangeControl,
@@ -26,8 +24,8 @@ import {
 	BorderControl,
 	ColorSettings,
 	ColorSettingsWithGradient,
-	SelectControlWithToolsPanel,
-	ToggleGroupControlWithToolsPanel,
+	SelectControlWithoutToolsPanel,
+	ToggleGroupControlWithoutToolsPanel,
 } from "@galleryberg/shared";
 import { upsellIcon } from "../../assets/upsell-icon.js";
 import LockedControl from "../components/upsell/LockedControl";
@@ -42,25 +40,6 @@ function Inspector({
 	isPro = false,
 }) {
 	const { alt, aspectRatio, height, scale, width } = attributes;
-	const resetAll = () => {
-		setAttributes({
-			alt: "",
-			aspectRatio: "",
-			height: "",
-			scale: "cover",
-			width: "",
-		});
-	};
-	const resetCaptionSettings = () => {
-		setAttributes({
-			captionType: "",
-			captionVisibility: "",
-			captionAlignment: "",
-			captionColor: "",
-			captionBackgroundColor: "",
-			captionBackgroundGradient: "",
-		});
-	};
 	const scaleOptions = DEFAULT_SCALE_OPTIONS;
 	const scaleHelp = useMemo(() => {
 		return scaleOptions.reduce((acc, option) => {
@@ -73,31 +52,24 @@ function Inspector({
 	return (
 		<>
 			<InspectorControls>
-				<ToolsPanel
-					label={__("Settings", "galleryberg-gallery-block")}
-					resetAll={resetAll}
+				<PanelBody
+					title={__("Settings", "galleryberg-gallery-block")}
+					initialOpen={false}
 				>
-					<ToolsPanelItem
-						isShownByDefault
-						hasValue={() => !!alt}
+					<TextareaControl
+						__nextHasNoMarginBottom
+						value={alt}
 						label={__("Alternative Text", "galleryberg-gallery-block")}
-						onDeselect={() => setAttributes({ alt: "" })}
-					>
-						<TextareaControl
-							__nextHasNoMarginBottom
-							value={alt}
-							label={__("Alternative Text", "galleryberg-gallery-block")}
-							onChange={(newValue) => setAttributes({ alt: newValue })}
-						/>
-					</ToolsPanelItem>
-					<SelectControlWithToolsPanel
+						onChange={(newValue) => setAttributes({ alt: newValue })}
+					/>
+					<SelectControlWithoutToolsPanel
 						label={__("Aspect ratio", "galleryberg-gallery-block")}
 						attrKey="aspectRatio"
 						options={aspectRatioOptions}
 						defaultValue="auto"
 					/>
 					{aspectRatio !== DEFAULT_ASPECT_RATIO_OPTIONS[0].value && (
-						<ToggleGroupControlWithToolsPanel
+						<ToggleGroupControlWithoutToolsPanel
 							label={__("Scale", "galleryberg-gallery-block")}
 							attrKey="scale"
 							options={scaleOptions}
@@ -106,42 +78,28 @@ function Inspector({
 						/>
 					)}
 					<div className="galleryberg-width-height-control">
-						<ToolsPanelItem
-							isShownByDefault
+						<UnitControl
 							label={__("Width", "galleryberg-gallery-block")}
-							hasValue={() => width !== ""}
-							onDeselect={() => setAttributes({ width: "" })}
-						>
-							<UnitControl
-								label={__("Width", "galleryberg-gallery-block")}
-								placeholder={__("Auto", "galleryberg-gallery-block")}
-								labelPosition="top"
-								units={[{ value: "px", label: "px", default: 0 }]}
-								min={0}
-								value={width}
-								onChange={(newWidth) => setAttributes({ width: newWidth })}
-								size={"__unstable-large"}
-							/>
-						</ToolsPanelItem>
-						<ToolsPanelItem
-							isShownByDefault
-							label={__("height", "galleryberg-gallery-block")}
-							hasValue={() => height !== ""}
-							onDeselect={() => setAttributes({ height: "" })}
-						>
-							<UnitControl
-								label={__("Height", "galleryberg-gallery-block")}
-								placeholder={__("Auto", "galleryberg-gallery-block")}
-								labelPosition="top"
-								units={[{ value: "px", label: "px", default: 0 }]}
-								min={0}
-								value={height}
-								onChange={(newHeight) => setAttributes({ height: newHeight })}
-								size={"__unstable-large"}
-							/>
-						</ToolsPanelItem>
+							placeholder={__("Auto", "galleryberg-gallery-block")}
+							labelPosition="top"
+							units={[{ value: "px", label: "px", default: 0 }]}
+							min={0}
+							value={width}
+							onChange={(newWidth) => setAttributes({ width: newWidth })}
+							size={"__unstable-large"}
+						/>
+						<UnitControl
+							label={__("Height", "galleryberg-gallery-block")}
+							placeholder={__("Auto", "galleryberg-gallery-block")}
+							labelPosition="top"
+							units={[{ value: "px", label: "px", default: 0 }]}
+							min={0}
+							value={height}
+							onChange={(newHeight) => setAttributes({ height: newHeight })}
+							size={"__unstable-large"}
+						/>
 					</div>
-					<SelectControlWithToolsPanel
+					<SelectControlWithoutToolsPanel
 						label={__("Resolution", "galleryberg-gallery-block")}
 						attrKey="sizeSlug"
 						options={DEFAULT_SIZE_SLUG_OPTIONS}
@@ -174,7 +132,7 @@ function Inspector({
 							/>
 						</LockedControl>
 					)}
-				</ToolsPanel>
+				</PanelBody>
 			</InspectorControls>
 
 			<InspectorControls group="border">
@@ -189,12 +147,11 @@ function Inspector({
 			</InspectorControls>
 
 			<InspectorControls>
-				<ToolsPanel
-					panelId={clientId}
-					label={__("Caption Settings", "galleryberg-gallery-block")}
-					resetAll={resetCaptionSettings}
+				<PanelBody
+					title={__("Caption Settings", "galleryberg-gallery-block")}
+					initialOpen={false}
 				>
-					<SelectControlWithToolsPanel
+					<SelectControlWithoutToolsPanel
 						label={__("Caption Type", "galleryberg-gallery-block")}
 						attrKey="captionType"
 						options={[
@@ -218,7 +175,7 @@ function Inspector({
 						defaultValue=""
 					/>
 
-					<SelectControlWithToolsPanel
+					<SelectControlWithoutToolsPanel
 						label={__("Caption Visibility", "galleryberg-gallery-block")}
 						attrKey="captionVisibility"
 						options={[
@@ -246,7 +203,7 @@ function Inspector({
 					/>
 
 					{(!attributes.captionType || attributes.captionType === "below") && (
-						<ToggleGroupControlWithToolsPanel
+						<ToggleGroupControlWithoutToolsPanel
 							label={__("Caption Alignment", "galleryberg-gallery-block")}
 							attrKey="captionAlignment"
 							options={[
@@ -277,7 +234,7 @@ function Inspector({
 							</Tip>
 						</div>
 					)}
-				</ToolsPanel>
+				</PanelBody>
 			</InspectorControls>
 
 			<InspectorControls group="color">

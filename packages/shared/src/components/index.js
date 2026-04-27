@@ -8,3 +8,7 @@ export { default as SelectControlWithToolsPanel } from "./SelectControlWithTools
 export { default as RangeControlWithToolsPanel } from "./RangeControlWithToolsPanel";
 export { default as ToggleControlWithToolsPanel } from "./ToggleControlWithToolsPanel";
 export { default as ToggleGroupControlWithToolsPanel } from "./ToggleGroupControlWithToolsPanel";
+export { default as RangeControlWithoutToolsPanel } from "./RangeControlWithoutToolsPanel";
+export { default as SelectControlWithoutToolsPanel } from "./SelectControlWithoutToolsPanel";
+export { default as ToggleControlWithoutToolsPanel } from "./ToggleControlWithoutToolsPanel";
+export { default as ToggleGroupControlWithoutToolsPanel } from "./ToggleGroupControlWithoutToolsPanel";

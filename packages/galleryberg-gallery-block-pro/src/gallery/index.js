@@ -1,8 +1,8 @@
 import { __ } from "@wordpress/i18n";
 import {
-	ToggleControlWithToolsPanel,
-	SelectControlWithToolsPanel,
-	RangeControlWithToolsPanel,
+	ToggleControlWithoutToolsPanel,
+	SelectControlWithoutToolsPanel,
+	RangeControlWithoutToolsPanel,
 } from "@galleryberg/shared";
 
 function GalleryPro(props) {
@@ -16,7 +16,7 @@ function GalleryPro(props) {
 	} = attributes;
 
 	const EnableLazyLoading = (
-		<ToggleControlWithToolsPanel
+		<ToggleControlWithoutToolsPanel
 			label={__("Enable Lazy Loading", "galleryberg-gallery-block-pro")}
 			attrKey="enableLazyLoading"
 			defaultValue={false}
@@ -28,7 +28,7 @@ function GalleryPro(props) {
 	);
 
 	const EnableThumbnails = (
-		<ToggleControlWithToolsPanel
+		<ToggleControlWithoutToolsPanel
 			label={__("Enable Thumbnails", "galleryberg-gallery-block-pro")}
 			attrKey="enableThumbnails"
 			defaultValue={false}
@@ -39,7 +39,7 @@ function GalleryPro(props) {
 		/>
 	);
 	const ThumbnailPosition = enableThumbnails && (
-		<SelectControlWithToolsPanel
+		<SelectControlWithoutToolsPanel
 			label={__("Thumbnail Position", "galleryberg-gallery-block-pro")}
 			attrKey="thumbnailPosition"
 			options={[
@@ -64,7 +64,7 @@ function GalleryPro(props) {
 		/>
 	);
 	const ThumbnailNavigation = enableThumbnails && (
-		<SelectControlWithToolsPanel
+		<SelectControlWithoutToolsPanel
 			label={__("Thumbnail Navigation", "galleryberg-gallery-block-pro")}
 			attrKey="thumbnailNavigation"
 			options={[
@@ -86,7 +86,7 @@ function GalleryPro(props) {
 	);
 	const ThumbnailNavigationSpeed = enableThumbnails &&
 		thumbnailNavigation === "step" && (
-			<RangeControlWithToolsPanel
+			<RangeControlWithoutToolsPanel
 				label={__("Navigation Speed", "galleryberg-gallery-block-pro")}
 				attrKey="thumbnailNavigationSpeed"
 				min={5}

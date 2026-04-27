@@ -9,6 +9,10 @@ export { default as SpacingControlWithToolsPanel } from "./components/SpacingCon
 export { default as ToggleControlWithToolsPanel } from "./components/ToggleControlWithToolsPanel";
 export { default as ToggleGroupControlWithToolsPanel } from "./components/ToggleGroupControlWithToolsPanel";
 export { default as ToolbarWithDropdown } from "./components/ToolbarWithDropdown";
+export { default as RangeControlWithoutToolsPanel } from "./components/RangeControlWithoutToolsPanel";
+export { default as SelectControlWithoutToolsPanel } from "./components/SelectControlWithoutToolsPanel";
+export { default as ToggleControlWithoutToolsPanel } from "./components/ToggleControlWithoutToolsPanel";
+export { default as ToggleGroupControlWithoutToolsPanel } from "./components/ToggleGroupControlWithoutToolsPanel";
 
 // Export all shared utilities
 export * from "./utils/styling-helpers";

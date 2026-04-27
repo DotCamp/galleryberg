@@ -1,7 +1,7 @@
 import { __ } from "@wordpress/i18n";
 import {
-	RangeControlWithToolsPanel,
-	ToggleControlWithToolsPanel,
+	RangeControlWithoutToolsPanel,
+	ToggleControlWithoutToolsPanel,
 } from "@galleryberg/shared";
 
 function ImagePro(props) {
@@ -24,7 +24,7 @@ function ImagePro(props) {
 	}
 
 	const MosaicSpanX = layout === "mosaic" && (
-		<RangeControlWithToolsPanel
+		<RangeControlWithoutToolsPanel
 			label={__("Mosaic Column Span ", "galleryberg-gallery-block-pro")}
 			attrKey="mosaicSpanX"
 			min={1}
@@ -39,7 +39,7 @@ function ImagePro(props) {
 	);
 
 	const MosaicSpanY = layout === "mosaic" && (
-		<RangeControlWithToolsPanel
+		<RangeControlWithoutToolsPanel
 			label={__("Mosaic Row Span", "galleryberg-gallery-block-pro")}
 			attrKey="mosaicSpanY"
 			min={1}
@@ -54,7 +54,7 @@ function ImagePro(props) {
 	);
 
 	const EnableLazyLoading = (
-		<ToggleControlWithToolsPanel
+		<ToggleControlWithoutToolsPanel
 			label={__("Enable Lazy Loading", "galleryberg-gallery-block-pro")}
 			attrKey="enableLazyLoading"
 			defaultValue={false}

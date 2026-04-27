@@ -1,7 +1,6 @@
 import { InspectorControls } from "@wordpress/block-editor";
 import {
 	Tip,
-	__experimentalToolsPanel as ToolsPanel,
 	PanelBody,
 	Button,
 	ToggleControl,
@@ -14,10 +13,10 @@ import {
 	ColorSettingsWithGradient,
 	SpacingControlWithToolsPanel,
 	ColorSettings,
-	SelectControlWithToolsPanel,
-	RangeControlWithToolsPanel,
-	ToggleControlWithToolsPanel,
-	ToggleGroupControlWithToolsPanel,
+	SelectControlWithoutToolsPanel,
+	RangeControlWithoutToolsPanel,
+	ToggleControlWithoutToolsPanel,
+	ToggleGroupControlWithoutToolsPanel,
 } from "@galleryberg/shared";
 
 import { upsellIcon } from "../../assets/upsell-icon.js";
@@ -50,59 +49,6 @@ function Inspector(props) {
 		thumbnailNavigation = "",
 		thumbnailNavigationSpeed = "",
 	} = attributes;
-
-	function resetSettings() {
-		const attributesToReset = {
-			layout: "tiles",
-			columns: undefined,
-			justifiedRowHeight: 180,
-			enableHoverEffect: false,
-			hoverEffect: "zoom-in",
-		};
-		if (enableLazyLoading) {
-			attributesToReset.enableLazyLoading = false;
-		}
-		setAttributes(attributesToReset);
-	}
-
-	function resetCaptionSettings() {
-		setAttributes({
-			galleryCaptionType: "full-overlay",
-			galleryCaptionVisibility: "always",
-			galleryCaptionAlignment: "bottom center",
-			galleryCaptionColor: "",
-			galleryCaptionBackgroundColor: "",
-			galleryCaptionBackgroundGradient:
-				"linear-gradient(0deg,rgb(0,0,0) 0%,rgba(0,0,0,0) 100%)",
-		});
-	}
-
-	function resetLightboxSettings() {
-		const attributesToReset = {
-			lightbox: false,
-			openEffect: "zoom",
-			closeEffect: "zoom",
-			slideEffect: "slide",
-			keyboardNavigation: true,
-			loop: true,
-			zoomable: true,
-			draggable: true,
-			showLightboxCaptions: false,
-		};
-		if (enableThumbnails) {
-			attributesToReset.enableThumbnails = false;
-		}
-		if (thumbnailPosition) {
-			attributesToReset.thumbnailPosition = "bottom";
-		}
-		if (thumbnailNavigation) {
-			attributesToReset.thumbnailNavigation = "direct";
-		}
-		if (thumbnailNavigationSpeed) {
-			attributesToReset.thumbnailNavigationSpeed = 10;
-		}
-		setAttributes(attributesToReset);
-	}
 
 	return (
 		<>
@@ -158,12 +104,11 @@ function Inspector(props) {
 				/>
 			</InspectorControls>
 			<InspectorControls>
-				<ToolsPanel
-					panelId={props.clientId}
-					label={__("Settings", "galleryberg-gallery-block")}
-					resetAll={resetSettings}
+				<PanelBody
+					title={__("Settings", "galleryberg-gallery-block")}
+					initialOpen={false}
 				>
-					<SelectControlWithToolsPanel
+					<SelectControlWithoutToolsPanel
 						label={__("Gallery Layout", "galleryberg-gallery-block")}
 						attrKey="layout"
 						options={[
@@ -186,8 +131,9 @@ function Inspector(props) {
 							/>
 						</LockedControl>
 					)}
+					<br />
 					{layout === "justified" && (
-						<RangeControlWithToolsPanel
+						<RangeControlWithoutToolsPanel
 							label={__("Row Height (px)", "galleryberg-gallery-block")}
 							attrKey="justifiedRowHeight"
 							min={60}
@@ -229,7 +175,7 @@ function Inspector(props) {
 								</div>
 							</div>
 							{selectedDevice === "desktop" && (
-								<RangeControlWithToolsPanel
+								<RangeControlWithoutToolsPanel
 									label={__("Columns (Desktop)", "galleryberg-gallery-block")}
 									attrKey="columns"
 									min={1}
@@ -243,7 +189,7 @@ function Inspector(props) {
 								/>
 							)}
 							{selectedDevice === "tablet" && (
-								<RangeControlWithToolsPanel
+								<RangeControlWithoutToolsPanel
 									label={__("Columns (Tablet)", "galleryberg-gallery-block")}
 									attrKey="tabletColumns"
 									min={1}
@@ -256,7 +202,7 @@ function Inspector(props) {
 								/>
 							)}
 							{selectedDevice === "mobile" && (
-								<RangeControlWithToolsPanel
+								<RangeControlWithoutToolsPanel
 									label={__("Columns (Mobile)", "galleryberg-gallery-block")}
 									attrKey="mobileColumns"
 									min={1}
@@ -270,13 +216,13 @@ function Inspector(props) {
 							)}
 						</>
 					)}
-					<ToggleControlWithToolsPanel
+					<ToggleControlWithoutToolsPanel
 						label={__("Enable Hover Effect", "galleryberg-gallery-block")}
 						attrKey="enableHoverEffect"
 						defaultValue={false}
 					/>
 					{enableHoverEffect && (
-						<SelectControlWithToolsPanel
+						<SelectControlWithoutToolsPanel
 							label={__("Hover Effect", "galleryberg-gallery-block")}
 							attrKey="hoverEffect"
 							options={[
@@ -302,22 +248,21 @@ function Inspector(props) {
 							/>
 						</LockedControl>
 					)}
-				</ToolsPanel>
+				</PanelBody>
 			</InspectorControls>
 			<InspectorControls>
-				<ToolsPanel
-					panelId={props.clientId}
-					label={__("Lightbox", "galleryberg-gallery-block")}
-					resetAll={resetLightboxSettings}
+				<PanelBody
+					title={__("Lightbox", "galleryberg-gallery-block")}
+					initialOpen={false}
 				>
-					<ToggleControlWithToolsPanel
+					<ToggleControlWithoutToolsPanel
 						label={__("Enable Lightbox", "galleryberg-gallery-block")}
 						attrKey="lightbox"
 						defaultValue={false}
 					/>
 					{lightbox && (
 						<>
-							<SelectControlWithToolsPanel
+							<SelectControlWithoutToolsPanel
 								label={__("Open Effect", "galleryberg-gallery-block")}
 								attrKey="openEffect"
 								options={[
@@ -327,7 +272,7 @@ function Inspector(props) {
 								]}
 								defaultValue="zoom"
 							/>
-							<SelectControlWithToolsPanel
+							<SelectControlWithoutToolsPanel
 								label={__("Close Effect", "galleryberg-gallery-block")}
 								attrKey="closeEffect"
 								options={[
@@ -337,7 +282,7 @@ function Inspector(props) {
 								]}
 								defaultValue="zoom"
 							/>
-							<SelectControlWithToolsPanel
+							<SelectControlWithoutToolsPanel
 								label={__("Slide Effect", "galleryberg-gallery-block")}
 								attrKey="slideEffect"
 								options={[
@@ -348,27 +293,27 @@ function Inspector(props) {
 								]}
 								defaultValue="slide"
 							/>
-							<ToggleControlWithToolsPanel
+							<ToggleControlWithoutToolsPanel
 								label={__("Keyboard Navigation", "galleryberg-gallery-block")}
 								attrKey="keyboardNavigation"
 								defaultValue={true}
 							/>
-							<ToggleControlWithToolsPanel
+							<ToggleControlWithoutToolsPanel
 								label={__("Loop", "galleryberg-gallery-block")}
 								attrKey="loop"
 								defaultValue={true}
 							/>
-							<ToggleControlWithToolsPanel
+							<ToggleControlWithoutToolsPanel
 								label={__("Zoomable", "galleryberg-gallery-block")}
 								attrKey="zoomable"
 								defaultValue={true}
 							/>
-							<ToggleControlWithToolsPanel
+							<ToggleControlWithoutToolsPanel
 								label={__("Draggable", "galleryberg-gallery-block")}
 								attrKey="draggable"
 								defaultValue={true}
 							/>
-							<ToggleControlWithToolsPanel
+							<ToggleControlWithoutToolsPanel
 								label={__(
 									"Show captions in lightbox",
 									"galleryberg-gallery-block",
@@ -395,15 +340,14 @@ function Inspector(props) {
 							)}{" "}
 						</>
 					)}
-				</ToolsPanel>
+				</PanelBody>
 			</InspectorControls>
 			<InspectorControls>
-				<ToolsPanel
-					panelId={props.clientId}
-					label={__("Caption Settings", "galleryberg-gallery-block")}
-					resetAll={resetCaptionSettings}
+				<PanelBody
+					title={__("Caption Settings", "galleryberg-gallery-block")}
+					initialOpen={false}
 				>
-					<ToggleControlWithToolsPanel
+					<ToggleControlWithoutToolsPanel
 						label={__("Show Captions", "galleryberg-gallery-block")}
 						attrKey="showCaptions"
 						defaultValue={false}
@@ -421,7 +365,7 @@ function Inspector(props) {
 						</Tip>
 					</div>
 
-					<SelectControlWithToolsPanel
+					<SelectControlWithoutToolsPanel
 						label={__("Caption Type", "galleryberg-gallery-block")}
 						attrKey="galleryCaptionType"
 						options={[
@@ -445,7 +389,7 @@ function Inspector(props) {
 						)}
 					/>
 
-					<SelectControlWithToolsPanel
+					<SelectControlWithoutToolsPanel
 						label={__("Caption Visibility", "galleryberg-gallery-block")}
 						attrKey="galleryCaptionVisibility"
 						options={[
@@ -470,7 +414,7 @@ function Inspector(props) {
 					/>
 
 					{attributes.galleryCaptionType === "below" && (
-						<ToggleGroupControlWithToolsPanel
+						<ToggleGroupControlWithoutToolsPanel
 							label={__("Caption Alignment", "galleryberg-gallery-block")}
 							attrKey="galleryCaptionAlignment"
 							options={[
@@ -505,7 +449,7 @@ function Inspector(props) {
 							</Tip>
 						</div>
 					)}
-				</ToolsPanel>
+				</PanelBody>
 			</InspectorControls>
 			<InspectorControls>
 				<PanelBody
@@ -612,10 +556,7 @@ function Inspector(props) {
 									letterSpacing: "0.5px",
 								}}
 							>
-								{__(
-									"GET GALLERYBERG PRO",
-									"galleryberg-gallery-block",
-								)}
+								{__("GET GALLERYBERG PRO", "galleryberg-gallery-block")}
 							</h3>
 							<p
 								style={{
