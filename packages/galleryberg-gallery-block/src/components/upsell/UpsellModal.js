@@ -4,9 +4,23 @@ import {
 	useState,
 	useEffect,
 	useCallback,
+	useRef,
 } from "@wordpress/element";
 import { PRO_FEATURES, PROMO_CONFIG } from "./upsell-data";
 import { upsellIcon } from "../../../assets/upsell-icon.js";
+
+function execCommandCopy(text, onSuccess) {
+	const el = document.createElement("textarea");
+	el.value = text;
+	el.style.cssText = "position:fixed;opacity:0;pointer-events:none;";
+	document.body.appendChild(el);
+	el.focus();
+	el.select();
+	try {
+		if (document.execCommand("copy")) onSuccess();
+	} catch (_) {}
+	document.body.removeChild(el);
+}
 
 const ChevronLeft = () => (
 	<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
@@ -35,6 +49,28 @@ function UpsellModal({ onClose, featureInfo, link }) {
 	);
 	const [slideDirection, setSlideDirection] = useState("");
 	const [slideKey, setSlideKey] = useState(0);
+	const [copied, setCopied] = useState(false);
+	const copyTimeoutRef = useRef(null);
+
+	const handleCopyCode = useCallback(() => {
+		if (!promoCode) return;
+
+		const onSuccess = () => {
+			setCopied(true);
+			clearTimeout(copyTimeoutRef.current);
+			copyTimeoutRef.current = setTimeout(() => setCopied(false), 2000);
+		};
+
+		if (navigator.clipboard && navigator.clipboard.writeText) {
+			navigator.clipboard.writeText(promoCode).then(onSuccess).catch(() => {
+				execCommandCopy(promoCode, onSuccess);
+			});
+		} else {
+			execCommandCopy(promoCode, onSuccess);
+		}
+	}, [promoCode]);
+
+	useEffect(() => () => clearTimeout(copyTimeoutRef.current), []);
 
 	const goToPrev = useCallback(() => {
 		setSlideDirection("slide-left");
@@ -111,7 +147,18 @@ function UpsellModal({ onClose, featureInfo, link }) {
 							{promoCode && promoText && (
 								<div className="galleryberg-upsell-promo">
 									<span>{promoText}</span>
-									<code>{promoCode}</code>
+									<button
+										className={`galleryberg-upsell-promo-code${copied ? " is-copied" : ""}`}
+										onClick={handleCopyCode}
+										title={__("Click to copy", "galleryberg-gallery-block")}
+									>
+										<code>{promoCode}</code>
+										<span className="galleryberg-upsell-promo-copy-label">
+											{copied
+												? __("Copied!", "galleryberg-gallery-block")
+												: __("Copy", "galleryberg-gallery-block")}
+										</span>
+									</button>
 								</div>
 							)}
 						</div>
