@@ -613,7 +613,7 @@ function Inspector(props) {
 								}}
 							>
 								{__(
-									"GET GALLERYBERG PRO - EARLY BIRD DEAL",
+									"GET GALLERYBERG PRO",
 									"galleryberg-gallery-block",
 								)}
 							</h3>
@@ -649,7 +649,7 @@ function Inspector(props) {
 									cursor: "pointer",
 								}}
 							>
-								{__("Get Lifetime Access - $49", "galleryberg-gallery-block")}
+								{__("Get Lifetime Access - $149", "galleryberg-gallery-block")}
 							</a>
 							<div
 								style={{
