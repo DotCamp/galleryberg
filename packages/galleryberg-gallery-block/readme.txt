@@ -159,6 +159,7 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 
 = 1.1.4 =
 
+* FIX: Justified gallery row height not applying correctly on the frontend
 * FIX: Caption background clearing when switching to Below Image type
 * NEW: Preview images added to upsell modal
 * NEW: One-click promo code copy button in upsell modals

@@ -111,7 +111,13 @@ $wrapper_styles = array();
 
 if ( isset( $context['layout'] ) && 'justified' === $context['layout'] ) {
 	if ( isset( $context['justifiedRowHeight'] ) && $context['justifiedRowHeight'] ) {
-		$style['height'] = intval( $context['justifiedRowHeight'] ) . 'px';
+		$row_height                 = intval( $context['justifiedRowHeight'] );
+		$wrapper_styles['height']   = $row_height . 'px';
+		$natural_width              = isset( $media['width'] ) ? intval( $media['width'] ) : 0;
+		$natural_height             = isset( $media['height'] ) ? intval( $media['height'] ) : 0;
+		if ( $natural_width && $natural_height ) {
+			$wrapper_styles['flex-basis'] = round( $row_height * ( $natural_width / $natural_height ) ) . 'px';
+		}
 	}
 } elseif ( isset( $context['layout'] ) && 'masonry' === $context['layout'] && isset( $context['blockSpacing'] ) && $context['blockSpacing'] ) {
 	$block_gap                       = \Galleryberg\Helpers\Styling_Helpers::get_spacing_preset_css_var( $context['blockSpacing']['top'] ) ?? '16px';
