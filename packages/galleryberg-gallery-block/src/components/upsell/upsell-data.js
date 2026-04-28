@@ -1,4 +1,7 @@
 import { __ } from "@wordpress/i18n";
+import lazyLoadingImage from "./images/lazy-loading.webp";
+import mosaicLayoutImage from "./images/mosaic-layout.png";
+import lightboxThumbnailsImage from "./images/lightbox-thumbnails.png";
 
 /**
  * Promo configuration — set these once to show a promo banner in every upsell modal.
@@ -13,6 +16,7 @@ export const PRO_FEATURES = [
 	{
 		name: "lazy-loading",
 		title: __("Lazy Loading", "galleryberg-gallery-block"),
+		image: lazyLoadingImage,
 		description: __(
 			"Load images only when they enter the viewport for faster page loads and improved performance.",
 			"galleryberg-gallery-block",
@@ -21,6 +25,7 @@ export const PRO_FEATURES = [
 	{
 		name: "mosaic-layout",
 		title: __("Mosaic Layout", "galleryberg-gallery-block"),
+		image: mosaicLayoutImage,
 		description: __(
 			"Create stunning mosaic galleries with custom image span controls for unique, eye-catching layouts.",
 			"galleryberg-gallery-block",
@@ -29,6 +34,7 @@ export const PRO_FEATURES = [
 	{
 		name: "lightbox-thumbnails",
 		title: __("Lightbox Thumbnails", "galleryberg-gallery-block"),
+		image: lightboxThumbnailsImage,
 		description: __(
 			"Add thumbnail navigation to your lightbox for easier browsing. Includes customizable position, navigation style, and speed.",
 			"galleryberg-gallery-block",

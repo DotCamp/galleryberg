@@ -23,8 +23,8 @@
 		"clean:build": "rm -rf packages/*/build",
 		"clean:zip": "rm -rf packages/*/*.zip releases/*.zip",
 		"prezip": "pnpm run clean:zip && mkdir -p releases",
-		"zip:galleryberg": "pnpm run build:admin && pnpm run build:galleryberg && cd packages/galleryberg-gallery-block && zip -r ../../releases/galleryberg-gallery-block.zip . -x '*.git*' 'node_modules/*' 'src/*' 'package*.json' 'pnpm-lock.yaml' 'composer.json' 'composer.lock' 'README.md' 'webpack.config.js' '.DS_Store' '*.log'",
-		"zip:pro": "pnpm run build:admin && pnpm run build:pro && cd packages/galleryberg-gallery-block-pro && zip -r ../../releases/galleryberg-gallery-block-pro.zip . -x '*.git*' 'node_modules/*' 'src/*' 'package*.json' 'pnpm-lock.yaml' 'composer.json' 'composer.lock' 'README.md' 'webpack.config.js' '.DS_Store' '*.log'",
+		"zip:galleryberg": "rm -rf packages/galleryberg-gallery-block/build releases/galleryberg-gallery-block.zip && mkdir -p releases && pnpm run build:admin && pnpm run build:galleryberg && cd packages/galleryberg-gallery-block && zip -r ../../releases/galleryberg-gallery-block.zip . -x '*.git*' 'node_modules/*' 'src/*' 'package*.json' 'pnpm-lock.yaml' 'composer.json' 'composer.lock' 'README.md' 'webpack.config.js' '.DS_Store' '*.log'",
+		"zip:pro": "rm -rf packages/galleryberg-gallery-block-pro/build releases/galleryberg-gallery-block-pro.zip && mkdir -p releases && pnpm run build:admin && pnpm run build:pro && cd packages/galleryberg-gallery-block-pro && zip -r ../../releases/galleryberg-gallery-block-pro.zip . -x '*.git*' 'node_modules/*' 'src/*' 'package*.json' 'pnpm-lock.yaml' 'composer.json' 'composer.lock' 'README.md' 'webpack.config.js' '.DS_Store' '*.log'",
 		"zip:both": "pnpm run prezip && pnpm run build:all && pnpm run zip:galleryberg && pnpm run zip:pro && echo '\\n✅ ZIP files created in releases/ folder'",
 		"zip:all": "pnpm run zip:both",
 		"release": "pnpm run lint && pnpm run build:all && pnpm run zip:both"

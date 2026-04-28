@@ -62,9 +62,12 @@ function UpsellModal({ onClose, featureInfo, link }) {
 		};
 
 		if (navigator.clipboard && navigator.clipboard.writeText) {
-			navigator.clipboard.writeText(promoCode).then(onSuccess).catch(() => {
-				execCommandCopy(promoCode, onSuccess);
-			});
+			navigator.clipboard
+				.writeText(promoCode)
+				.then(onSuccess)
+				.catch(() => {
+					execCommandCopy(promoCode, onSuccess);
+				});
 		} else {
 			execCommandCopy(promoCode, onSuccess);
 		}
