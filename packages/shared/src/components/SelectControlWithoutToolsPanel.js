@@ -8,6 +8,7 @@ function SelectControlWithoutToolsPanel({
 	options,
 	defaultValue = "",
 	help,
+	onAfterChange,
 }) {
 	const { clientId } = useBlockEditContext();
 
@@ -28,6 +29,7 @@ function SelectControlWithoutToolsPanel({
 			options={options}
 			onChange={(newValue) => {
 				setAttributes({ [attrKey]: newValue });
+				onAfterChange?.(newValue);
 			}}
 			help={help}
 			size="__unstable-large"

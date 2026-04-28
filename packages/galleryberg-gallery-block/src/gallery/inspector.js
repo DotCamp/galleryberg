@@ -387,6 +387,14 @@ function Inspector(props) {
 							"Apply caption type to all images in the gallery",
 							"galleryberg-gallery-block",
 						)}
+						onAfterChange={(newValue) => {
+							if (newValue === "below") {
+								setAttributes({
+									galleryCaptionBackgroundColor: "",
+									galleryCaptionBackgroundGradient: "",
+								});
+							}
+						}}
 					/>
 
 					<SelectControlWithoutToolsPanel

@@ -173,6 +173,14 @@ function Inspector({
 							},
 						]}
 						defaultValue=""
+						onAfterChange={(newValue) => {
+							if (newValue === "below") {
+								setAttributes({
+									captionBackgroundColor: null,
+									captionBackgroundGradient: null,
+								});
+							}
+						}}
 					/>
 
 					<SelectControlWithoutToolsPanel
