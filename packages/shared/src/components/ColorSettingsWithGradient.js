@@ -28,17 +28,6 @@ function ColorSettingsWithGradient(props) {
 	const setAttributes = (newAttributes) =>
 		updateBlockAttributes(clientId, newAttributes);
 	const colorGradientSettings = useMultipleOriginColorsAndGradients();
-	const { defaultColors, defaultGradients } = useSelect((select) => {
-		return {
-			defaultColors:
-				select("core/block-editor")?.getSettings()?.__experimentalFeatures
-					?.color?.palette?.default,
-
-			defaultGradients:
-				select("core/block-editor")?.getSettings()?.__experimentalFeatures
-					?.color?.gradients?.default,
-		};
-	});
 
 	return (
 		<ColorGradientSettingsDropdown
@@ -59,8 +48,6 @@ function ColorSettingsWithGradient(props) {
 						}),
 					colorValue: attributes[props.attrBackgroundKey],
 					gradientValue: attributes[props.attrGradientKey],
-					colors: defaultColors,
-					gradients: defaultGradients,
 					label: props.label,
 					onColorChange: (newValue) =>
 						setAttributes({

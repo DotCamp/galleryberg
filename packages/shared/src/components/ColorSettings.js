@@ -30,13 +30,6 @@ function ColorSettings(props) {
 		onAttributesUpdate(newAttributes);
 	};
 	const colorGradientSettings = useMultipleOriginColorsAndGradients();
-	const { defaultColors } = useSelect((select) => {
-		return {
-			defaultColors:
-				select("core/block-editor")?.getSettings()?.__experimentalFeatures
-					?.color?.palette?.default,
-		};
-	});
 
 	return (
 		<ColorGradientSettingsDropdown
@@ -52,7 +45,6 @@ function ColorSettings(props) {
 					clearable: true,
 					resetAllFilter: () => setAttributes({ [props.attrKey]: null }),
 					colorValue: attributes[props.attrKey],
-					colors: defaultColors,
 					label: props.label,
 					onColorChange: (newValue) =>
 						setAttributes({ [props.attrKey]: newValue }),
