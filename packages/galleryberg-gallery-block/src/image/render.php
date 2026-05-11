@@ -88,6 +88,9 @@ $id                 = isset( $media['id'] ) ? $media['id'] : '';
 
 $aspect_ratio  = ! empty( $attributes['aspectRatio'] ) ? esc_attr( $attributes['aspectRatio'] ) : '';
 $scale         = ! empty( $attributes['scale'] ) ? esc_attr( $attributes['scale'] ) : '';
+$focal_point   = isset( $attributes['focalPoint'] ) ? $attributes['focalPoint'] : array( 'x' => 0.5, 'y' => 0.5 );
+$focal_x       = isset( $focal_point['x'] ) ? round( floatval( $focal_point['x'] ) * 100, 2 ) : 50;
+$focal_y       = isset( $focal_point['y'] ) ? round( floatval( $focal_point['y'] ) * 100, 2 ) : 50;
 $width         = isset( $attributes['width'] ) ? intval( $attributes['width'] ) : '';
 $height        = isset( $attributes['height'] ) ? intval( $attributes['height'] ) : '';
 $border        = $attributes['border'] ?? array();
@@ -103,6 +106,7 @@ $style = array(
 	'border-bottom-right-radius' => isset( $effective_border_radius['bottomRight'] ) ? $effective_border_radius['bottomRight'] : '',
 	'aspect-ratio'               => $aspect_ratio ? $aspect_ratio : '',
 	'object-fit'                 => $scale ? $scale : '',
+	'object-position'            => "{$focal_x}% {$focal_y}%",
 	'width'                      => $width ? "{$width}px" : '',
 	'height'                     => $height ? "{$height}px" : '',
 );

@@ -15,6 +15,7 @@ function Image(props) {
 	const scale = get(attributes, "scale", "none");
 	const width = get(attributes, "width", "");
 	const height = get(attributes, "height", "");
+	const focalPoint = get(attributes, "focalPoint", { x: 0.5, y: 0.5 });
 	const borderAttr = get(attributes, "border", {
 		top: "",
 		right: "",
@@ -37,6 +38,7 @@ function Image(props) {
 			style={{
 				aspectRatio,
 				objectFit: scale,
+				objectPosition: `${focalPoint.x * 100}% ${focalPoint.y * 100}%`,
 				width,
 				height,
 				borderTopLeftRadius: borderRadius.topLeft,

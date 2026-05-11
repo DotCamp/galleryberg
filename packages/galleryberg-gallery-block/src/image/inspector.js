@@ -7,6 +7,7 @@ import {
 	Tip,
 	TextareaControl,
 	__experimentalUnitControl as UnitControl,
+	FocalPointPicker,
 	PanelBody,
 	ToggleControl,
 	RangeControl,
@@ -39,7 +40,8 @@ function Inspector({
 	EnableLazyLoading = null,
 	isPro = false,
 }) {
-	const { alt, aspectRatio, height, scale, width } = attributes;
+	const { alt, aspectRatio, focalPoint, height, media, scale, width } = attributes;
+	const focalPointUrl = media?.sizes?.large?.url ?? media?.url ?? "";
 	const scaleOptions = DEFAULT_SCALE_OPTIONS;
 	const scaleHelp = useMemo(() => {
 		return scaleOptions.reduce((acc, option) => {
@@ -62,6 +64,17 @@ function Inspector({
 						label={__("Alternative Text", "galleryberg-gallery-block")}
 						onChange={(newValue) => setAttributes({ alt: newValue })}
 					/>
+					{focalPointUrl && (
+						<FocalPointPicker
+							__nextHasNoMarginBottom
+							label={__("Focal Point", "galleryberg-gallery-block")}
+							url={focalPointUrl}
+							value={focalPoint}
+							onChange={(newFocalPoint) =>
+								setAttributes({ focalPoint: newFocalPoint })
+							}
+						/>
+					)}
 					<SelectControlWithoutToolsPanel
 						label={__("Aspect ratio", "galleryberg-gallery-block")}
 						attrKey="aspectRatio"
