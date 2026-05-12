@@ -2,7 +2,7 @@
 Contributors:      imtiazrayhan, dotcamp, farhanshafi
 Tags:              block, gallery, gutenberg, images, lightbox
 Tested up to:      6.9
-Stable tag:        1.1.4
+Stable tag:        1.1.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Requires at least: 6.0
@@ -156,6 +156,12 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 7. Block settings panel showing customization options
 
 == Changelog ==
+
+= 1.1.5 =
+
+* FIX: Justified gallery row height not applying on the frontend
+* NEW: Focal point and theme color picker for gallery images
+* IMPROVE: Removed upsell panel
 
 = 1.1.4 =
 

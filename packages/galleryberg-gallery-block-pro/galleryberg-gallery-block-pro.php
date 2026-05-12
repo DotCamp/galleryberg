@@ -3,7 +3,7 @@
  * Plugin Name: Galleryberg Gallery Block Pro
  * Plugin URI: https://galleryberg.com/pro
  * Description: Professional gallery layouts and features for Galleryberg
- * Version: 1.1.4
+ * Version: 1.1.5
  * Requires at least: 6.0
  * Requires PHP: 7.4
  * Author: Imtiaz Rayhan
