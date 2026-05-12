@@ -159,8 +159,8 @@ Yes, the plugin generates semantic HTML with appropriate classes that you can ta
 
 = 1.1.5 =
 
-* FIX: Justified gallery row height not applying on the frontend
-* NEW: Focal point and theme color picker for gallery images
+* NEW: Focal point picker for gallery images
+* NEW: Theme color picker for gallery images
 * IMPROVE: Removed upsell panel
 
 = 1.1.4 =
